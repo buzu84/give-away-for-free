@@ -1,0 +1,58 @@
+body {
+  font-family: $font-base, sans-serif;
+}
+
+.header {
+  background: $color_2;
+}
+
+
+.nav_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  background: $color_2;
+}
+
+nav > ul > li {
+    display: inline;
+    padding: 0 40px;
+    :hover{
+      opacity: 80%;
+    }
+}
+
+li > a {
+   text-decoration: none;
+   color: white;
+   cursor: pointer;
+   a:hover {
+     opacity: 80%;
+   }
+ }
+
+.organizations_list {
+  background: $color_1;
+}
+
+.about_us {
+  background: $color_3;
+}
+
+.steps {
+  background: $color_4;
+}
+
+.contact_us {
+  background: $color_5;
+}
+
+.columns {
+  background: $color_3;
+}
+
+.land_page {
+  margin-top: 100px;
+}
