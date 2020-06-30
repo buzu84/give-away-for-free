@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import {
   HashRouter,
   Route,
-  Link,
   Switch,
 } from 'react-router-dom';
 import Home from './components/Home';
@@ -14,22 +13,6 @@ import GiveAwayForm from './components/GiveAwayForm';
 const App = () => {
   return (
     <HashRouter>
-      <nav className="nav_container">
-        <ul>
-          <li>
-            <Link to="/">Landing Page</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
-            <Link to="/form">Give away form</Link>
-          </li>
-        </ul>
-      </nav>
       <div>
          <Switch>
            <Route exact path='/' component={Home} />
