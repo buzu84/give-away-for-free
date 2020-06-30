@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
 // import mySvg from '../assets/Decoration.svg';
+import history from './history';
 const options = {
   duration: 1500,
   delay: 100,
@@ -45,9 +46,9 @@ const HomeHeader = () => {
       </nav>
       <p>Zacznij pomagać</p>
       <p>Oddaj niechciane rzeczy w zaufane ręce</p>
-      <img src={mySvg} alt="decoration" />
-      <button>ODDAJ RZECZY</button>
-      <button>ZORGANIZUJ ZBIÓRKĘ</button>
+      <img src="Decoration.svg" alt="decoration" />
+      <button onClick={() => history.push('/login')}>ODDAJ RZECZY</button>
+      <button onClick={() => history.push('/login')}>ZORGANIZUJ ZBIÓRKĘ</button>
     </div>
   );
 }
