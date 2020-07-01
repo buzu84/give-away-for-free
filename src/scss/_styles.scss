@@ -4,6 +4,14 @@ body {
 
 .header {
   background: $color_2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .img_container {
+    background-image: url("../assets/Home-Hero-Image.jpg");
+    height: 1000px;
+    width: 1000px;
+  }
 }
 
 

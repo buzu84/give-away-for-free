@@ -1,19 +1,38 @@
 import app from 'firebase/app';
+import 'firebase/auth';
 
 const config = {
-  apiKey: "AIzaSyA-pG-nKPlC7XeV_G2EisY9CfAkPzk_ZDM",
-  authDomain: "give-away-for-free.firebaseapp.com",
-  databaseURL: "https://give-away-for-free.firebaseio.com",
-  projectId: "give-away-for-free",
-  storageBucket: "give-away-for-free.appspot.com",
-  messagingSenderId: "685019829846",
-  appId: "1:685019829846:web:11d82c423b702bbaeecdf7"
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 class Firebase {
   constructor() {
     app.initializeApp(config);
+    this.auth = app.auth();
   }
+  // *** Auth API ***
+  doCreateUserWithEmailAndPassword = (email, password) =>
+    this.auth.createUserWithEmailAndPassword(email, password);
+
+  doSignInWithEmailAndPassword = (email, password) =>
+    this.auth.signInWithEmailAndPassword(email, password);
+
+  doSignOut = () => this.auth.signOut();
+
+  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+
+  doPasswordUpdate = password =>
+    this.auth.currentUser.updatePassword(password);
+
+  // doEmailVerification = email =>
+  //   this.auth.currentUser.sendEmailVerification(email);
+
 }
 
 export default Firebase;
