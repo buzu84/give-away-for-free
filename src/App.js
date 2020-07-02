@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
   Router,
@@ -6,6 +6,7 @@ import {
   Switch,
   Link,
 } from 'react-router-dom';
+import { FirebaseContext } from './components/Firebase'
 
 import { Link as Scroll } from 'react-scroll';
 import history from './components/Home/history';
@@ -20,15 +21,33 @@ const options = {
 }
 
 const App = () => {
+  const firebase = useContext(FirebaseContext);
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    if (firebase) {
+      firebase.auth.onAuthStateChanged(function(user) {
+      if (user) {
+        setUser(user)
+      }
+    });
+
+    }
+
+}, [firebase])
+
+
+  console.warn(user?.email)
   return (
     <Router history={history}>
       <nav className="nav_container">
-        <ul>
+        <ul className="first_nav">
           <li>
-            <Link to="/login">Login</Link>
+            <Link className="first_nav" to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/register">Register</Link>
+            <Link className="first_nav" to="/register">Register</Link>
           </li>
         </ul>
       </nav>

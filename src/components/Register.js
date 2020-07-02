@@ -34,11 +34,11 @@ class SignUpFormBase extends Component {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push('/');
 
-        // this.props.firebase.doEmailVerification(email).then(function() {
-        // console.log('email sent');
-        // }).catch(function(error) {
-        // console.log('error happened');
-        // });
+        this.props.firebase.doEmailVerification(email).then(function() {
+        console.log('email sent');
+        }).catch(function(error) {
+        console.log('error happened');
+        });
       })
       .catch(error => {
         this.setState({ error });
@@ -66,8 +66,8 @@ class SignUpFormBase extends Component {
 
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <fieldset>
+      <form className="form" onSubmit={this.onSubmit}>
+        <fieldset className="form_field">
           <legend>Załóż konto: </legend>
           <label>email</label>
           <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address"/>

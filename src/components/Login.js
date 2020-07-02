@@ -41,15 +41,13 @@ class SignInFormBase extends Component {
   this.setState({ [event.target.name]: event.target.value });
 };
 
-
-
   render() {
     const { email, password, error } = this.state;
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <fieldset>
+      <form className="form" onSubmit={this.onSubmit}>
+        <fieldset className="form_field">
           <legend>Zaloguj się: </legend>
           <label>email</label>
           <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address"/>

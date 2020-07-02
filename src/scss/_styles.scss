@@ -2,6 +2,25 @@ body {
   font-family: $font-base, sans-serif;
 }
 
+nav > ul > li {
+    display: inline;
+    padding: 0 40px;
+
+    :hover{
+      opacity: 80%;
+    }
+}
+
+li > a {
+   text-decoration: none;
+   color: black;
+   cursor: pointer;
+   font-size: 1rem;
+   a:hover {
+     opacity: 80%;
+   }
+ }
+
 .header {
   background: #FFFFFF;
   display: flex;
@@ -23,10 +42,31 @@ body {
   height: 150px;
   align-items: center;
   justify-content: space-between;
+  p {
+    font-size: 2rem;
+    font-weight: 200;
+
+    margin-bottom: 1rem;
+  }
   .btn_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    margin-top: 1rem;
+    .btn_give_away {
+      font-size: 2rem;
+      font-family: $font-base, sans-serif;
+      font-weight: 200;
+      background: #FFFFFF;
+      border: #3C3C3C 0.75px solid;
+      width: 17rem;
+    }
+    .btn_give_away_first {
+      margin-right: 1rem;
+    }
+    .btn_give_away_second {
+      margin-left: 1rem;
+    }
   }
 }
 
@@ -35,29 +75,15 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 80px;
+  height: 60px;
   width: 100%;
   background: #FFFFFF;
+  .first_nav {
+    font-size: 0.8rem;
+  }
 }
 
-nav > ul > li {
-    display: inline;
-    padding: 0 40px;
 
-    :hover{
-      opacity: 80%;
-    }
-}
-
-li > a {
-   text-decoration: none;
-   color: black;
-   cursor: pointer;
-   font-size: 1rem;
-   a:hover {
-     opacity: 80%;
-   }
- }
 
 .organizations_list {
   background: $color_2;
@@ -77,4 +103,16 @@ li > a {
 
 .columns {
   background: $color_3;
+}
+.form {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form_field {
+    height:300px;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+  }
 }

@@ -30,8 +30,8 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
-  // doEmailVerification = email =>
-  //   this.auth.currentUser.sendEmailVerification(email);
+  doEmailVerification = email =>
+    this.auth.currentUser.sendEmailVerification(email);
 
 }
 
