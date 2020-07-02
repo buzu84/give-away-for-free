@@ -22,7 +22,6 @@ const options = {
 const App = () => {
   return (
     <Router history={history}>
-
       <nav className="nav_container">
         <ul>
           <li>

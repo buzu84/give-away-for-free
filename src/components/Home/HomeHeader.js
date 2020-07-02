@@ -15,8 +15,10 @@ const HomeHeader = () => {
         <p>Zacznij pomagać</p>
         <p>Oddaj niechciane rzeczy w zaufane ręce</p>
         <img src={mySvg} alt="decoration" />
-        <button onClick={() => history.push('/login')}>ODDAJ RZECZY</button>
-        <button onClick={() => history.push('/login')}>ZORGANIZUJ ZBIÓRKĘ</button>
+        <div className="btn_container">
+          <button onClick={() => history.push('/login')}>ODDAJ RZECZY</button>
+          <button onClick={() => history.push('/login')}>ZORGANIZUJ ZBIÓRKĘ</button>
+        </div>
       </div>
     </div>
   );
