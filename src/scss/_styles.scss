@@ -2,6 +2,11 @@ body {
   font-family: $font-base, sans-serif;
 }
 
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
 nav > ul > li {
     display: inline;
     padding: 0 40px;
@@ -58,8 +63,9 @@ li > a {
       font-family: $font-base, sans-serif;
       font-weight: 200;
       background: #FFFFFF;
-      border: #3C3C3C 0.75px solid;
+      border: $color_5 0.75px solid;
       width: 17rem;
+      color: $color_5;
     }
     .btn_give_away_first {
       margin-right: 1rem;
@@ -80,6 +86,12 @@ li > a {
   background: #FFFFFF;
   .first_nav {
     font-size: 0.8rem;
+    color: $color_4;
+  }
+  .register_nav {
+    border: 0.5px solid $color_3;
+    padding: 7px 20px;
+    borderStyle: groove;
   }
 }
 

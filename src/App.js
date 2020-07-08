@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
   Link,
+  NavLink,
 } from 'react-router-dom';
 import { FirebaseContext } from './components/Firebase'
 
@@ -19,6 +20,15 @@ const options = {
   delay: 100,
   smooth: true,
 }
+
+
+const activeStyle = {
+  border: '0.2px solid #3C3C3C',
+  padding: '10px 30px',
+
+  borderStyle: 'groove'
+}
+
 
 const App = () => {
   const firebase = useContext(FirebaseContext);
@@ -47,14 +57,14 @@ const App = () => {
             <Link className="first_nav" to="/login">Login</Link>
           </li>
           <li>
-            <Link className="first_nav" to="/register">Register</Link>
+            <Link className="first_nav register_nav" to="/register">Register</Link>
           </li>
         </ul>
       </nav>
       <nav className="nav_container">
         <ul>
           <li>
-            <Link to="/">Start</Link>
+            <NavLink activeStyle={activeStyle} activeClassName="active" to="/">Start</NavLink>
           </li>
           <li>
             <Scroll to="section1" {...options} >O co chodzi?</Scroll>
