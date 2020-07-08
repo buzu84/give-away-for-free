@@ -95,6 +95,42 @@ li > a {
   }
 }
 
+.info-section {
+  color: black;
+  background: #faca10;
+  // background-image: url();
+
+  .info-item {
+    display: flex;
+    justify-content: space-around;
+
+    .info-box {
+      text-align: center;
+      width: 20rem;
+      font-size: 5.5rem;
+      color: $color_2;
+      font-weight: 200;
+
+      h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        // font-weight: normal;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+        color: $color_2;
+      }
+
+      .icon {
+        padding: 2.5rem;
+
+      }
+    }
+  }
+}
+
 
 
 .organizations_list {
