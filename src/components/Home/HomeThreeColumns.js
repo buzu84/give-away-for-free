@@ -32,7 +32,7 @@ const HomeThreeColumns = () => {
           <h1 className="icon">7</h1>
           <h2>ZORGANIZOWANYCH ZBIÓREK</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci. 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci.
           </p>
         </div>
       </div>

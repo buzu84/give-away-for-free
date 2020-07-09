@@ -93,14 +93,72 @@ li > a {
     padding: 7px 20px;
     borderStyle: groove;
   }
+  .logged_nav {
+    color: black;
+  }
 }
 
+// 3 columns
 .info-section {
-  color: black;
   background: #faca10;
-  // background-image: url();
+  .info-item {
+    display: flex;
+    justify-content: space-around;
+    .info-box {
+      text-align: center;
+      width: 20rem;
+      font-size: 5.5rem;
+      color: $color_2;
+      font-weight: 200;
+
+      h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        // font-weight: normal;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+        color: $color_2;
+      }
+
+      .icon {
+        padding: 2.5rem;
+
+      }
+    }
+  }
+}
+
+// 4 steps
+.info-section-2 {
+  background: white;
+
   h1 {
+    margin: 2rem 0;
     text-align: center;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+  .image {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  .btn_give_away_third {
+    display: block;
+    margin: 0 auto;
+    font-size: 2rem;
+    font-family: $font-base, sans-serif;
+    font-weight: 200;
+    background: #FFFFFF;
+    border: $color_5 0.75px solid;
+    width: 17rem;
+    color: $color_5;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
   }
 
   .info-item {
@@ -133,6 +191,10 @@ li > a {
     }
     .info-box-2 {
       width: 10rem;
+      .ruler {
+        width: 60%;
+        margin: 1rem 1.8rem;
+      }
     }
   }
   .info-item-2 {
@@ -141,7 +203,50 @@ li > a {
   }
 }
 
+// about us
+.info-section-3 {
+  background: $color_1;
+  .info-item {
+    display: flex;
+    justify-content: space-around;
+    .info-box {
+      text-align: center;
+      width: 20rem;
+      font-size: 2.4rem;
+      color: $color_5;
+      font-weight: 200;
 
+      h2 {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        // font-weight: normal;
+      }
+
+      p {
+        font-size: 1.9rem;
+        margin-bottom: 3rem;
+        color: $color_5;
+      }
+      .icon {
+        padding: 2.5rem;
+      }
+      .row {
+        display: flex;
+      }
+      .column {
+        width: 50%;
+      }
+    }
+    .pic_box {
+      background-image: url(../assets/People.jpg);
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: auto;
+      width: 50%;
+    }
+  }
+}
 
 
 
@@ -149,13 +254,7 @@ li > a {
   background: $color_2;
 }
 
-.about_us {
-  background: $color_3;
-}
 
-.steps {
-  background: $color_1;
-}
 
 .contact_us {
   background: $color_5;

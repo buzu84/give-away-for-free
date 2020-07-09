@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import GiveAwayForm from './components/GiveAwayForm';
+import LogOut from './components/LogOut';
 const options = {
   duration: 1500,
   delay: 100,
@@ -52,6 +53,7 @@ const App = () => {
   return (
     <Router history={history}>
       <nav className="nav_container">
+      {user?.email === undefined ? (
         <ul className="first_nav">
           <li>
             <Link className="first_nav" to="/login">Login</Link>
@@ -60,6 +62,20 @@ const App = () => {
             <Link className="first_nav register_nav" to="/register">Register</Link>
           </li>
         </ul>
+      ) : (
+        <ul className="first_nav">
+          <li>
+            <span className="first_nav logged_nav">Cześć {user?.email}</span>
+          </li>
+          <li>
+            <Link className="first_nav logged_nav register_nav" to="/form">Oddaj rzeczy</Link>
+          </li>
+          <li>
+            <Link className="first_nav" to="/logout">Wyloguj</Link>
+          </li>
+        </ul>
+      )}
+
       </nav>
       <nav className="nav_container">
         <ul>
@@ -85,6 +101,7 @@ const App = () => {
          <Route path='/login' component={Login} />
          <Route path='/register' component={Register} />
          <Route path='/form' component={GiveAwayForm} />
+         <Route path='/logout' component={LogOut} />
        </Switch>
      </Router>
   )
