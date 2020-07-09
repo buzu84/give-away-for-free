@@ -99,6 +99,9 @@ li > a {
   color: black;
   background: #faca10;
   // background-image: url();
+  h1 {
+    text-align: center;
+  }
 
   .info-item {
     display: flex;
@@ -128,8 +131,17 @@ li > a {
 
       }
     }
+    .info-box-2 {
+      width: 10rem;
+    }
+  }
+  .info-item-2 {
+    justify-content: center;
+    background: $color_1;
   }
 }
+
+
 
 
 
@@ -142,7 +154,7 @@ li > a {
 }
 
 .steps {
-  background: $color_4;
+  background: $color_1;
 }
 
 .contact_us {
