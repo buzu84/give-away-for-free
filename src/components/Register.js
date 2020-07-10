@@ -75,8 +75,9 @@ class SignUpFormBase extends Component {
           <input name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" placeholder="Password"/>
           <label>Powtórz hasło</label>
           <input name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" placeholder="Confirm Password"/>
-          <button onClick={() => history.push('/login')}>zaloguj</button>
           <button disabled={isInvalid} type="submit">zarejestruj</button>
+          <button onClick={() => history.push('/login')}>Masz konto? Zaloguj się</button>
+
           {error && <p>{error.message}</p>}
         </fieldset>
       </form>

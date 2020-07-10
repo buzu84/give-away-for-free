@@ -16,17 +16,19 @@ import Login from './components/Login';
 import Register from './components/Register';
 import GiveAwayForm from './components/GiveAwayForm';
 import LogOut from './components/LogOut';
+import PwForget from './components/PwForget';
+import SignOutButton from './components/SignOutButton';
+import Admin from './components/Admin';
+
 const options = {
   duration: 1500,
   delay: 100,
   smooth: true,
 }
 
-
 const activeStyle = {
   border: '0.2px solid #3C3C3C',
   padding: '10px 30px',
-
   borderStyle: 'groove'
 }
 
@@ -34,26 +36,25 @@ const activeStyle = {
 const App = () => {
   const firebase = useContext(FirebaseContext);
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+  const [currentUserEmail, setCurrentUserEmail] = useState(undefined)
 
   useEffect(() => {
     if (firebase) {
       firebase.auth.onAuthStateChanged(function(user) {
       if (user) {
-        setUser(user)
+        setUser(user);
+        setCurrentUserEmail(user?.email);
       }
     });
-
-    }
-
+  }
 }, [firebase])
 
 
-  console.warn(user?.email)
   return (
     <Router history={history}>
       <nav className="nav_container">
-      {user?.email === undefined ? (
+      {currentUserEmail === undefined ? (
         <ul className="first_nav">
           <li>
             <Link className="first_nav" to="/login">Login</Link>
@@ -71,11 +72,10 @@ const App = () => {
             <Link className="first_nav logged_nav register_nav" to="/form">Oddaj rzeczy</Link>
           </li>
           <li>
-            <Link className="first_nav" to="/logout">Wyloguj</Link>
+            <SignOutButton />
           </li>
         </ul>
       )}
-
       </nav>
       <nav className="nav_container">
         <ul>
@@ -100,8 +100,10 @@ const App = () => {
          <Route exact path='/' component={Home} />
          <Route path='/login' component={Login} />
          <Route path='/register' component={Register} />
-         <Route path='/form' component={GiveAwayForm} />
          <Route path='/logout' component={LogOut} />
+         <Route path='/form' component={GiveAwayForm} />
+         <Route path='/admin' component={Admin} />
+         <Route path='/pw-forget' component={PwForget} />
        </Switch>
      </Router>
   )

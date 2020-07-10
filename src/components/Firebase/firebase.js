@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import history from '../Home/history';
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -23,7 +24,11 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  doSignOut = () => this.auth.signOut();
+  doSignOut = () => {
+    this.auth.signOut();
+    history.push('/logout')
+    window.location.reload();
+  }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 

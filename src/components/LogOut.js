@@ -2,7 +2,7 @@ import React from "react";
 
 const LogOut = () => {
   return (
-      <h1>Log out form</h1>
+      <h1>Wylogowales sie!</h1>
   );
 }
 

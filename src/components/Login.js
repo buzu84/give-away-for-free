@@ -3,6 +3,7 @@ import history from './Home/history';
 import { withFirebase } from './Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import { Link } from 'react-router-dom';
 
 const Login = () => (
   <div>
@@ -53,8 +54,9 @@ class SignInFormBase extends Component {
           <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address"/>
           <label>Podaj hasło</label>
           <input name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/>
-          <button onClick={() => history.push('/register')}>zarejestruj</button>
           <button disabled={isInvalid} type="submit">zaloguj</button>
+          <button onClick={() => history.push('/register')}>Nie masz konta?</button>
+          <Link to="/pw-forget">Zapomniałeś hasła?</Link>
           {error && <p>{error.message}</p>}
         </fieldset>
       </form>
