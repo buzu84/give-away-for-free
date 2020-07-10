@@ -48,7 +48,7 @@ const HomeFourSteps = (props) => {
           </p>
         </div>
       </div>
-      <button className="btn_give_away_third" onClick={() => history.push('/login')}>ODDAJ<br></br>RZECZY</button>
+      <button className="btn_give_away_third" onClick={() => history.push('/form')}>ODDAJ<br></br>RZECZY</button>
     </section>
   );
 }

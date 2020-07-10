@@ -19,10 +19,8 @@ const HomeAboutUs = () => {
             </div>
           </div>
           <div className="pic_box column">
-
           </div>
         </div>
-
       </section>
   );
 }

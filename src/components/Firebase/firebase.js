@@ -25,9 +25,12 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => {
-    this.auth.signOut();
-    history.push('/logout')
-    window.location.reload();
+    this.auth.signOut().then(function() {
+      history.push('/logout')
+    }).catch(function(error) {
+      console.log('blad wylogowania')
+    });
+
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
