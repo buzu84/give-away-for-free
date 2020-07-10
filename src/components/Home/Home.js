@@ -9,7 +9,7 @@ import HomeThreeColumns from './HomeThreeColumns';
 
 const Home = () => {
   return (
-    <div className="land_page">
+    <div className="container">
       <HomeHeader />
       <HomeThreeColumns />
       <HomeFourSteps />
