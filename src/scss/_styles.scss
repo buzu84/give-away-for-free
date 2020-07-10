@@ -256,6 +256,51 @@ li > a {
   }
 }
 
+// wylogowano
+.info-section-4 {
+  background: white;
+  padding-top: 5rem;
+  h1 {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: #000000;
+  }
+  img {
+    margin-bottom: 1.5rem;
+  }
+  .btn_give_away_fourth {
+    display: block;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-family: $font-base, sans-serif;
+    font-weight: 200;
+    background: #FFFFFF;
+    border: $color_5 0.75px solid;
+    width: 10rem;
+    color: #000000;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+  }
+  .info-item {
+    display: flex;
+    justify-content: space-around;
+    .info-box {
+      text-align: center;
+      width: 30rem;
+      font-size: 5.5rem;
+      color: $color_2;
+      font-weight: 200;
+      .icon {
+        padding: 1.5rem;
+      }
+    }
+  }
+}
+
+
 
 
 .organizations_list {

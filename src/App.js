@@ -37,15 +37,11 @@ const App = () => {
   const firebase = useContext(FirebaseContext);
 
   const [user, setUser] = useState(null);
-  const [currentUserEmail, setCurrentUserEmail] = useState(undefined)
 
   useEffect(() => {
     if (firebase) {
       firebase.auth.onAuthStateChanged(function(user) {
-      if (user) {
         setUser(user);
-        setCurrentUserEmail(user?.email);
-      }
     });
   }
 }, [firebase])
@@ -54,7 +50,7 @@ const App = () => {
   return (
     <Router history={history}>
       <nav className="nav_container">
-      {currentUserEmail === undefined ? (
+      {user?.email === undefined ? (
         <ul className="first_nav">
           <li>
             <Link className="first_nav" to="/login">Login</Link>
