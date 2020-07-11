@@ -1,4 +1,5 @@
 import app from 'firebase/app';
+// import firebase from "firebase/app"
 import 'firebase/auth';
 import history from '../Home/history';
 
@@ -41,6 +42,11 @@ class Firebase {
   doEmailVerification = email =>
     this.auth.currentUser.sendEmailVerification(email);
 
-}
 
+   // message = uid => this.db.ref(`data/${uid}`);
+   //
+   // messages = () => this.db.ref('data');
+
+}
+// export const db = firebase.database();
 export default Firebase;
