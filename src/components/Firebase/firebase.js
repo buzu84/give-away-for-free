@@ -42,10 +42,9 @@ class Firebase {
   doEmailVerification = email =>
     this.auth.currentUser.sendEmailVerification(email);
 
-
-   // message = uid => this.db.ref(`data/${uid}`);
-   //
-   // messages = () => this.db.ref('data');
+  
+  message = uid => this.db.ref(`data/${uid}`);
+  messages = () => this.db.ref('data');
 
 }
 // export const db = firebase.database();
