@@ -19,7 +19,7 @@ const HomeContact = () => {
     setMessage(e.target.value);
   }
   return (
-    <section id="section4" className="contact_us info-section-4 container" style={{height: '800px'}}>
+    <section id="section4" className="contact_us info-section-5 container" style={{height: '800px'}}>
       <div className="row">
         <div className="column"></div>
         <div className="column">
