@@ -1,4 +1,5 @@
 import app from 'firebase/app';
+// import firebase from "firebase/app"
 import 'firebase/auth';
 import history from '../Home/history';
 
@@ -25,9 +26,12 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => {
-    this.auth.signOut();
-    history.push('/logout')
-    window.location.reload();
+    this.auth.signOut().then(function() {
+      history.push('/logout')
+    }).catch(function(error) {
+      console.log('blad wylogowania')
+    });
+
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
@@ -38,6 +42,10 @@ class Firebase {
   doEmailVerification = email =>
     this.auth.currentUser.sendEmailVerification(email);
 
-}
+  
+  message = uid => this.db.ref(`data/${uid}`);
+  messages = () => this.db.ref('data');
 
+}
+// export const db = firebase.database();
 export default Firebase;
