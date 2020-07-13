@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 // import firebase from "firebase/app"
 import 'firebase/auth';
+import 'firebase/database';
 import history from '../Home/history';
 
 const config = {
@@ -17,6 +18,7 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
+    this.db = app.database();
   }
   // *** Auth API ***
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -42,10 +44,11 @@ class Firebase {
   doEmailVerification = email =>
     this.auth.currentUser.sendEmailVerification(email);
 
-  
-  message = uid => this.db.ref(`data/${uid}`);
-  messages = () => this.db.ref('data');
+  // organization = uid => this.db.ref(`data/organizacje/${uid}`);
+  organizations = () => this.db.ref('data/organizacje');
+  foundations = () => this.db.ref('data/fundacje');
+  collections = () => this.db.ref('data/zbiorki');
 
 }
-// export const db = firebase.database();
+
 export default Firebase;

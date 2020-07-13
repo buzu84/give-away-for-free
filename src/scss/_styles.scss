@@ -433,12 +433,60 @@ footer {
   }
 }
 
+// komu pomagamy
+.info-section-6 {
+  background: white;
 
-
-
-.organizations_list {
-  background: $color_2;
+  h1 {
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+  p {
+    padding: 0 15rem;
+    text-align: center;
+  }
+  .image {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  .info-item {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    color: $color_2;
+    font-weight: 200;
+    padding: 0 10rem;
+    .btn_give_away_third {
+      font-size: 1.4rem;
+      font-family: $font-base, sans-serif;
+      font-weight: 200;
+      background: #FFFFFF;
+      border-style: none;
+      cursor: pointer;
+      width: auto;
+      color: $color_5;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
 }
+
+// database organisation styling
+.help_organisation_container {
+  // text-decoration: underline;
+  // text-align: center;
+
+  .help_organisation {
+    border-bottom: $color_5 0.75px solid;
+    line-height: 3rem;
+    width: 80%;
+  }
+}
+
+
 
 
 .columns {
