@@ -12,12 +12,11 @@ class HomeOrganizations extends Component {
       showHideFoundations: true,
       showHideCollections: false
     };
-    // this.hideComponent = this.hideComponent.bind(this);
+    this.hideComponent = this.hideComponent.bind(this);
   }
   hideComponent(name) {
     switch (name) {
       case "showHideOrganizations":
-        // this.setState({ showHideOrganizations: !this.state.showHideOrganizations });
         if (this.state.showHideFoundations === true) {
           this.setState({ showHideFoundations: !this.state.showHideFoundations });
         }
@@ -29,7 +28,6 @@ class HomeOrganizations extends Component {
         }
         break;
       case "showHideFoundations":
-        // this.setState({ showHideFoundations: !this.state.showHideFoundations });
         if (this.state.showHideOrganizations === true) {
           this.setState({ showHideOrganizations: !this.state.showHideOrganizations });
         }
@@ -41,7 +39,6 @@ class HomeOrganizations extends Component {
         }
         break;
       case "showHideCollections":
-        // this.setState({ showHideCollections: !this.state.showHideCollections });
         if (this.state.showHideFoundations === true) {
           this.setState({ showHideFoundations: !this.state.showHideFoundations });
         }
@@ -101,25 +98,25 @@ const CollectionList = ({ collections }) => (
 
 const OrganizationItem = ({ organization }) => (
   <li className="help_organisation">
-    <h2>ORGANIZACJA: {organization.uid}</h2>
+    <h2>{organization.name} </h2>
     <strong>{organization.cel}</strong>
-    <strong> {organization.rzeczy}</strong>
+    <strong className="align_right"> rzeczy:  {organization.rzeczy}</strong>
   </li>
 );
 
 const FoundationItem = ({ foundation }) => (
   <li className="help_organisation">
-    <h2>FUNDACJA: {foundation.uid}</h2>
+    <h2>{foundation.name}</h2>
     <strong>{foundation.cel}</strong>
-    <strong> {foundation.rzeczy}</strong>
+    <strong className="align_right"> rzeczy:  {foundation.rzeczy}</strong>
   </li>
 );
 
 const CollectionItem = ({ collection }) => (
   <li className="help_organisation">
-    <h2>ZBIÓRKA: {collection.uid}</h2>
+    <h2>{collection.name}</h2>
     <strong>{collection.cel}</strong>
-    <strong> {collection.rzeczy}</strong>
+    <strong className="align_right"> rzeczy:  {collection.rzeczy}</strong>
   </li>
 );
 
@@ -131,12 +128,73 @@ class OrganizationsBase extends Component {
       loading: false,
       organizations: []
     };
+    this.handleFirstPage = this.handleFirstPage.bind(this);
+    this.handleSecondPage = this.handleSecondPage.bind(this);
   }
+
+  handleFirstPage() {
+    this.setState({ loading: true });
+
+    if (this.props.firebase != null) {
+      this.props.firebase.organizations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('1')
+      .on('value', snapshot => {
+        const dataObject = snapshot.val();
+        if (dataObject) {
+          const organizationList = Object.keys(dataObject).map(key => ({
+            ...dataObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            organizations: organizationList,
+            loading: false
+          });
+        } else {
+          this.setState({ organizations: null, loading: false });
+        }
+      })
+    }
+  }
+
+  handleSecondPage() {
+    this.setState({ loading: true });
+
+    if (this.props.firebase != null) {
+      this.props.firebase.organizations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('4')
+      .on('value', snapshot => {
+        const dataObject = snapshot.val();
+        if (dataObject) {
+          const organizationList = Object.keys(dataObject).map(key => ({
+            ...dataObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            organizations: organizationList,
+            loading: false
+          });
+        } else {
+          this.setState({ organizations: null, loading: false });
+        }
+      })
+    }
+  }
+
   componentDidMount() {
     this.setState({ loading: true });
 
     if (this.props.firebase != null) {
-      this.props.firebase.organizations().on('value', snapshot => {
+      this.props.firebase.organizations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('1')
+      .on('value', snapshot => {
         const dataObject = snapshot.val();
         if (dataObject) {
           const organizationList = Object.keys(dataObject).map(key => ({
@@ -174,6 +232,10 @@ class OrganizationsBase extends Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci.
             </p>
             <OrganizationList organizations={organizations} />
+            <div className="pagination">
+              <button className="pagination_btn" onClick={this.handleFirstPage}>1</button>
+              <button className="pagination_btn" onClick={this.handleSecondPage}>2</button>
+            </div>
           </>
         ) : (
           <div>There are no organizations ...</div>
@@ -191,12 +253,101 @@ class FoundationsBase extends Component {
       loading: false,
       foundations: []
     };
+    this.handleFirstPage = this.handleFirstPage.bind(this);
+    this.handleSecondPage = this.handleSecondPage.bind(this);
+    this.handleThirdPage = this.handleThirdPage.bind(this);
   }
+
+  handleFirstPage() {
+    this.setState({ loading: true });
+
+    if (this.props.firebase != null) {
+      this.props.firebase.foundations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('1')
+      .on('value', snapshot => {
+        const dataObject = snapshot.val();
+        if (dataObject) {
+          const foundationList = Object.keys(dataObject).map(key => ({
+            ...dataObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            foundations: foundationList,
+            loading: false
+          });
+        } else {
+          this.setState({ foundations: null, loading: false });
+        }
+      })
+    }
+  }
+
+  handleSecondPage() {
+    this.setState({ loading: true });
+
+    if (this.props.firebase != null) {
+      this.props.firebase.foundations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('4')
+      .on('value', snapshot => {
+        const dataObject = snapshot.val();
+        if (dataObject) {
+          const foundationList = Object.keys(dataObject).map(key => ({
+            ...dataObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            foundations: foundationList,
+            loading: false
+          });
+        } else {
+          this.setState({ foundations: null, loading: false });
+        }
+      })
+    }
+  }
+
+  handleThirdPage() {
+    this.setState({ loading: true });
+
+    if (this.props.firebase != null) {
+      this.props.firebase.foundations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('7')
+      .on('value', snapshot => {
+        const dataObject = snapshot.val();
+        if (dataObject) {
+          const foundationList = Object.keys(dataObject).map(key => ({
+            ...dataObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            foundations: foundationList,
+            loading: false
+          });
+        } else {
+          this.setState({ foundations: null, loading: false });
+        }
+      })
+    }
+  }
+
   componentDidMount() {
     this.setState({ loading: true });
 
     if (this.props.firebase != null) {
-      this.props.firebase.foundations().on('value', snapshot => {
+      this.props.firebase.foundations()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('1')
+      .on('value', snapshot => {
         const dataObject = snapshot.val();
         if (dataObject) {
           const foundationList = Object.keys(dataObject).map(key => ({
@@ -234,6 +385,11 @@ class FoundationsBase extends Component {
               W naszej bazie znajdziesz listę zweryfikowanych fundacji, z którymi współpracujemy. Mozesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.
             </p>
             <FoundationList foundations={foundations} />
+            <div className="pagination">
+              <button className="pagination_btn" onClick={this.handleFirstPage}>1</button>
+              <button className="pagination_btn" onClick={this.handleSecondPage}>2</button>
+              <button className="pagination_btn" onClick={this.handleThirdPage}>3</button>
+            </div>
           </>
         ) : (
           <div>There are no Foundations ...</div>
@@ -256,7 +412,11 @@ class CollectionsBase extends Component {
     this.setState({ loading: true });
 
     if (this.props.firebase != null) {
-      this.props.firebase.collections().on('value', snapshot => {
+      this.props.firebase.collections()
+      .limitToFirst(3)
+      .orderByKey()
+      .startAt('1')
+      .on('value', snapshot => {
         const dataObject = snapshot.val();
 
         if (dataObject) {

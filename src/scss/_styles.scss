@@ -383,13 +383,16 @@ li > a {
       justify-content: flex-end;
       width: 100%;
      .form_btn {
-        font-family: $font-base, sans-serif;
-        color: $color_5;
-        height: 30px;
-        font-size: 1rem;
-        font-weight: 200;
-        border: $color_5 0.75px solid;
-        width: 5rem;
+       border: none;
+       outline:none;
+       font-family: $font-base, sans-serif;
+       color: $color_5;
+       height: 30px;
+       font-size: 1rem;
+       font-weight: 200;
+       border: $color_5 0.75px solid;
+       width: 5rem;
+       cursor: pointer;
       }
     }
   }
@@ -436,6 +439,7 @@ footer {
 // komu pomagamy
 .info-section-6 {
   background: white;
+  color: $color_5;
 
   h1 {
     margin: 2rem 0;
@@ -446,6 +450,26 @@ footer {
   p {
     padding: 0 15rem;
     text-align: center;
+    font-size: 1.5rem;
+    font-weight: lighter;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pagination_btn {
+      border: 0;
+      padding: 2rem 2rem;
+      font-family: inherit;
+      font-size: 1.2rem;
+      color: inherit;
+      background: inherit;
+    }
+    .pagination_btn:focus {
+      border: none;
+      outline:none;
+      border: #707070 0.75px solid;
+    }
   }
   .image {
     display: block;
@@ -460,7 +484,7 @@ footer {
     font-weight: 200;
     padding: 0 10rem;
     .btn_give_away_third {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-family: $font-base, sans-serif;
       font-weight: 200;
       background: #FFFFFF;
@@ -471,18 +495,47 @@ footer {
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+    .btn_give_away_third:focus {
+      border: none;
+      outline:none;
+      border: #707070 0.75px solid;
+    }
   }
 }
 
 // database organisation styling
 .help_organisation_container {
-  // text-decoration: underline;
-  // text-align: center;
-
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
   .help_organisation {
+    font-family: 'Merriweather', serif;
+    font-weight: lighter;
     border-bottom: $color_5 0.75px solid;
-    line-height: 3rem;
-    width: 80%;
+    line-height: 1.8rem;
+    h2 {
+      font-weight: lighter;
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+    }
+    :nth-child(2) {
+      font-size: 1.1rem;
+      text-align: left;
+      margin-left: 1rem;
+      font-style: italic;
+    }
+    .align_right {
+      display: block;
+      text-align: right;
+      margin-right: 1rem;
+      font-weight: 200;
+    }
+  }
+  :last-child {
+    border: none;
   }
 }
 
