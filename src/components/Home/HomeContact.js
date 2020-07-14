@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import mySvg_1 from '../../assets/Decoration.svg';
+import FlashMessage from 'react-flash-message'
+
+const Message = () => (
+  <FlashMessage duration={20000}>
+    <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wiadomość wysłana!</div>
+    <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
+  </FlashMessage>
+)
 
 const HomeContact = () => {
   const [name, setName] = useState('');
@@ -8,16 +16,16 @@ const HomeContact = () => {
   const [nameError, setNameError] = useState([]);
   const [emailError, setEmailError] = useState([]);
   const [messageError, setMessageError] = useState([]);
-  // const [errors, setErrors] = useState([]);
+  const [messageSend, setMessageSend] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
     const validationErrors = validate();
-    if (validationErrors.length !== 0) {
-      // setErrors(validationErrors);
-      console.log('sa bledy!');
-    } else {
+    if (validationErrors.length === 0) {
       sendMessage();
+
+    } else {
+      console.log('sa bledy!');
     }
   }
 
@@ -41,10 +49,10 @@ const HomeContact = () => {
         setName('');
         setEmail('');
         setMessage('');
-        // setErrors([]);
         setNameError('');
         setEmailError('');
         setMessageError('');
+        setMessageSend(true);
       }
     })
     .catch(error => {
@@ -95,8 +103,9 @@ const HomeContact = () => {
             <div className="info-box">
               <h1 >Skontaktuj się z nami</h1>
               <img className="icon" src={mySvg_1} alt="decoration" />
+              {messageSend ? <Message /> : null}
               <div className="container visible_form">
-                <fieldset className="form_field">
+                <fieldset>
                   <form onSubmit={handleSubmit} className="form_flex">
                     <div className="name_email_container">
                       <div className="name_container">
