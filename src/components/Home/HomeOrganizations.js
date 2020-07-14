@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import mySvg from '../../assets/Decoration.svg';
+import Spinner from "./Spinner";
 
 class HomeOrganizations extends Component {
   constructor() {
@@ -224,7 +225,7 @@ class OrganizationsBase extends Component {
 
     return (
       <div>
-        {loading && <div>Loading ...</div>}
+        {loading && <Spinner />}
 
         {organizations ? (
           <>
@@ -377,7 +378,7 @@ class FoundationsBase extends Component {
 
     return (
       <div>
-        {loading && <div>Loading ...</div>}
+        {loading && <Spinner />}
 
         {foundations ? (
           <>
@@ -447,7 +448,7 @@ class CollectionsBase extends Component {
 
     return (
       <div>
-        {loading && <div>Loading ...</div>}
+        {loading && <Spinner />}
 
         {collections ? (
           <>
