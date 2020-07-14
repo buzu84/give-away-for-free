@@ -371,14 +371,45 @@ li > a {
       font-weight: 600;
       line-height: 2.5;
     }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus {
+      background: white;
+      font-family: $font-base, sans-serif;
+      -webkit-text-fill-color: $color_5;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
     .contact_input {
+      background: inherit;
+      border: 0;
       border-style: none;
       border-bottom: 1px solid $color_5;
+
     }
-    .text_area_input {
-      margin-bottom: 2rem;
+    ::-webkit-input-placeholder {
+      text-align: center;
+    }
+    .contact_input_2 {
+      background: inherit;
+      border: 0;
+      border-style: none;
+      border-bottom: 1px solid red;
+    }
+    .contact_input:focus {
+      outline: none;
+      background: white;
+      background-clip: content-box;
+    }
+    .contact_input_2:focus {
+      outline: none;
+      background: white;
     }
     .form_btn_container {
+      margin-top: 2rem;
       display: flex;
       justify-content: flex-end;
       width: 100%;
