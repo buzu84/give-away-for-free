@@ -102,15 +102,80 @@ li > a {
 }
 // login/register form
 .form {
-  margin-top: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   .form_field {
-    height:300px;
     display: flex;
-    // justify-content: space-between;
-    align-items: center;
+    background: $color_1;
+    margin-bottom: 1rem;
+    .form_label {
+      margin: 2rem 3rem;
+      text-align: left;
+    }
+    .form_label_1 {
+      margin-top: 1.2rem;
+    }
+    .input_label {
+      padding: 0.5rem 0.75rem;
+      background: $color_1;
+      border: none;
+      border-bottom: #707070 0.75px solid;
+      margin: 2rem 3rem;
+    }
+    .input_label:focus {
+      outline: none;
+
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus {
+      background: $color_1;
+      font-family: $font-base, sans-serif;
+      -webkit-text-fill-color: $color_5;
+      -webkit-box-shadow: 0 0 0px 1000px $color_1 inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+  }
+  .btn2_container {
+    background: white;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+
+    .btn_log {
+      border: none;
+      outline:none;
+      background: white;
+      padding: 1rem 0;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.1rem;
+    }
+  }
+  .btn_forget {
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+    margin-top: 2rem;
+  }
+  .legend_label {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+    background: white;
+  }
+  .icon {
+    background: white;
+    padding-bottom: 3rem;
   }
 }
 
