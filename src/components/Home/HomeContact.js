@@ -3,7 +3,7 @@ import mySvg_1 from '../../assets/Decoration.svg';
 import FlashMessage from 'react-flash-message'
 
 const Message = () => (
-  <FlashMessage duration={20000}>
+  <FlashMessage duration={5000}>
     <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wiadomość wysłana!</div>
     <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
   </FlashMessage>

@@ -4,6 +4,7 @@ import { withFirebase } from './Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { Link } from 'react-router-dom';
+import mySvg from '../assets/Decoration.svg';
 
 const Login = () => (
   <div>
@@ -48,17 +49,24 @@ class SignInFormBase extends Component {
 
     return (
       <form className="form" onSubmit={this.onSubmit}>
+        <h1 className="legend_label">Zaloguj się: </h1>
+        <img className="icon" src={mySvg} alt="decoration" />
         <fieldset className="form_field">
-          <legend>Zaloguj się: </legend>
-          <label>email</label>
-          <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address"/>
-          <label>Podaj hasło</label>
-          <input name="password" value={password} onChange={this.onChange} type="password" placeholder="Password"/>
-          <button disabled={isInvalid} type="submit">zaloguj</button>
-          <button onClick={() => history.push('/register')}>Nie masz konta?</button>
-          <Link to="/pw-forget">Zapomniałeś hasła?</Link>
-          {error && <p>{error.message}</p>}
+
+          <label className="form_label form_label_1">Email</label>
+          <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
+          <label className="form_label">Hasło</label>
+          <input className="input_label" name="password" value={password} onChange={this.onChange} type="password" />
+
         </fieldset>
+        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}} className="btn2_container">{error.message}</p>}
+        <div className="btn2_container">
+          <button className="btn_log" onClick={() => history.push('/register')}>Załóż konto</button>
+          <button className="btn_log" disabled={isInvalid} type="submit">Zaloguj się</button>
+
+        </div>
+        <Link className="btn2_container btn_forget" to="/pw-forget">Zapomniałeś hasła?</Link>
+
       </form>
     );
   }
