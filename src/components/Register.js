@@ -3,6 +3,7 @@ import history from './Home/history';
 import { withFirebase } from './Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import mySvg from '../assets/Decoration.svg';
 
 
 const Register = () => (
@@ -24,7 +25,6 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-
   onSubmit = event => {
     const { email, passwordOne } = this.state;
 
@@ -40,6 +40,14 @@ class SignUpFormBase extends Component {
         console.log('error happened');
         });
       })
+      // weryfikacja email nie dziala
+      // .then(authUser => {
+      //   this.props.firebase.doEmailVerification(email).then(function() {
+      //   console.log('email sent');
+      //   }).catch(function(error) {
+      //   console.log('error happened');
+      //   });
+      // })
       .catch(error => {
         this.setState({ error });
       });
@@ -64,24 +72,23 @@ class SignUpFormBase extends Component {
       passwordOne === '' ||
       email === '';
 
-
     return (
       <form className="form" onSubmit={this.onSubmit}>
+        <h1 className="legend_label">Załóż konto: </h1>
+        <img className="icon" src={mySvg} alt="decoration" />
         <fieldset className="form_field">
-          <legend>Załóż konto: </legend>
-          <label>email</label>
-          <input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address"/>
-          <label>Podaj hasło</label>
-          <input name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" placeholder="Password"/>
-          <label>Powtórz hasło</label>
-          <input name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" placeholder="Confirm Password"/>
-          {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}} className="btn2_container">{error.message}</p>}
-          <div className="btn2_container">
-            <button className="btn_log" disabled={isInvalid} type="submit">zarejestruj</button>
-            <button className="btn_log" onClick={() => history.push('/login')}>Masz konto? Zaloguj się</button>
-          </div>
-
+          <label className="form_label form_label_1">email</label>
+          <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
+          <label className="form_label">Podaj hasło</label>
+          <input className="input_label" name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" />
+          <label className="form_label">Powtórz hasło</label>
+          <input className="input_label" name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" />
         </fieldset>
+        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}} className="btn2_container">{error.message}</p>}
+        <div className="btn2_container">
+          <button className="btn_log register_nav" disabled={isInvalid} type="submit">Załóż konto</button>
+          <button className="btn_log" onClick={() => history.push('/login')}>Zaloguj się</button>
+        </div>
       </form>
     );
   }

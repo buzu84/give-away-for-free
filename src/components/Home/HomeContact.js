@@ -23,9 +23,6 @@ const HomeContact = () => {
     const validationErrors = validate();
     if (validationErrors.length === 0) {
       sendMessage();
-
-    } else {
-      console.log('sa bledy!');
     }
   }
 

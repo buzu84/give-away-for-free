@@ -46,27 +46,22 @@ class SignInFormBase extends Component {
   render() {
     const { email, password, error } = this.state;
     const isInvalid = password === '' || email === '';
-
     return (
       <form className="form" onSubmit={this.onSubmit}>
         <h1 className="legend_label">Zaloguj się: </h1>
         <img className="icon" src={mySvg} alt="decoration" />
         <fieldset className="form_field">
-
           <label className="form_label form_label_1">Email</label>
           <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
           <label className="form_label">Hasło</label>
           <input className="input_label" name="password" value={password} onChange={this.onChange} type="password" />
-
         </fieldset>
-        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}} className="btn2_container">{error.message}</p>}
+        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}} className="btn2_container">{error.message}</p>}
         <div className="btn2_container">
+          <button className="btn_log register_nav" disabled={isInvalid} type="submit">Zaloguj się</button>
           <button className="btn_log" onClick={() => history.push('/register')}>Załóż konto</button>
-          <button className="btn_log" disabled={isInvalid} type="submit">Zaloguj się</button>
-
         </div>
         <Link className="btn2_container btn_forget" to="/pw-forget">Zapomniałeś hasła?</Link>
-
       </form>
     );
   }
