@@ -62,6 +62,9 @@ li > a {
       width: 17rem;
       color: $color_5;
     }
+    .btn_give_away:focus {
+      outline: none;
+    }
     .btn_give_away_first {
       margin-right: 1rem;
     }
@@ -90,6 +93,9 @@ li > a {
     padding: 0;
     background: #FFFFFF;
     cursor: pointer;
+  }
+  .log_out_button:focus {
+    outline: none;
   }
   .register_nav {
     border: 0.5px solid $color_3;
@@ -158,6 +164,11 @@ li > a {
       cursor: pointer;
       font-family: inherit;
       font-size: 1.1rem;
+    }
+    .register_nav {
+      border: 0.5px solid $color_5;
+      padding: 7px 20px;
+      borderStyle: groove;
     }
   }
   .btn_forget {
@@ -235,7 +246,9 @@ li > a {
     color: $color_5;
     margin-top: 2rem;
     margin-bottom: 2rem;
-
+  }
+  .btn_give_away_third:focus {
+    outline: none;
   }
 
   .info-item {
@@ -353,6 +366,9 @@ li > a {
     margin-top: 2rem;
     margin-bottom: 2rem;
 
+  }
+  .btn_give_away_fourth:focus {
+    outline: none;
   }
   .info-item {
     display: flex;

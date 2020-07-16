@@ -10,7 +10,6 @@ const LogOut = () => {
           <h1 className="icon">Wylogowanie nastąpiło pomyślnie!</h1>
           <img src={mySvg_1} alt="decoration" />
           <button className="btn_give_away_fourth" onClick={() => history.push('/')}>STRONA<br></br>GŁÓWNA</button>
-
         </div>
       </div>
     </section>
