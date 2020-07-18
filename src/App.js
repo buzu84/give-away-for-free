@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import {
   Router,
@@ -40,9 +40,11 @@ const App = () => {
 
   useEffect(() => {
     if (firebase) {
-      firebase.auth.onAuthStateChanged(function(user) {
+      const unsucribe = firebase.auth.onAuthStateChanged(function(user) {
         setUser(user);
     });
+
+    return () => unsucribe()
   }
 }, [firebase])
 

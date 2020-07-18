@@ -18,7 +18,8 @@
     "react-spinners": "^0.8.3",
     "react-final-form": "^6.5.1",
     "final-form": "^4.20.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "react-datepicker": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

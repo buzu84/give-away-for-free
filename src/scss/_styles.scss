@@ -9,7 +9,7 @@ body {
 
 nav > ul > li {
     display: inline;
-    padding: 0 40px;
+    padding: 0 30px;
     :hover{
       opacity: 80%;
     }
@@ -645,8 +645,34 @@ footer {
 }
 
 
+// oddaj rzeczy format
 
+  .rel_cont {
+    position: relative;
+    width: 100%;
+    .form_start_pic_container {
+      background: url(../assets/Form-Hero-Image.jpg);
+      background-position: left;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 600px;
+      width: 40%;
+      // width: 600px;
+      position: absolute;
 
-.columns {
-  background: $color_3;
-}
+      top: -210px;
+    }
+  }
+  .form_pic_container {
+    background: url(../assets/Background-Form.jpg);
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 600px;
+    // position: static;
+    margin-top: 305px;
+    .step {
+      background: $color_3;
+      height: 50px;
+    }
+  }

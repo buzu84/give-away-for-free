@@ -41,13 +41,6 @@ class SignUpFormBase extends Component {
         });
       })
       // weryfikacja email nie dziala
-      // .then(authUser => {
-      //   this.props.firebase.doEmailVerification(email).then(function() {
-      //   console.log('email sent');
-      //   }).catch(function(error) {
-      //   console.log('error happened');
-      //   });
-      // })
       .catch(error => {
         this.setState({ error });
       });
