@@ -6,6 +6,7 @@ import Wizard from './GiveAwayForm/Wizard';
 import DatePicker from "react-datepicker";
 import myPic_4 from '../assets/Icon-4.svg';
 import myPic_1 from '../assets/Icon-1.svg';
+import mySvg from '../assets/Decoration.svg';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -305,11 +306,22 @@ const GiveAwayFormBase = () => (
         <p>Godzina </p>
         <p>Uwagi </p>
       </div>
+      <div className="hidden">
+        <label>Uwagi da kuriera</label>
+        <Field name="notes" component="textarea" placeholder="uwagi" />
+        <Error name="notes" />
+      </div>
       </Wizard.Page>
       <Wizard.Page>
       <p>Dziękujemy za wypełnienie formularza!</p>
       <p>Na maila prześlemy wszelkie</p>
       <p>informacje o odbiorze.</p>
+      <div className="hidden">
+        <label>Uwagi da kuriera</label>
+        <Field name="notes" component="textarea" placeholder="uwagi" />
+        <Error name="notes" />
+      </div>
+
       </Wizard.Page>
     </Wizard>
 )
@@ -319,6 +331,30 @@ const GiveAwayForm = () => {
     <>
       <div className="rel_cont">
         <div className="form_start_pic_container"></div>
+        <div className="header_cont">
+          <h1>Oddaj rzeczy, których już nie chcesz</h1>
+          <h2>POTRZEBUJĄCYM</h2>
+          <img src={mySvg} alt="decoration" />
+          <h3>Wystarczą 4 proste kroki:</h3>
+          <div className="steps_cont">
+            <div className="step_cont">
+              <p>1</p>
+              <p>Wybierz rzeczy</p>
+            </div>
+            <div className="step_cont">
+              <p>2</p>
+              <p>Spakuj je w worki</p>
+            </div>
+            <div className="step_cont">
+              <p>3</p>
+              <p>Wybierz fundację</p>
+            </div>
+            <div className="step_cont">
+              <p>4</p>
+              <p>Zamów kuriera</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="form_pic_container">
         <GiveAwayFormBase />

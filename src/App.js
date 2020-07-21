@@ -40,11 +40,11 @@ const App = () => {
 
   useEffect(() => {
     if (firebase) {
-      const unsucribe = firebase.auth.onAuthStateChanged(function(user) {
+      const unsubscribe = firebase.auth.onAuthStateChanged(function(user) {
         setUser(user);
     });
 
-    return () => unsucribe()
+    return () => unsubscribe()
   }
 }, [firebase])
 

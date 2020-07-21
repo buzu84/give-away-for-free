@@ -28,7 +28,7 @@ export default class Wizard extends React.Component {
 
   /**
    * NOTE: Both validate and handleSubmit switching are implemented
-   * here because 🏁 Redux Final Form does not accept changes to those
+   * here because Redux Final Form does not accept changes to those
    * functions once the form has been defined.
    */
 
@@ -44,8 +44,12 @@ export default class Wizard extends React.Component {
     const { page } = this.state
     const isLastPage = page === React.Children.count(children) - 1
     if (isLastPage) {
+      console.log('ostatnia strona');
       return onSubmit(values)
     } else {
+      console.log('strona');
+      console.log(React.Children.count(children) - 1);
+      console.log(page);
       this.next(values)
     }
   }
