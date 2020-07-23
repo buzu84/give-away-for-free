@@ -332,14 +332,16 @@ const GiveAwayForm = () => {
       <div className="rel_cont">
         <div className="form_start_pic_container"></div>
         <div className="header_cont">
-          <h1>Oddaj rzeczy, których już nie chcesz</h1>
-          <h2>POTRZEBUJĄCYM</h2>
+          <h1 className="title_head">Oddaj rzeczy, których już nie chcesz</h1>
+          <h2 className="title_head">POTRZEBUJĄCYM</h2>
           <img src={mySvg} alt="decoration" />
-          <h3>Wystarczą 4 proste kroki:</h3>
+          <h3 className="title_head">Wystarczą 4 proste kroki:</h3>
           <div className="steps_cont">
             <div className="step_cont">
+              <span className="dot dot_left"></span>
               <p>1</p>
               <p>Wybierz rzeczy</p>
+
             </div>
             <div className="step_cont">
               <p>2</p>
