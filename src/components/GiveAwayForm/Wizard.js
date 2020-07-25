@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+// <pre>{JSON.stringify(values, 0, 2)}</pre>
 
 export default class Wizard extends React.Component {
   static propTypes = {
@@ -81,7 +82,7 @@ export default class Wizard extends React.Component {
                 </button>
               )}
             </div>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
+
           </form>
         )}
       </Form>

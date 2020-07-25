@@ -645,12 +645,12 @@ footer {
 }
 
 
-// oddaj rzeczy format
+// oddaj rzeczy naglowek
 
   .rel_cont {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 10rem;
     .form_start_pic_container {
       background: url(../assets/Form-Hero-Image.jpg);
       background-position: left;
@@ -673,51 +673,108 @@ footer {
       .title_head {
         font-size: 2rem;
         color: $color_5;
+        padding-bottom: 1rem;
       }
       .steps_cont {
         display: flex;
         width: 100%;
-        padding: 3rem;
+        padding-top: 3rem;
         justify-content: space-between;
         align-items: center;
-
         font-size: 1rem;
         color: $color_5;
-        .step_cont {
-          position: relative;
-          .dot {
-            display: block;
-            border: solid 1px gray;
-            width: 7rem;
-            height: 7rem;
-            position: absolute;
-            left: 15%;
-            top: 0px;
-            transform: rotate(45deg);
+          .step {
+            position: relative;
+            .square {
+              display: block;
+              border: solid 1px gray;
+              width: 10rem;
+              height: 10rem;
+              position: absolute;
+              left: -12%;
+              bottom: -90%;
+              transform: rotate(45deg);
+            }
+            .square_1 {
+              left: -30%;
+            }
+            .padding {
+              padding-top: 3rem;
+            }
           }
-          // .dot_left {
-          //   left: 25%;
-          //   top: 0px;
-          //   transform: rotate(45deg);
-          // }
         }
+      }
+    }
 
+  // formularz-kroki
+  .rel_pic_cont {
+    position: relative;
+    // width: 100%;
+    height: 1000px;
+    .form_pic_container {
+      background: url(../assets/Background-Form.jpg);
+      background-position: left;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 600px;
+      margin-top: 405px;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      .form_page_cont {
+        position: absolute;
+        top: -10%;
+        width: 100%;
+        .step {
+          background: $color_3;
+          height: 80px;
+          // padding: 2rem 0;
+          // margin-bottom: 2rem;
+          padding-top: 0.5rem;
+          h2 {
+            font-size: 2rem;
+          }
+          p {
+            font-size: 1.2rem;
+            color: $color_5;
+            // padding-bottom: 0.8rem;
+          }
+
+        }
+        .padd_left {
+          padding-left: 2rem;
+          input[type="radio"]:before {
+            content: "";
+            display: block;
+            // position: relative;
+            // top: 3px;
+            // left: 3px;
+            border: 1px solid gray;
+            width: 6px;
+            height: 6px;
+            border-radius: 20%;
+            // background: red;
+          }
+        }
+        .step_no {
+          color: $color_5;
+          font-size: 1.5rem;
+          font-weight: 200;
+        }
+      }
+      .buttons {
+        position: absolute;
+        bottom: 40%;
+        margin-left: 2rem;
+      }
+      pre {
+        position: absolute;
+        bottom: 5%;
       }
 
-    }
-  }
-  .form_pic_container {
-    background: url(../assets/Background-Form.jpg);
-    background-position: left;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 600px;
-    margin-top: 305px;
-    .step {
-      background: $color_3;
-      height: 50px;
-    }
-    .hidden {
-      display: none;
+
+      // .hidden {
+      //   display: none;
+      // }
     }
   }
