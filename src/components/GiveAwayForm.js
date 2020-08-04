@@ -20,12 +20,12 @@ const Error = ({ name }) => (
     name={name}
     subscribe={{ touched: true, error: true }}
     render={({ meta: { touched, error } }) =>
-      touched && error ? <span>{error}</span> : null
+      touched && error ? <span className="error">{error}</span> : null
     }
   />
 )
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Wymagane')
 
 function formatDate(date) {
   var d = new Date(date),
@@ -53,7 +53,7 @@ const GiveAwayFormBase = () => (
             <p className="padd_left">Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu bedziemy wiedzieć komu najlepiej je przekazać.</p>
           </div>
           <h4 className="padd_left step_no">Krok 1/4</h4>
-          <h1 className="padd_left">Zaznacz co chcesz oddać:</h1>
+          <h1 className="padd_left header_mark">Zaznacz co chcesz oddać:</h1>
           <div className="padd_left">
             <label>
               <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>{' '}
@@ -95,7 +95,7 @@ const GiveAwayFormBase = () => (
         validate={values => {
           const errors = {}
           if (!values.bags || values.bags === "--wybierz--") {
-            errors.bags = 'Required'
+            errors.bags = 'Wymagane'
           }
           return errors
         }}
@@ -128,7 +128,7 @@ const GiveAwayFormBase = () => (
             errors.localization = 'Pick from a list or enter specific localization'
           }
           if (values.helpGroups.length === 0) {
-            errors.helpGroups = 'Required'
+            errors.helpGroups = 'Wymagane'
           }
           return errors
         }}

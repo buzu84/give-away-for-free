@@ -71,13 +71,13 @@ export default class Wizard extends React.Component {
             {activePage}
             <div className="buttons">
               {page > 0 && (
-                <button type="button" onClick={this.previous}>
-                  « Poprzedni
+                <button className="button" type="button" onClick={this.previous}>
+                  Wstecz
                 </button>
               )}
-              {!isLastPage && <button type="submit">Następny »</button>}
+              {!isLastPage && <button className="button" type="submit">Dalej</button>}
               {isLastPage && (
-                <button type="submit" disabled={submitting}>
+                <button className="button" type="submit" disabled={submitting}>
                   Wyślij
                 </button>
               )}

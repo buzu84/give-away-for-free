@@ -37,16 +37,50 @@ const App = () => {
   const firebase = useContext(FirebaseContext);
 
   const [user, setUser] = useState(null);
+  // const [isMounted, setIsMounted] = useState(false);
+//   let isMounted = false;
+//
+//   useEffect(() => {
+//     console.log(isMounted);
+//     isMounted = true;
+//     console.log(isMounted);
+//     if (firebase && isMounted) {
+//       firebase.auth.onAuthStateChanged(function(user) {
+//         setUser(user);
+//     });
+//
+//     // let userId = firebase.auth().currentUser.uid;
+//
+//
+//   //   firebase.admin.auth().createCustomToken(user?.uid, {
+//   // // Add a custom claim indicating an expiration time of 6 hours.
+//   //     expiresAt: Date.now() + (1000 * 60 * 60 * 6),
+//   //   })
+//   //     .then((customToken) => {
+//   //       // Send token back to client for authentication...
+//   //     })
+//   //     .catch((error) => {
+//   //       console.log("Failed to create custom token:", error);
+//   //     });
+//
+//     return () => {
+//       isMounted = false;
+//       console.log(isMounted);
+//       // nie zmienia na false przy odmontowaniu...
+//     }
+//   }
+// }, [firebase, isMounted])
 
   useEffect(() => {
     if (firebase) {
       const unsubscribe = firebase.auth.onAuthStateChanged(function(user) {
         setUser(user);
     });
+    console.log(user?.uid);
 
-    return () => unsubscribe()
+    return () => unsubscribe();
   }
-}, [firebase])
+}, [firebase, user])
 
 
   return (
