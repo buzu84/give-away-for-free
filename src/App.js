@@ -38,27 +38,23 @@ const App = () => {
 
   const [user, setUser] = useState(null);
 
-//   useEffect(() => {
-//     let userId = firebase.auth().currentUser.uid;
-//
-//     firebase.admin.auth().createCustomToken(user?.uid, {
-//   // Add a custom claim indicating an expiration time of 6 hours.
-//       expiresAt: Date.now() + (1000 * 60 * 60 * 6),
-//     })
-//       .then((customToken) => {
-//         // Send token back to client for authentication...
-//       })
-//       .catch((error) => {
-//         console.log("Failed to create custom token:", error);
-//       });
-// 
-//   }
-// }, [firebase])
-
   useEffect(() => {
     if (firebase) {
       const unsubscribe = firebase.auth.onAuthStateChanged(function(user) {
         setUser(user);
+
+        let sessionTimeout = null;
+        if (user === null) {
+          sessionTimeout && clearTimeout(sessionTimeout);
+          sessionTimeout = null;
+        } else {
+          user.getIdTokenResult().then((idTokenResult) => {
+            const authTime = idTokenResult.claims.auth_time * 1000;
+            const sessionDuration = 1000 * 60 * 60 * 6;
+            const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
+            sessionTimeout = setTimeout(() => firebase.doSignOut(), millisecondsUntilExpiration);
+          });
+        }
     });
 
     return () => unsubscribe();

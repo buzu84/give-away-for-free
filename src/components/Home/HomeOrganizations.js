@@ -135,7 +135,6 @@ class OrganizationsBase extends Component {
 
   handleFirstPage() {
     this.setState({ loading: true });
-
     if (this.props.firebase != null) {
       this.props.firebase.organizations()
       .limitToFirst(3)
@@ -148,7 +147,7 @@ class OrganizationsBase extends Component {
             ...dataObject[key],
             uid: key,
           }));
-
+          
           this.setState({
             organizations: organizationList,
             loading: false
