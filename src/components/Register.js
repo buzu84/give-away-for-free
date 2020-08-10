@@ -33,14 +33,7 @@ class SignUpFormBase extends Component {
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push('/');
-
-        this.props.firebase.doEmailVerification(email).then(function() {
-        console.log('email sent');
-        }).catch(function(error) {
-        console.log('error happened');
-        });
       })
-      // weryfikacja email nie dziala
       .catch(error => {
         this.setState({ error });
       });
@@ -49,8 +42,8 @@ class SignUpFormBase extends Component {
   }
 
   onChange = event => {
-  this.setState({ [event.target.name]: event.target.value });
-};
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   render() {
     const {
