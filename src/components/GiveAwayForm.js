@@ -1,12 +1,18 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-// import Styles from './GiveAwayForm/Styles';
 import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import DatePicker from "react-datepicker";
-// import myPic_4 from '../assets/Icon-4.svg';
-// import myPic_1 from '../assets/Icon-1.svg';
 import mySvg from '../assets/Decoration.svg';
+// import mySvg_2 from '../assets/Icon-Arrow-Down.svg';
+// import mySvg_3 from '../assets/Icon-Arrow_Up.svg';
+
+// import { compose } from 'recompose';
+// import { withRouter } from 'react-router-dom';
+// import { withFirebase } from './Firebase';
+// import { withAuthorization } from './Session/withAuthorization.js';
+// const condition = authUser => !!authUser;
+
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -106,10 +112,10 @@ const GiveAwayFormBase = () => (
             <p className="padd_left">Wszystkie rzeczy do oddania zapakuj w 60l worki. Dokładną instrukcję jak poprawnie zapakować rzeczy znajdziesz <button>TUTAJ</button></p>
           </div>
           <h4 className="padd_left step_no">Krok 2/4</h4>
-          <h1 className="padd_left">Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:</h1>
+          <h1 className="padd_left step_header">Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:</h1>
           <div className="padd_left">
             <label>Liczba 60l worków:</label>
-            <Field name="bags" component="select">
+            <Field className="select" name="bags" component="select">
               <option>--wybierz--</option>
               <option value="1" >1</option>
               <option value="2">2</option>
@@ -292,6 +298,9 @@ const GiveAwayFormBase = () => (
     </Wizard>
 )
 
+
+
+
 const GiveAwayForm = () => {
   return (
     <>
@@ -332,9 +341,7 @@ const GiveAwayForm = () => {
         </div>
       </div>
     </>
-
-
   )
 }
-
+// export default withAuthorization(condition)(GiveAwayForm);
 export default GiveAwayForm;

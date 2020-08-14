@@ -68,10 +68,10 @@ const App = () => {
       {user?.email === undefined ? (
         <ul className="first_nav">
           <li>
-            <Link className="first_nav" to="/login">Login</Link>
+            <Link className="first_nav" to="/login">Zaloguj</Link>
           </li>
           <li>
-            <Link className="first_nav register_nav" to="/register">Register</Link>
+            <Link className="first_nav register_nav" to="/register">Załóż konto</Link>
           </li>
         </ul>
       ) : (

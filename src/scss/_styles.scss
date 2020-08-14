@@ -745,12 +745,51 @@ footer {
           font-size: 2rem;
           padding: 1rem 0 2rem 0;
         }
+        .step_header {
+          padding-bottom: 3rem;
+        }
         .padd_left {
           padding-left: 2rem;
+          font-size: 1.5rem;
+          // padding-bottom: 3rem;
           label {
             font-weight: 200;
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: $color_5;
+            margin-top: 2rem;
+          }
+          .select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            // -webkit-appearance: button;
+            // -moz-appearance: button;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -webkit-padding-end: 20px;
+            -moz-padding-end: 20px;
+            -webkit-padding-start: 2px;
+            -moz-padding-start: 2px;
+            outline: none;
+            width: 200px;
+            background-image: url(../assets/Arrow_Down.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
+            background-image: url(../assets/Arrow_Down.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Firefox (3.6 to 15) */
+            background-image: url(../assets/Arrow_Down.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of Internet Explorer  10*/
+            background-image: url(../assets/Arrow_Down.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
+            background-image: url(../assets/Arrow_Down.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4); /* Standard syntax; must be last */
+            background-position: center right;
+            background-repeat: no-repeat;
+            background-color: #F07575; /* Fallback color if gradients are not supported */
+            border: 1px solid #AAA;
+            border-radius: 2px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            color: #555;
+            font-size: inherit;
+            margin: 0;
+            overflow: hidden;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           .error {
             color: red;
