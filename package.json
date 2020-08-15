@@ -15,7 +15,11 @@
     "firebase": "^7.15.5",
     "recompose": "^0.30.0",
     "react-flash-message": "^1.0.2",
-    "react-spinners": "^0.8.3"
+    "react-spinners": "^0.8.3",
+    "react-final-form": "^6.5.1",
+    "final-form": "^4.20.0",
+    "styled-components": "^5.1.1",
+    "react-datepicker": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

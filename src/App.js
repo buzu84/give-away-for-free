@@ -40,11 +40,26 @@ const App = () => {
 
   useEffect(() => {
     if (firebase) {
-      firebase.auth.onAuthStateChanged(function(user) {
+      const unsubscribe = firebase.auth.onAuthStateChanged(function(user) {
         setUser(user);
+
+        let sessionTimeout = null;
+        if (user === null) {
+          sessionTimeout && clearTimeout(sessionTimeout);
+          sessionTimeout = null;
+        } else {
+          user.getIdTokenResult().then((idTokenResult) => {
+            const authTime = idTokenResult.claims.auth_time * 1000;
+            const sessionDuration = 1000 * 60 * 60 * 6;
+            const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
+            sessionTimeout = setTimeout(() => firebase.doSignOut(), millisecondsUntilExpiration);
+          });
+        }
     });
+
+    return () => unsubscribe();
   }
-}, [firebase])
+}, [firebase, user])
 
 
   return (
@@ -53,10 +68,10 @@ const App = () => {
       {user?.email === undefined ? (
         <ul className="first_nav">
           <li>
-            <Link className="first_nav" to="/login">Login</Link>
+            <Link className="first_nav" to="/login">Zaloguj</Link>
           </li>
           <li>
-            <Link className="first_nav register_nav" to="/register">Register</Link>
+            <Link className="first_nav register_nav" to="/register">Załóż konto</Link>
           </li>
         </ul>
       ) : (

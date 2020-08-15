@@ -9,7 +9,7 @@ body {
 
 nav > ul > li {
     display: inline;
-    padding: 0 40px;
+    padding: 0 30px;
     :hover{
       opacity: 80%;
     }
@@ -645,8 +645,217 @@ footer {
 }
 
 
+// oddaj rzeczy naglowek
 
+  .rel_cont {
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    .form_start_pic_container {
+      background: url(../assets/Form-Hero-Image.jpg);
+      background-position: left;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 600px;
+      width: 40%;
+      position: absolute;
+      z-index: 0;
+      top: -210px;
+    }
+    .header_cont {
+      width: 50%;
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      text-align: center;
+      margin-top: 3rem;
+      margin-right: 12rem;
+      .title_head {
+        font-size: 2rem;
+        color: $color_5;
+        padding-bottom: 1rem;
+      }
+      .steps_cont {
+        display: flex;
+        width: 100%;
+        padding-top: 3rem;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1rem;
+        color: $color_5;
+          .step {
+            position: relative;
+            .square {
+              display: block;
+              border: solid 1px gray;
+              width: 10rem;
+              height: 10rem;
+              position: absolute;
+              left: -12%;
+              bottom: -90%;
+              transform: rotate(45deg);
+            }
+            .square_1 {
+              left: -30%;
+            }
+            .padding {
+              padding-top: 3rem;
+            }
+          }
+        }
+      }
+    }
 
-.columns {
-  background: $color_3;
-}
+  // formularz-kroki
+  .rel_pic_cont {
+    position: relative;
+    // width: 100%;
+    height: 1000px;
+    .form_pic_container {
+      background: url(../assets/Background-Form.jpg);
+      background-position: left;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 600px;
+      margin-top: 405px;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      .form_page_cont {
+        position: absolute;
+        top: -10%;
+        width: 100%;
+        .step {
+          background: $color_3;
+          height: 80px;
+          // padding: 2rem 0;
+          // margin-bottom: 2rem;
+          padding-top: 0.5rem;
+          h2 {
+            font-size: 2rem;
+          }
+          p {
+            font-size: 1.2rem;
+            color: $color_5;
+            // padding-bottom: 0.8rem;
+          }
+
+        }
+        .header_mark {
+          font-size: 2rem;
+          padding: 1rem 0 2rem 0;
+        }
+        .step_header {
+          padding-bottom: 3rem;
+        }
+        .padd_left {
+          padding-left: 2rem;
+          font-size: 1.5rem;
+          label {
+            font-weight: 200;
+            font-size: 1rem;
+            color: #000000;
+            margin-top: 2rem;
+          }
+          .select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -webkit-padding-end: 20px;
+            -moz-padding-end: 20px;
+            -webkit-padding-start: 2px;
+            -moz-padding-start: 2px;
+            outline: none;
+            width: 200px;
+            background-image: url(../assets/Arrow_Down.png);
+            background-position: center right;
+            background-repeat: no-repeat;
+            border: 1px solid #AAA;
+            color: #000000;
+            background-color: #edece8;
+            font-size: 1.2rem;
+            margin: 0 0 0 20px;
+            overflow: hidden;
+            padding: 2px 0 2px 20px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .error {
+            color: red;
+            padding-left: 1rem;
+          }
+          input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            outline: none;
+            // padding: 0.5rem 0;
+
+          }
+          input[type="radio"]:checked {
+            background: $color_3;
+          }
+
+          input[type="radio"]:before {
+            // margin: 0.5rem 0;
+            content: "";
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 0.75px solid $color_5;
+          }
+        }
+        .step_no {
+          color: $color_5;
+          font-size: 1.5rem;
+          font-weight: 200;
+          padding: 1rem 0 1.5rem 2rem;
+        }
+      }
+      .buttons {
+        position: absolute;
+        bottom: 20%;
+        margin-left: 2rem;
+        .button {
+          display: inline-block;
+          border: none;
+          padding: 1rem 2rem;
+          background: #edecea;
+          margin: 0 20px 0 20px;
+          width: 150px;
+          border: 0.75px solid $color_5;
+          font-size: 1rem;
+          cursor: pointer;
+          text-align: center;
+          transition: background 250ms ease-in-out,
+                      transform 150ms ease;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+      }
+
+        .button:hover,
+        .button:focus {
+            background: $color_3;
+        }
+
+        .button:focus {
+            outline: 1px solid #fff;
+            outline-offset: -4px;
+        }
+
+        .button:active {
+            transform: scale(0.99);
+        }
+      }
+      // pre {
+      //   position: absolute;
+      //   bottom: 5%;
+      // }
+      // .hidden {
+      //   display: none;
+      // }
+    }
+  }
