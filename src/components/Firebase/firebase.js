@@ -46,6 +46,7 @@ class Firebase {
   organizations = () => this.db.ref('data/organizacje');
   foundations = () => this.db.ref('data/fundacje');
   collections = () => this.db.ref('data/zbiorki');
+  kwesty = () => this.db.ref('data/kwesty');
 
 }
 

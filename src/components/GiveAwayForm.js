@@ -1,16 +1,26 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from 'react';
+import React, { useContext } from "react";
 import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
-import DatePicker from "react-datepicker";
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
+// import { FirebaseContext } from './Firebase'
+// import { withFirebase } from './Firebase';
+// import { compose } from 'recompose';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = async values => {
+  // const firebase = useContext(FirebaseContext);
   await sleep(300)
   window.alert(JSON.stringify(values, 0, 2))
+  // if (this.props.firebase != null) {
+    // this.props.firebase.kwesty().push(JSON.stringify(values));
+  // }
+  // firebase.kwesty().push(JSON.stringify(values));
+
+    // event.preventDefault();
+    console.log(JSON.stringify(values))
 }
 
 const Error = ({ name }) => (
@@ -191,22 +201,22 @@ const GiveAwayFormBase = () => (
           const phoneRegEx = /^(\d{9})$/;
           const errors = {}
           if (values.street.length <= 2) {
-            errors.street = 'At least 3 characters'
+            errors.street = 'Przynajmniej 3 litery'
           }
           if (values.city.length <= 2) {
-            errors.city = 'At least 3 characters'
+            errors.city = 'Przynajmniej 3 litery'
           }
           if (!values.zip_code.match(zipRegEx)) {
-            errors.zip_code = 'Bad zip code format'
+            errors.zip_code = 'Wprowadź prawidłowy kod pocztowy'
           }
           if (values.time  === '') {
-            errors.time = 'Pick time'
+            errors.time = 'Wybierz godzinę'
           }
           if (values.date === '') {
-            errors.date = 'Pick date'
+            errors.date = 'Wybierz datę'
           }
           if (!values.phone.match(phoneRegEx)) {
-            errors.phone = 'Bad phone format'
+            errors.phone = 'Wprowadź prawidłowy telefon'
           }
           return errors
         }}
@@ -256,10 +266,6 @@ const GiveAwayFormBase = () => (
                 Data
                 <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
               </label>
-              <DatePicker
-              dateFormat="yyyy-MM-dd"
-              minDate={new Date()}
-            />
               <Error name="date" />
             </div>
             <div>
@@ -279,6 +285,10 @@ const GiveAwayFormBase = () => (
       </Wizard.Page>
     </Wizard>
 )
+
+// const GiveAwayFormBaseFire = compose(
+//   withFirebase
+// )(GiveAwayFormBase);
 
 const GiveAwayForm = () => {
   return (
