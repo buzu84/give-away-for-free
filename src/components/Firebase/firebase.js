@@ -1,5 +1,4 @@
 import app from 'firebase/app';
-// import firebase from "firebase/app"
 import 'firebase/auth';
 import 'firebase/database';
 import history from '../Home/history';
@@ -44,7 +43,6 @@ class Firebase {
   doEmailVerification = email =>
     this.auth.currentUser.sendEmailVerification(email);
 
-  // organization = uid => this.db.ref(`data/organizacje/${uid}`);
   organizations = () => this.db.ref('data/organizacje');
   foundations = () => this.db.ref('data/fundacje');
   collections = () => this.db.ref('data/zbiorki');

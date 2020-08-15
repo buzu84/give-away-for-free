@@ -4,6 +4,7 @@ import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import DatePicker from "react-datepicker";
 import mySvg from '../assets/Decoration.svg';
+import withAuthorization from './Session/withAuthorization.js';
 
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -23,7 +24,7 @@ const Error = ({ name }) => (
   />
 )
 
-const required = value => (value ? undefined : 'Wymagane')
+const required = value => (value ? undefined : 'Wybierz jedną opcję')
 
 function formatDate(date) {
   var d = new Date(date),
@@ -326,5 +327,7 @@ const GiveAwayForm = () => {
     </>
   )
 }
-// export default withAuthorization(condition)(GiveAwayForm);
-export default GiveAwayForm;
+
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(GiveAwayForm);
+// export default GiveAwayForm;
