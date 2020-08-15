@@ -751,18 +751,15 @@ footer {
         .padd_left {
           padding-left: 2rem;
           font-size: 1.5rem;
-          // padding-bottom: 3rem;
           label {
             font-weight: 200;
             font-size: 1rem;
-            color: $color_5;
+            color: #000000;
             margin-top: 2rem;
           }
           .select {
             -webkit-appearance: none;
             -moz-appearance: none;
-            // -webkit-appearance: button;
-            // -moz-appearance: button;
             -webkit-user-select: none;
             -moz-user-select: none;
             -webkit-padding-end: 20px;
@@ -771,23 +768,16 @@ footer {
             -moz-padding-start: 2px;
             outline: none;
             width: 200px;
-            background-image: url(../assets/Arrow_Down.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
-            background-image: url(../assets/Arrow_Down.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Firefox (3.6 to 15) */
-            background-image: url(../assets/Arrow_Down.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of Internet Explorer  10*/
-            background-image: url(../assets/Arrow_Down.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
-            background-image: url(../assets/Arrow_Down.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4); /* Standard syntax; must be last */
+            background-image: url(../assets/Arrow_Down.png);
             background-position: center right;
             background-repeat: no-repeat;
-            background-color: #F07575; /* Fallback color if gradients are not supported */
             border: 1px solid #AAA;
-            border-radius: 2px;
-            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-            color: #555;
-            font-size: inherit;
-            margin: 0;
+            color: #000000;
+            background-color: #edece8;
+            font-size: 1.2rem;
+            margin: 0 0 0 20px;
             overflow: hidden;
-            padding-top: 2px;
-            padding-bottom: 2px;
+            padding: 2px 0 2px 20px;
             text-overflow: ellipsis;
             white-space: nowrap;
           }
@@ -833,11 +823,9 @@ footer {
           display: inline-block;
           border: none;
           padding: 1rem 2rem;
-          // margin: 0;
-          // text-decoration: none;
           background: #edecea;
-          // color: #ffffff;
-          // font-family: sans-serif;
+          margin: 0 20px 0 20px;
+          width: 150px;
           border: 0.75px solid $color_5;
           font-size: 1rem;
           cursor: pointer;

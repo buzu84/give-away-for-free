@@ -4,14 +4,6 @@ import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import DatePicker from "react-datepicker";
 import mySvg from '../assets/Decoration.svg';
-// import mySvg_2 from '../assets/Icon-Arrow-Down.svg';
-// import mySvg_3 from '../assets/Icon-Arrow_Up.svg';
-
-// import { compose } from 'recompose';
-// import { withRouter } from 'react-router-dom';
-// import { withFirebase } from './Firebase';
-// import { withAuthorization } from './Session/withAuthorization.js';
-// const condition = authUser => !!authUser;
 
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -72,28 +64,24 @@ const GiveAwayFormBase = () => (
               <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>{' '}
               Ubrania, do wyrzucenia
             </label>
-            <Error name="pick" />
           </div>
           <div className="padd_left">
             <label>
               <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>{' '}
               Zabawki
             </label>
-            <Error name="pick" />
           </div>
           <div className="padd_left">
             <label>
               <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>{' '}
               Książki
             </label>
-            <Error name="pick" />
           </div>
           <div className="padd_left">
             <label>
               <Field name="pick" component="input" type="radio" value="inne" validate={required}/>{' '}
               Inne
             </label>
-            <Error name="pick" />
           </div>
         </div>
       </Wizard.Page>
@@ -101,7 +89,7 @@ const GiveAwayFormBase = () => (
         validate={values => {
           const errors = {}
           if (!values.bags || values.bags === "--wybierz--") {
-            errors.bags = 'Wymagane'
+            errors.bags = 'Wybierz z listy!'
           }
           return errors
         }}
@@ -131,10 +119,10 @@ const GiveAwayFormBase = () => (
         validate={values => {
           const errors = {}
           if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
-            errors.localization = 'Pick from a list or enter specific localization'
+            errors.localization = 'Wybierz z listy lub wpisz lokalizację'
           }
           if (values.helpGroups.length === 0) {
-            errors.helpGroups = 'Wymagane'
+            errors.helpGroups = 'Wybierz przynajmniej jedną organizację'
           }
           return errors
         }}
@@ -170,35 +158,30 @@ const GiveAwayFormBase = () => (
             <Field name="helpGroups" component="input" type="checkbox" value="matki" />
             samotnym matkom
           </label>
-          <Error name="helpGroups" />
         </div>
         <div className="padd_left">
           <label>
             <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
             bezdomnym
           </label>
-          <Error name="helpGroups" />
         </div>
         <div className="padd_left">
           <label>
             <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
             niepełnosprawnym
           </label>
-          <Error name="helpGroups" />
         </div>
         <div className="padd_left">
           <label>
             <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
             osobom starszym
           </label>
-          <Error name="helpGroups" />
         </div>
         <div className="padd_left">
           <h4>Wpisz nazwę konkretnej lokalizacji(opcjonalnie)</h4>
           <label>
             <Field name="localizationSpecific" component="input" type="text" />
           </label>
-          <Error name="localization" />
         </div>
       </div>
       </Wizard.Page>
