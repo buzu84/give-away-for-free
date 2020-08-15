@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
 
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const onSubmit = async values => {
@@ -278,12 +277,8 @@ const GiveAwayFormBase = () => (
           </div>
         </div>
       </Wizard.Page>
-
     </Wizard>
 )
-
-
-
 
 const GiveAwayForm = () => {
   return (
@@ -330,4 +325,3 @@ const GiveAwayForm = () => {
 
 const condition = authUser => !!authUser;
 export default withAuthorization(condition)(GiveAwayForm);
-// export default GiveAwayForm;
