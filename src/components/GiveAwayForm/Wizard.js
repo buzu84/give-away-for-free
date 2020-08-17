@@ -45,6 +45,9 @@ export default class Wizard extends React.Component {
     const { page } = this.state
     const isLastPage = page === React.Children.count(children) - 1
     if (isLastPage) {
+      if (this.props.firebase != null) {
+        this.props.firebase.kwesty().push(JSON.stringify(values));
+      }
       return onSubmit(values)
     } else {
       this.next(values)

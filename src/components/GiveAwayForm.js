@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useContext } from "react";
+import React from "react";
 import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
 // import { FirebaseContext } from './Firebase'
-// import { withFirebase } from './Firebase';
-// import { compose } from 'recompose';
+import { withFirebase } from './Firebase';
+import { compose } from 'recompose';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -15,13 +15,21 @@ const onSubmit = async values => {
   await sleep(300)
   window.alert(JSON.stringify(values, 0, 2))
   // if (this.props.firebase != null) {
-    // this.props.firebase.kwesty().push(JSON.stringify(values));
+  //   this.props.firebase.kwesty().push(JSON.stringify(values));
   // }
   // firebase.kwesty().push(JSON.stringify(values));
 
     // event.preventDefault();
     console.log(JSON.stringify(values))
 }
+
+const handleClassToggle = e => {
+
+  document.getElementById('toggle').classList.toggle('active')
+  e.preventDefault();
+  // preventDefault psuje stan...
+}
+
 
 const Error = ({ name }) => (
   <Field
@@ -49,9 +57,13 @@ function formatDate(date) {
   return [year, month, day].join('-');
 };
 
+// const GiveAwayFormBaseFire = compose(
+//   withFirebase
+// )(GiveAwayFormBase);
+
 const GiveAwayFormBase = () => (
     <Wizard
-      initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '' }}
+      initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '', active: false }}
       onSubmit={onSubmit}
     >
       <Wizard.Page>
@@ -145,7 +157,7 @@ const GiveAwayFormBase = () => (
         <h4 className="padd_left step_no">Krok 3/4</h4>
         <h1 className="padd_left">Lokalizacja:</h1>
         <div className="padd_left">
-          <Field name="localization" component="select">
+          <Field name="localization" component="select" className="select select_2">
             <option >--wybierz--</option>
             <option value="Poznań" >Poznań</option>
             <option value="Kraków">Kraków</option>
@@ -155,40 +167,41 @@ const GiveAwayFormBase = () => (
           </Field>
           <Error name="localization" />
         </div>
-        <h4 className="padd_left">Komu chcesz pomóc?</h4>
+        <h4 className="padd_left smaller_head">Komu chcesz pomóc?</h4>
         <div className="padd_left">
-          <label>
+          <label onClick={handleClassToggle} className='check_label' id="toggle">
             <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
-            dzieciom
+            Dzieciom
           </label>
+          <div className="control-me"></div>
           <Error name="helpGroups" />
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="matki" />
-            samotnym matkom
+            Samotnym matkom
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
-            bezdomnym
+            Bezdomnym
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
-            niepełnosprawnym
+            Niepełnosprawnym
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
-            osobom starszym
+            Osobom starszym
           </label>
         </div>
         <div className="padd_left">
-          <h4>Wpisz nazwę konkretnej lokalizacji(opcjonalnie)</h4>
+          <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji(opcjonalnie)</h4>
           <label>
             <Field name="localizationSpecific" component="input" type="text" />
           </label>
@@ -286,9 +299,9 @@ const GiveAwayFormBase = () => (
     </Wizard>
 )
 
-// const GiveAwayFormBaseFire = compose(
-//   withFirebase
-// )(GiveAwayFormBase);
+const GiveAwayFormBaseFire = compose(
+  withFirebase
+)(GiveAwayFormBase);
 
 const GiveAwayForm = () => {
   return (
@@ -326,7 +339,7 @@ const GiveAwayForm = () => {
       </div>
       <div className="rel_pic_cont">
         <div className="form_pic_container">
-          <GiveAwayFormBase />
+          <GiveAwayFormBaseFire />
         </div>
       </div>
     </>

@@ -54,6 +54,7 @@ li > a {
   .btn_container {
     margin-top: 1rem;
     .btn_give_away {
+      cursor: pointer;
       font-size: 2rem;
       font-family: $font-base, sans-serif;
       font-weight: 200;
@@ -246,6 +247,7 @@ li > a {
     color: $color_5;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    cursor: pointer;
   }
   .btn_give_away_third:focus {
     outline: none;
@@ -709,7 +711,6 @@ footer {
   // formularz-kroki
   .rel_pic_cont {
     position: relative;
-    // width: 100%;
     height: 1000px;
     .form_pic_container {
       background: url(../assets/Background-Form.jpg);
@@ -728,8 +729,6 @@ footer {
         .step {
           background: $color_3;
           height: 80px;
-          // padding: 2rem 0;
-          // margin-bottom: 2rem;
           padding-top: 0.5rem;
           h2 {
             font-size: 2rem;
@@ -737,7 +736,6 @@ footer {
           p {
             font-size: 1.2rem;
             color: $color_5;
-            // padding-bottom: 0.8rem;
           }
 
         }
@@ -748,6 +746,7 @@ footer {
         .step_header {
           padding-bottom: 3rem;
         }
+
         .padd_left {
           padding-left: 2rem;
           font-size: 1.5rem;
@@ -781,32 +780,53 @@ footer {
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+          .select_2 {
+            margin: 0 0;
+          }
           .error {
             color: red;
             padding-left: 1rem;
           }
-          input[type="radio"] {
+          input[type="radio"],
+          input[type="checkbox"] {
             -webkit-appearance: none;
             -moz-appearance: none;
             -ms-appearance: none;
             -o-appearance: none;
             appearance: none;
             outline: none;
-            // padding: 0.5rem 0;
-
           }
-          input[type="radio"]:checked {
+          input[type="radio"]:checked,
+          input[type="checkbox"]:checked,
+          .active {
             background: $color_3;
           }
 
+
           input[type="radio"]:before {
-            // margin: 0.5rem 0;
             content: "";
             display: block;
             width: 30px;
             height: 30px;
             border: 0.75px solid $color_5;
           }
+          .check_label {
+            border: 1px solid gray;
+          }
+          // input[type="checkbox"]:checked {
+          //   background: $color_3;
+          // }
+          //
+          // input[type="checkbox"]:before {
+          //   content: "";
+          //   display: block;
+          //   width: 30px;
+          //   height: 30px;
+          //   border: 0.75px solid $color_5;
+          // }
+        }
+        .smaller_head {
+          font-size: 1rem;
         }
         .step_no {
           color: $color_5;
