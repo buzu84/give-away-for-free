@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
-// <pre>{JSON.stringify(values, 0, 2)}</pre>
 
 export default class Wizard extends React.Component {
   static propTypes = {
@@ -66,7 +65,7 @@ export default class Wizard extends React.Component {
         onSubmit={this.handleSubmit}
       >
         {({ handleSubmit, submitting, values }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id='wizard_form'>
             {activePage}
             <div className="buttons">
               {page > 0 && (

@@ -1,32 +1,19 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from "react";
+import React, { useContext } from "react";
 import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
-// import { FirebaseContext } from './Firebase'
-import { withFirebase } from './Firebase';
-import { compose } from 'recompose';
+import { FirebaseContext } from './Firebase'
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const onSubmit = async values => {
-  // const firebase = useContext(FirebaseContext);
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-  // if (this.props.firebase != null) {
-  //   this.props.firebase.kwesty().push(JSON.stringify(values));
-  // }
-  // firebase.kwesty().push(JSON.stringify(values));
 
-    // event.preventDefault();
-    console.log(JSON.stringify(values))
-}
 
 const handleClassToggle = e => {
 
   document.getElementById('toggle').classList.toggle('active')
-  e.preventDefault();
+  console.log('toggle')
+  // e.preventDefault();
   // preventDefault psuje stan...
 }
 
@@ -57,11 +44,16 @@ function formatDate(date) {
   return [year, month, day].join('-');
 };
 
-// const GiveAwayFormBaseFire = compose(
-//   withFirebase
-// )(GiveAwayFormBase);
 
-const GiveAwayFormBase = () => (
+const GiveAwayFormBase = () => {
+  const firebase = useContext(FirebaseContext);
+  const formToReset = document.getElementById('wizard_form');
+  const onSubmit = async values => {
+    firebase.assemblies().push(JSON.stringify(values));
+    formToReset.reset();
+  }
+
+  return (
     <Wizard
       initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '', active: false }}
       onSubmit={onSubmit}
@@ -297,11 +289,10 @@ const GiveAwayFormBase = () => (
         </div>
       </Wizard.Page>
     </Wizard>
-)
+  )
+}
 
-const GiveAwayFormBaseFire = compose(
-  withFirebase
-)(GiveAwayFormBase);
+
 
 const GiveAwayForm = () => {
   return (
@@ -339,7 +330,7 @@ const GiveAwayForm = () => {
       </div>
       <div className="rel_pic_cont">
         <div className="form_pic_container">
-          <GiveAwayFormBaseFire />
+          <GiveAwayFormBase />
         </div>
       </div>
     </>
