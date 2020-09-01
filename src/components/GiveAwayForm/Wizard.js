@@ -1,6 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+import FlashMessage from 'react-flash-message'
+
+const Message = () => (
+  <FlashMessage duration={5000}>
+    <div style={{position:'absolute', bottom:'40%', right:'50%', border:'1px solid green', padding: '1rem'}}>
+      <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Formularz wysłany!</div>
+      <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
+    </div>
+  </FlashMessage>
+)
 
 export default class Wizard extends React.Component {
   static propTypes = {
@@ -12,7 +22,8 @@ export default class Wizard extends React.Component {
     super(props)
     this.state = {
       page: 0,
-      values: props.initialValues || {}
+      values: props.initialValues || {},
+      formSent: false
     }
   }
   next = values =>
@@ -44,9 +55,6 @@ export default class Wizard extends React.Component {
     const { page } = this.state
     const isLastPage = page === React.Children.count(children) - 1
     if (isLastPage) {
-      if (this.props.firebase != null) {
-        this.props.firebase.kwesty().push(JSON.stringify(values));
-      }
       return onSubmit(values)
     } else {
       this.next(values)
@@ -58,6 +66,7 @@ export default class Wizard extends React.Component {
     const { page, values } = this.state
     const activePage = React.Children.toArray(children)[page]
     const isLastPage = page === React.Children.count(children) - 1
+    const formToReset = document.getElementById('wizard_form');
     return (
       <Form
         initialValues={values}
@@ -65,7 +74,21 @@ export default class Wizard extends React.Component {
         onSubmit={this.handleSubmit}
       >
         {({ handleSubmit, submitting, values }) => (
-          <form onSubmit={handleSubmit} id='wizard_form'>
+          <form
+            onSubmit={(event) => {
+              const promise = handleSubmit(event);
+              promise && promise.then(() => {
+                const frm_elements = formToReset.elements;
+                for(let i = 0; i < frm_elements.length; i++) {
+                  frm_elements[i].value = "";
+                }
+                console.log(this.state.formSent);
+                this.setState({formSent: true});
+                console.log(this.state.formSent);
+              })
+              return promise;
+            }}
+          id='wizard_form'>
             {activePage}
             <div className="buttons">
               {page > 0 && (
@@ -80,8 +103,7 @@ export default class Wizard extends React.Component {
                 </button>
               )}
             </div>
-            <pre style={{position:'absolute', bottom:'0', right:'50%'}}>{JSON.stringify(values, 0, 2)}</pre>
-
+            {this.state.formSent ? <Message /> : null}
           </form>
         )}
       </Form>

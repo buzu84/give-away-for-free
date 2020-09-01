@@ -4,19 +4,7 @@ import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
-import { FirebaseContext } from './Firebase'
-
-
-
-
-const handleClassToggle = e => {
-
-  document.getElementById('toggle').classList.toggle('active')
-  console.log('toggle')
-  // e.preventDefault();
-  // preventDefault psuje stan...
-}
-
+import { FirebaseContext } from './Firebase';
 
 const Error = ({ name }) => (
   <Field
@@ -47,10 +35,8 @@ function formatDate(date) {
 
 const GiveAwayFormBase = () => {
   const firebase = useContext(FirebaseContext);
-  const formToReset = document.getElementById('wizard_form');
   const onSubmit = async values => {
     firebase.assemblies().push(JSON.stringify(values));
-    formToReset.reset();
   }
 
   return (
@@ -147,21 +133,29 @@ const GiveAwayFormBase = () => {
           <p className="padd_left">Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz lokalizację.</p>
         </div>
         <h4 className="padd_left step_no">Krok 3/4</h4>
-        <h1 className="padd_left">Lokalizacja:</h1>
-        <div className="padd_left">
-          <Field name="localization" component="select" className="select select_2">
-            <option >--wybierz--</option>
-            <option value="Poznań" >Poznań</option>
-            <option value="Kraków">Kraków</option>
-            <option value="Warszawa">Warszawa</option>
-            <option value="Wrocław">Wrocław</option>
-            <option value="Katowice">Katowice</option>
-          </Field>
-          <Error name="localization" />
+        <h1 className="padd_left smaller_head">Lokalizacja:</h1>
+        <div className="flex_cont">
+          <div className="padd_left flex_cont_2">
+            <Field name="localization" component="select" className="select select_2">
+              <option >--wybierz--</option>
+              <option value="Poznań" >Poznań</option>
+              <option value="Kraków">Kraków</option>
+              <option value="Warszawa">Warszawa</option>
+              <option value="Wrocław">Wrocław</option>
+              <option value="Katowice">Katowice</option>
+            </Field>
+            <Error name="localization" />
+          </div>
+          <div className="padd_left">
+            <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji (opcjonalnie)</h4>
+            <label>
+              <Field name="localizationSpecific" component="input" type="text" />
+            </label>
+          </div>
         </div>
-        <h4 className="padd_left smaller_head">Komu chcesz pomóc?</h4>
+        <h4 className="padd_left smaller_head padd_top">Komu chcesz pomóc?</h4>
         <div className="padd_left">
-          <label onClick={handleClassToggle} className='check_label' id="toggle">
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
             Dzieciom
           </label>
@@ -192,12 +186,7 @@ const GiveAwayFormBase = () => {
             Osobom starszym
           </label>
         </div>
-        <div className="padd_left">
-          <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji(opcjonalnie)</h4>
-          <label>
-            <Field name="localizationSpecific" component="input" type="text" />
-          </label>
-        </div>
+
       </div>
       </Wizard.Page>
       <Wizard.Page

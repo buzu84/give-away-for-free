@@ -773,7 +773,7 @@ footer {
             border: 1px solid #AAA;
             color: #000000;
             background-color: #edece8;
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin: 0 0 0 20px;
             overflow: hidden;
             padding: 2px 0 2px 20px;
@@ -781,11 +781,11 @@ footer {
             white-space: nowrap;
           }
           .select_2 {
-            margin: 0 0;
+            margin: 20px 0 0 0;
           }
           .error {
             color: red;
-            padding-left: 1rem;
+            // padding-left: 1rem;
           }
           input[type="radio"],
           input[type="checkbox"] {
@@ -802,37 +802,43 @@ footer {
             background: $color_3;
           }
 
-
-          input[type="radio"]:before {
+          input[type="radio"]:before,
+          input[type="checkbox"]:before {
             content: "";
             display: block;
             width: 30px;
             height: 30px;
-            border: 0.75px solid $color_5;
+            // border: 0.75px solid $color_5;
           }
-          .check_label {
-            border: 1px solid gray;
+          input {
+            outline: none;
+            border:0.75px solid $color_5;
+            // background-image:none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            background-color: #edece8;
           }
-          // input[type="checkbox"]:checked {
-          //   background: $color_3;
-          // }
-          //
-          // input[type="checkbox"]:before {
-          //   content: "";
-          //   display: block;
-          //   width: 30px;
-          //   height: 30px;
-          //   border: 0.75px solid $color_5;
-          // }
         }
         .smaller_head {
-          font-size: 1rem;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+        .padd_top {
+          margin-top: 20px;
         }
         .step_no {
           color: $color_5;
           font-size: 1.5rem;
           font-weight: 200;
           padding: 1rem 0 1.5rem 2rem;
+        }
+        .flex_cont {
+          display: flex;
+          .flex_cont_2 {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
       .buttons {
@@ -870,12 +876,6 @@ footer {
             transform: scale(0.99);
         }
       }
-      // pre {
-      //   position: absolute;
-      //   bottom: 5%;
-      // }
-      // .hidden {
-      //   display: none;
-      // }
+
     }
   }
