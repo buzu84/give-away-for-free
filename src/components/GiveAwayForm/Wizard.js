@@ -5,7 +5,7 @@ import FlashMessage from 'react-flash-message'
 
 const Message = () => (
   <FlashMessage duration={5000}>
-    <div style={{position:'absolute', bottom:'40%', right:'50%', border:'1px solid green', padding: '1rem'}}>
+    <div style={{position:'absolute', bottom:'10%', right:'45%', border:'1px solid green', padding: '1rem'}}>
       <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Formularz wysłany!</div>
       <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
     </div>

@@ -222,57 +222,61 @@ const GiveAwayFormBase = () => {
           </div>
           <h4 className="padd_left step_no">Krok 4/4</h4>
           <h1 className="padd_left">Podaj adres oraz termin odbioru rzeczy przez kuriera:</h1>
-          <div className="padd_left">
-            <h2>Adres odbioru:</h2>
-            <div>
-              <label>
-                Ulica
-                <Field name="street" component="input" type="text" />
-              </label>
-              <Error name="street" />
+          <div className="flex_cont_3">
+            <div className="padd_left">
+              <h2>Adres odbioru:</h2>
+              <div>
+                <label className="flex_cont_4">
+                  Ulica
+                  <Field name="street" component="input" type="text" />
+                </label>
+                <Error name="street" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Miasto
+                  <Field name="city" component="input" type="text" />
+                </label>
+                <Error name="city" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Kod pocztowy
+                  <Field name="zip_code" component="input" type="text" />
+                </label>
+                <Error name="zip_code" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Numer telefonu
+                  <Field name="phone" component="input" type="text" />
+                </label>
+                <Error name="phone" />
+              </div>
             </div>
-            <div>
-              <label>
-                Miasto
-                <Field name="city" component="input" type="text" />
-              </label>
-              <Error name="city" />
-            </div>
-            <div>
-              <label>
-                Kod pocztowy
-                <Field name="zip_code" component="input" type="text" />
-              </label>
-              <Error name="zip_code" />
-            </div>
-            <div>
-              <label>
-                Numer telefonu
-                <Field name="phone" component="input" type="text" />
-              </label>
-              <Error name="phone" />
-            </div>
-          </div>
-          <div className="padd_left">
-            <h2>Termin odbioru:</h2>
-            <div>
-              <label>
-                Data
-                <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
-              </label>
-              <Error name="date" />
-            </div>
-            <div>
-              <label>
-                Godzina
-                <Field name="time" component="input" type="time" />
-              </label>
-              <Error name="time" />
-            </div>
-            <div>
-              <label>Uwagi da kuriera</label>
-              <Field name="notes" component="textarea" placeholder="uwagi" />
-              <Error name="notes" />
+            <div className="padd_left">
+              <h2>Termin odbioru:</h2>
+              <div>
+                <label className="flex_cont_4">
+                  Data
+                  <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
+                </label>
+                <Error name="date" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Godzina
+                  <Field name="time" component="input" type="time" />
+                </label>
+                <Error name="time" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                Uwagi dla kuriera
+                  <Field name="notes" component="textarea" placeholder="uwagi" rows="4" cols="20"/>
+                </label>
+                <Error name="notes" />
+              </div>
             </div>
           </div>
         </div>
