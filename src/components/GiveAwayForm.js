@@ -159,7 +159,6 @@ const GiveAwayFormBase = () => {
             <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
             Dzieciom
           </label>
-          <div className="control-me"></div>
           <Error name="helpGroups" />
         </div>
         <div className="padd_left">
@@ -194,14 +193,15 @@ const GiveAwayFormBase = () => {
           const zipRegEx = /[\d]{2}-[\d]{3}/g;
           const phoneRegEx = /^(\d{9})$/;
           const errors = {}
-          if (values.street.length <= 2) {
-            errors.street = 'Przynajmniej 3 litery'
+
+          if (!values.street || values.street.length <= 2) {
+            errors.street = 'Przynajmniej 3 znaki'
           }
-          if (values.city.length <= 2) {
-            errors.city = 'Przynajmniej 3 litery'
+          if (!values.city || values.city.length <= 2) {
+            errors.city = 'Przynajmniej 3 znaki'
           }
-          if (!values.zip_code.match(zipRegEx)) {
-            errors.zip_code = 'Wprowadź prawidłowy kod pocztowy'
+          if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
+            errors.zip_code = 'Prawidłowy format to XX-XXX'
           }
           if (values.time  === '') {
             errors.time = 'Wybierz godzinę'
@@ -209,7 +209,7 @@ const GiveAwayFormBase = () => {
           if (values.date === '') {
             errors.date = 'Wybierz datę'
           }
-          if (!values.phone.match(phoneRegEx)) {
+          if (!values.phone || !values.phone.match(phoneRegEx)) {
             errors.phone = 'Wprowadź prawidłowy telefon'
           }
           return errors

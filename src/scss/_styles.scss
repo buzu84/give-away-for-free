@@ -350,7 +350,7 @@ li > a {
     text-align: center;
     font-size: 2.4rem;
     font-weight: 300;
-    color: #000000;
+    color: $color_7;
   }
   img {
     margin-bottom: 1.5rem;
@@ -364,9 +364,10 @@ li > a {
     background: #FFFFFF;
     border: $color_5 0.75px solid;
     width: 10rem;
-    color: #000000;
+    color: $color_7;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    cursor: pointer;
 
   }
   .btn_give_away_fourth:focus {
@@ -737,7 +738,6 @@ footer {
             font-size: 1.2rem;
             color: $color_5;
           }
-
         }
         .header_mark {
           font-size: 2rem;
@@ -750,24 +750,34 @@ footer {
           display: flex;
           padding-top: 35px;
         }
-
         .padd_left {
           padding-left: 2rem;
           font-size: 1.5rem;
           .flex_cont_4 {
             display: flex;
             justify-content: space-between;
+            input[type="date"],
+            input[type="time"],
+            input[type="text"],
+            input[type="text"]:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0px 1000px $color_6 inset;
+              width: 150px;
+              margin-left: 10px;
+            }
             textarea {
               outline: none;
-              background-color: #edece8;
+              background-color: $color_6;
+              width: 150px;
+              margin-left: 10px;
+              border:0.75px solid $color_5;
             }
           }
           label {
             font-weight: 200;
             font-size: 1rem;
-            color: #000000;
+            color: $color_7;
             margin-top: 2rem;
-            // word-break: break-all;
+            padding-right: 10px;
           }
           .select {
             -webkit-appearance: none;
@@ -784,10 +794,10 @@ footer {
             background-position: center right;
             background-repeat: no-repeat;
             border: 1px solid #AAA;
-            color: #000000;
-            background-color: #edece8;
+            color: $color_7;
+            background-color: $color_6;
             font-size: 1rem;
-            margin: 0 0 0 20px;
+            margin: 0 10px 0 20px;
             overflow: hidden;
             padding: 2px 0 2px 20px;
             text-overflow: ellipsis;
@@ -799,7 +809,6 @@ footer {
           .error {
             color: red;
             font-size: 0.8rem;
-            padding-left: 10px;
           }
           input[type="radio"],
           input[type="checkbox"] {
@@ -829,7 +838,7 @@ footer {
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
             box-shadow: none;
-            background-color: #edece8;
+            background-color: $color_6;
           }
         }
         .smaller_head {
