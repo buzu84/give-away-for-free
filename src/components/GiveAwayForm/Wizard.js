@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
-// <pre>{JSON.stringify(values, 0, 2)}</pre>
+import history from '../Home/history'
 
 export default class Wizard extends React.Component {
   static propTypes = {
@@ -45,12 +45,8 @@ export default class Wizard extends React.Component {
     const { page } = this.state
     const isLastPage = page === React.Children.count(children) - 1
     if (isLastPage) {
-      console.log('ostatnia strona');
       return onSubmit(values)
     } else {
-      console.log('strona');
-      console.log(React.Children.count(children) - 1);
-      console.log(page);
       this.next(values)
     }
   }
@@ -67,7 +63,13 @@ export default class Wizard extends React.Component {
         onSubmit={this.handleSubmit}
       >
         {({ handleSubmit, submitting, values }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(event) => {
+            const promise = handleSubmit(event);
+            promise && promise.then(() => {
+              history.push('/form-sent')
+            })
+            return promise;
+          }}>
             {activePage}
             <div className="buttons">
               {page > 0 && (
@@ -82,7 +84,6 @@ export default class Wizard extends React.Component {
                 </button>
               )}
             </div>
-
           </form>
         )}
       </Form>

@@ -1,18 +1,10 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from 'react';
+import React, { useContext } from "react";
 import { Field } from 'react-final-form';
 import Wizard from './GiveAwayForm/Wizard';
-import DatePicker from "react-datepicker";
 import mySvg from '../assets/Decoration.svg';
 import withAuthorization from './Session/withAuthorization.js';
-
-
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-const onSubmit = async values => {
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-}
+import { FirebaseContext } from './Firebase';
 
 const Error = ({ name }) => (
   <Field
@@ -40,9 +32,16 @@ function formatDate(date) {
   return [year, month, day].join('-');
 };
 
-const GiveAwayFormBase = () => (
+
+const GiveAwayFormBase = () => {
+  const firebase = useContext(FirebaseContext);
+  const onSubmit = async values => {
+    firebase.assemblies().push(JSON.stringify(values));
+  }
+
+  return (
     <Wizard
-      initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '' }}
+      initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '', active: false }}
       onSubmit={onSubmit}
     >
       <Wizard.Page>
@@ -134,56 +133,59 @@ const GiveAwayFormBase = () => (
           <p className="padd_left">Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz lokalizację.</p>
         </div>
         <h4 className="padd_left step_no">Krok 3/4</h4>
-        <h1 className="padd_left">Lokalizacja:</h1>
-        <div className="padd_left">
-          <Field name="localization" component="select">
-            <option >--wybierz--</option>
-            <option value="Poznań" >Poznań</option>
-            <option value="Kraków">Kraków</option>
-            <option value="Warszawa">Warszawa</option>
-            <option value="Wrocław">Wrocław</option>
-            <option value="Katowice">Katowice</option>
-          </Field>
-          <Error name="localization" />
+        <h1 className="padd_left smaller_head">Lokalizacja:</h1>
+        <div className="flex_cont">
+          <div className="padd_left flex_cont_2">
+            <Field name="localization" component="select" className="select select_2">
+              <option >--wybierz--</option>
+              <option value="Poznań" >Poznań</option>
+              <option value="Kraków">Kraków</option>
+              <option value="Warszawa">Warszawa</option>
+              <option value="Wrocław">Wrocław</option>
+              <option value="Katowice">Katowice</option>
+            </Field>
+            <Error name="localization" />
+          </div>
+          <div className="padd_left">
+            <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji (opcjonalnie)</h4>
+            <label>
+              <Field name="localizationSpecific" component="input" type="text" />
+            </label>
+          </div>
         </div>
-        <h4 className="padd_left">Komu chcesz pomóc?</h4>
+        <h4 className="padd_left smaller_head padd_top">Komu chcesz pomóc?</h4>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
-            dzieciom
+            Dzieciom
           </label>
           <Error name="helpGroups" />
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="matki" />
-            samotnym matkom
+            Samotnym matkom
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
-            bezdomnym
+            Bezdomnym
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
-            niepełnosprawnym
+            Niepełnosprawnym
           </label>
         </div>
         <div className="padd_left">
-          <label>
+          <label className='check_label'>
             <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
-            osobom starszym
+            Osobom starszym
           </label>
         </div>
-        <div className="padd_left">
-          <h4>Wpisz nazwę konkretnej lokalizacji(opcjonalnie)</h4>
-          <label>
-            <Field name="localizationSpecific" component="input" type="text" />
-          </label>
-        </div>
+
       </div>
       </Wizard.Page>
       <Wizard.Page
@@ -191,23 +193,24 @@ const GiveAwayFormBase = () => (
           const zipRegEx = /[\d]{2}-[\d]{3}/g;
           const phoneRegEx = /^(\d{9})$/;
           const errors = {}
-          if (values.street.length <= 2) {
-            errors.street = 'At least 3 characters'
+
+          if (!values.street || values.street.length <= 2) {
+            errors.street = 'Przynajmniej 3 znaki'
           }
-          if (values.city.length <= 2) {
-            errors.city = 'At least 3 characters'
+          if (!values.city || values.city.length <= 2) {
+            errors.city = 'Przynajmniej 3 znaki'
           }
-          if (!values.zip_code.match(zipRegEx)) {
-            errors.zip_code = 'Bad zip code format'
+          if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
+            errors.zip_code = 'Prawidłowy format to XX-XXX'
           }
           if (values.time  === '') {
-            errors.time = 'Pick time'
+            errors.time = 'Wybierz godzinę'
           }
           if (values.date === '') {
-            errors.date = 'Pick date'
+            errors.date = 'Wybierz datę'
           }
-          if (!values.phone.match(phoneRegEx)) {
-            errors.phone = 'Bad phone format'
+          if (!values.phone || !values.phone.match(phoneRegEx)) {
+            errors.phone = 'Wprowadź prawidłowy telefon'
           }
           return errors
         }}
@@ -219,69 +222,68 @@ const GiveAwayFormBase = () => (
           </div>
           <h4 className="padd_left step_no">Krok 4/4</h4>
           <h1 className="padd_left">Podaj adres oraz termin odbioru rzeczy przez kuriera:</h1>
-          <div className="padd_left">
-            <h2>Adres odbioru:</h2>
-            <div>
-              <label>
-                Ulica
-                <Field name="street" component="input" type="text" />
-              </label>
-              <Error name="street" />
+          <div className="flex_cont_3">
+            <div className="padd_left">
+              <h2>Adres odbioru:</h2>
+              <div>
+                <label className="flex_cont_4">
+                  Ulica
+                  <Field name="street" component="input" type="text" />
+                </label>
+                <Error name="street" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Miasto
+                  <Field name="city" component="input" type="text" />
+                </label>
+                <Error name="city" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Kod pocztowy
+                  <Field name="zip_code" component="input" type="text" />
+                </label>
+                <Error name="zip_code" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Numer telefonu
+                  <Field name="phone" component="input" type="text" />
+                </label>
+                <Error name="phone" />
+              </div>
             </div>
-            <div>
-              <label>
-                Miasto
-                <Field name="city" component="input" type="text" />
-              </label>
-              <Error name="city" />
-            </div>
-            <div>
-              <label>
-                Kod pocztowy
-                <Field name="zip_code" component="input" type="text" />
-              </label>
-              <Error name="zip_code" />
-            </div>
-            <div>
-              <label>
-                Numer telefonu
-                <Field name="phone" component="input" type="text" />
-              </label>
-              <Error name="phone" />
-            </div>
-          </div>
-          <div className="padd_left">
-            <h2>Termin odbioru:</h2>
-            <div>
-              <label>
-                Data
-                <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
-              </label>
-              <DatePicker
-              dateFormat="yyyy-MM-dd"
-              minDate={new Date()}
-            />
-              <Error name="date" />
-            </div>
-            <div>
-              <label>
-                Godzina
-                <Field name="time" component="input" type="time" />
-              </label>
-              <Error name="time" />
-            </div>
-            <div>
-              <label>Uwagi da kuriera</label>
-              <Field name="notes" component="textarea" placeholder="uwagi" />
-              <Error name="notes" />
+            <div className="padd_left">
+              <h2>Termin odbioru:</h2>
+              <div>
+                <label className="flex_cont_4">
+                  Data
+                  <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
+                </label>
+                <Error name="date" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                  Godzina
+                  <Field name="time" component="input" type="time" />
+                </label>
+                <Error name="time" />
+              </div>
+              <div>
+                <label className="flex_cont_4">
+                Uwagi dla kuriera
+                  <Field name="notes" component="textarea" placeholder="uwagi" rows="4" cols="20"/>
+                </label>
+                <Error name="notes" />
+              </div>
             </div>
           </div>
         </div>
       </Wizard.Page>
-
     </Wizard>
-)
-
+  )
+}
 
 
 
@@ -330,4 +332,3 @@ const GiveAwayForm = () => {
 
 const condition = authUser => !!authUser;
 export default withAuthorization(condition)(GiveAwayForm);
-// export default GiveAwayForm;

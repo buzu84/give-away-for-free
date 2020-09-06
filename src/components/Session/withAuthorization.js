@@ -5,7 +5,6 @@ import { compose } from 'recompose';
 // import AuthUserContext from './context';
 
 import { withFirebase } from '../Firebase';
-// const condition = authUser => !!authUser;
 
 const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
@@ -22,13 +21,11 @@ const withAuthorization = condition => Component => {
     }
 
     componentWillUnmount() {
-      // this.listener();
+      this.listener();
     }
 
     render() {
-      return (
-        <Component {...this.props} />
-      );
+      return <Component {...this.props} />
     }
   }
 

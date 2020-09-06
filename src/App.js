@@ -19,6 +19,8 @@ import LogOut from './components/LogOut';
 import PwForget from './components/PwForget';
 import SignOutButton from './components/SignOutButton';
 import Admin from './components/Admin';
+import FormSent from './components/FormSent';
+import NotFound from './components/NotFound';
 
 const options = {
   duration: 1500,
@@ -115,6 +117,8 @@ const App = () => {
          <Route path='/form' component={GiveAwayForm} />
          <Route path='/admin' component={Admin} />
          <Route path='/pw-forget' component={PwForget} />
+         <Route path='/form-sent' component={FormSent} />
+         <Route component={NotFound} />
        </Switch>
      </Router>
   )
