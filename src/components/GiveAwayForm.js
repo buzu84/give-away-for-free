@@ -189,7 +189,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const zipRegEx = /[\d]{2}-[\d]{3}/g;
+          const zipRegEx = /[\d]{2}-[\d]{3}$/g;
           const phoneRegEx = /^(\d{9})$/;
           const errors = {}
 
@@ -209,7 +209,7 @@ const GiveAwayFormBase = () => {
             errors.date = 'Wybierz datę'
           }
           if (!values.phone || !values.phone.match(phoneRegEx)) {
-            errors.phone = 'Wprowadź prawidłowy telefon'
+            errors.phone = 'Wprowadź prawidłowy telefon (9 cyfr)'
           }
           return errors
         }}

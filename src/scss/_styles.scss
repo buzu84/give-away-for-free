@@ -462,7 +462,9 @@ li > a {
       border: 0;
       border-style: none;
       border-bottom: 1px solid $color_5;
-
+    }
+    textarea {
+      resize: none;
     }
     ::-webkit-input-placeholder {
       text-align: center;
