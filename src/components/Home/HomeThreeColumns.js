@@ -36,12 +36,14 @@ class HomeThreeColumnsBase extends Component {
       });
     }
   }
+
   componentWillUnmount() {
     if (this.props.firebase != null) {
       this.props.firebase.assemblies().off();
       this.props.firebase.foundations().off();
     }
   }
+
   render() {
     const { bagsNo, foundations, collections, loading } = this.state;
     return (

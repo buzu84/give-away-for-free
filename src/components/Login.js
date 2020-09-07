@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import history from './Home/history';
-import { withFirebase } from './Firebase';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import mySvg from '../assets/Decoration.svg';
+import React, { Component } from 'react'
+import history from './Home/history'
+import { withFirebase } from './Firebase'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+import mySvg from '../assets/Decoration.svg'
 
 const Login = () => (
   <div>
@@ -39,8 +39,10 @@ class SignInFormBase extends Component {
   };
 
   onChange = event => {
-  this.setState({ [event.target.name]: event.target.value });
-};
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
   render() {
     const { email, password, error } = this.state;
@@ -55,7 +57,7 @@ class SignInFormBase extends Component {
           <label className="form_label">Hasło</label>
           <input className="input_label" name="password" value={password} onChange={this.onChange} type="password" />
         </fieldset>
-        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}} className="btn2_container">{error.message}</p>}
+        {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
           <button className="btn_log register_nav" disabled={isInvalid} type="submit">Zaloguj się</button>
           <button className="btn_log" onClick={() => history.push('/register')}>Załóż konto</button>

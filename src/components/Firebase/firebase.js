@@ -1,7 +1,7 @@
-import app from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-import history from '../Home/history';
+import app from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+import history from '../Home/history'
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -19,6 +19,7 @@ class Firebase {
     this.auth = app.auth();
     this.db = app.database();
   }
+
   // *** Auth API ***
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -32,7 +33,6 @@ class Firebase {
     }).catch(function(error) {
       console.log('blad wylogowania')
     });
-
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
@@ -47,7 +47,6 @@ class Firebase {
   foundations = () => this.db.ref('data/fundacje');
   collections = () => this.db.ref('data/zbiorki');
   assemblies = () => this.db.ref('data/kwesty');
-
 }
 
 export default Firebase;

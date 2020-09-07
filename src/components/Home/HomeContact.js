@@ -58,40 +58,47 @@ const HomeContact = props => {
   }
 
   const validate = () => {
-    const validationErrors = [];
+    let validationErrors = [];
     const lettersOnly = /^[A-Za-z]+$/;
     const letters = /(?!^\d+$)^.+$/;
     const regEmail = /\S+@\S+\.\S+/;
+
     if (!name || name.length < 3 || !name.match(lettersOnly)) {
       validationErrors.push('Imię powinno składać się z min. 3 znaków!');
       setNameError('Podaj imię!');
     } else {
       setNameError('');
     }
+
     if (!message || message.length <= 120 || message.length > 200 || !message.match(letters)) {
       validationErrors.push('Dodaj wiadomość składającą się z min. 120 znaków i maksymalnie 200!');
       setMessageError('Min 120, max 200 znaków');
     } else {
       setMessageError('');
     }
+
     if (!email || !email.match(regEmail)) {
       validationErrors.push('Wpisz poprawny email!');
       setEmailError('Email nieprawidłowy!');
     } else {
       setEmailError('');
     }
+
     return validationErrors;
   }
 
   const handleNameChange = e => {
     setName(e.target.value);
   }
+
   const handleEmailChange = e => {
     setEmail(e.target.value);
   }
+
   const handleMessageChange = e => {
     setMessage(e.target.value);
   }
+
   return (
     <section id="section4" className="contact_us info-section-5 container" style={{height: '800px'}}>
       <div className="row">

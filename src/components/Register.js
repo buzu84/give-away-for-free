@@ -58,7 +58,6 @@ class SignUpFormBase extends Component {
       passwordOne === '' ||
       email === '';
 
-
     return (
       <form className="form" onSubmit={this.onSubmit}>
         <h1 className="legend_label">Załóż konto: </h1>
@@ -71,8 +70,8 @@ class SignUpFormBase extends Component {
           <label className="form_label">Powtórz hasło</label>
           <input className="input_label" name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" />
         </fieldset>
-        {passwordOne !== passwordTwo && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}}>Hasła nie są takie same!</p>}
-        {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}} className="btn2_container">{error.message}</p>}
+        {passwordOne !== passwordTwo && <p className="error_message">Hasła nie są takie same!</p>}
+        {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
           <button className="btn_log register_nav" disabled={isInvalid} type="submit">Załóż konto</button>
           <button className="btn_log" onClick={() => history.push('/login')}>Zaloguj się</button>
@@ -86,7 +85,6 @@ const SignUpForm = compose(
   withRouter,
   withFirebase,
 )(SignUpFormBase);
-
 
 export default Register;
 

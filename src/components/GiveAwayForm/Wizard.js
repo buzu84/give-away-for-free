@@ -16,22 +16,19 @@ export default class Wizard extends React.Component {
       values: props.initialValues || {}
     }
   }
+
   next = values =>
     this.setState(state => ({
       page: Math.min(state.page + 1, this.props.children.length - 1),
       values
-    }))
+    })
+  )
 
   previous = () =>
     this.setState(state => ({
       page: Math.max(state.page - 1, 0)
-    }))
-
-  /**
-   * NOTE: Both validate and handleSubmit switching are implemented
-   * here because Redux Final Form does not accept changes to those
-   * functions once the form has been defined.
-   */
+    })
+  )
 
   validate = values => {
     const activePage = React.Children.toArray(this.props.children)[

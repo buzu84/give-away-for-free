@@ -115,6 +115,12 @@ li > a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .error_message {
+    color: red;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
   .form_field {
     display: flex;
     background: $color_1;
@@ -148,14 +154,12 @@ li > a {
       -webkit-box-shadow: 0 0 0px 1000px $color_1 inset;
       transition: background-color 5000s ease-in-out 0s;
     }
-
   }
   .btn2_container {
     background: white;
     width: 50%;
     display: flex;
     justify-content: space-around;
-
     .btn_log {
       border: none;
       outline:none;
@@ -171,7 +175,6 @@ li > a {
       borderStyle: groove;
     }
   }
-
   .legend_label {
     text-align: center;
     font-size: 2.5rem;

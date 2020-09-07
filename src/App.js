@@ -1,24 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useContext, useState, useEffect } from "react"
+import ReactDOM from "react-dom"
 import {
   Router,
   Route,
   Switch,
   Link,
   NavLink,
-} from 'react-router-dom';
+} from 'react-router-dom'
 import { FirebaseContext } from './components/Firebase'
-
-import { Link as Scroll } from 'react-scroll';
-import history from './components/Home/history';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import GiveAwayForm from './components/GiveAwayForm';
-import LogOut from './components/LogOut';
-import SignOutButton from './components/SignOutButton';
-import FormSent from './components/FormSent';
-import NotFound from './components/NotFound';
+import { Link as Scroll } from 'react-scroll'
+import history from './components/Home/history'
+import Home from './components/Home'
+import Login from './components/Login'
+import Register from './components/Register'
+import GiveAwayForm from './components/GiveAwayForm'
+import LogOut from './components/LogOut'
+import SignOutButton from './components/SignOutButton'
+import FormSent from './components/FormSent'
+import NotFound from './components/NotFound'
 
 const options = {
   duration: 1500,
