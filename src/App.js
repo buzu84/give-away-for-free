@@ -16,9 +16,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import GiveAwayForm from './components/GiveAwayForm';
 import LogOut from './components/LogOut';
-import PwForget from './components/PwForget';
 import SignOutButton from './components/SignOutButton';
-import Admin from './components/Admin';
 import FormSent from './components/FormSent';
 import NotFound from './components/NotFound';
 
@@ -110,13 +108,13 @@ const App = () => {
         </ul>
       </nav>
        <Switch>
-         <Route exact path='/' component={Home} />
+         <Route exact path='/' render={(props) => (
+            <Home {...props} eMail={user?.email} />
+          )} />
          <Route path='/login' component={Login} />
          <Route path='/register' component={Register} />
          <Route path='/logout' component={LogOut} />
          <Route path='/form' component={GiveAwayForm} />
-         <Route path='/admin' component={Admin} />
-         <Route path='/pw-forget' component={PwForget} />
          <Route path='/form-sent' component={FormSent} />
          <Route component={NotFound} />
        </Switch>

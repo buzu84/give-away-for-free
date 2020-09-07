@@ -7,7 +7,7 @@ import HomeHeader from './HomeHeader';
 import HomeOrganizations from './HomeOrganizations';
 import HomeThreeColumns from './HomeThreeColumns';
 
-const Home = () => {
+const Home = props => {
   return (
     <div className="container">
       <HomeHeader />
@@ -15,7 +15,7 @@ const Home = () => {
       <HomeFourSteps />
       <HomeAboutUs />
       <HomeOrganizations />
-      <HomeContact />
+      <HomeContact authEmail={props.eMail}/>
     </div>
   );
 }

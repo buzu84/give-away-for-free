@@ -11,7 +11,7 @@ const HomeAboutUs = () => {
             <h1 className="icon">O nas</h1>
             <img src={mySvg_1} alt="decoration" />
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum.
             </p>
             <div className="row">
               <div className="column"></div>
