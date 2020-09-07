@@ -58,7 +58,6 @@ const HomeContact = props => {
   }
 
   const validate = () => {
-    console.log(props.authEmail);
     const validationErrors = [];
     const lettersOnly = /^[A-Za-z]+$/;
     const letters = /(?!^\d+$)^.+$/;
