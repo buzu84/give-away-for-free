@@ -11,7 +11,7 @@ const Error = ({ name }) => (
     name={name}
     subscribe={{ touched: true, error: true }}
     render={({ meta: { touched, error } }) =>
-      touched && error ? <span className="error">{error}</span> : null
+      touched && error ? <span style={{fontSize: "0.8rem", color: "red"}}>{error}</span> : null
     }
   />
 )
@@ -57,12 +57,11 @@ const GiveAwayFormBase = () => {
               <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>{' '}
               Ubrania, które nadają się do ponownego użycia
             </label>
-            <Error name="pick" />
           </div>
           <div className="padd_left">
             <label>
               <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>{' '}
-              Ubrania, do wyrzucenia
+              Ubrania do wyrzucenia
             </label>
           </div>
           <div className="padd_left">
@@ -83,6 +82,7 @@ const GiveAwayFormBase = () => {
               Inne
             </label>
           </div>
+          <div className="padd_left"><Error name="pick" /></div>
         </div>
       </Wizard.Page>
       <Wizard.Page
@@ -97,7 +97,7 @@ const GiveAwayFormBase = () => {
         <div className="form_page_cont">
           <div className="step">
             <h2 className="padd_left">Ważne!</h2>
-            <p className="padd_left">Wszystkie rzeczy do oddania zapakuj w 60l worki. Dokładną instrukcję jak poprawnie zapakować rzeczy znajdziesz <button>TUTAJ</button></p>
+            <p className="padd_left">Wszystkie rzeczy do oddania zapakuj w 60l worki.</p>
           </div>
           <h4 className="padd_left step_no">Krok 2/4</h4>
           <h1 className="padd_left step_header">Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:</h1>
@@ -159,7 +159,6 @@ const GiveAwayFormBase = () => {
             <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
             Dzieciom
           </label>
-          <Error name="helpGroups" />
         </div>
         <div className="padd_left">
           <label className='check_label'>
@@ -185,7 +184,7 @@ const GiveAwayFormBase = () => {
             Osobom starszym
           </label>
         </div>
-
+        <div className="padd_left"><Error name="helpGroups" /></div>
       </div>
       </Wizard.Page>
       <Wizard.Page

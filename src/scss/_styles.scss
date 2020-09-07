@@ -135,7 +135,6 @@ li > a {
     }
     .input_label:focus {
       outline: none;
-
     }
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -172,12 +171,7 @@ li > a {
       borderStyle: groove;
     }
   }
-  .btn_forget {
-    text-decoration: none;
-    color: inherit;
-    font-family: inherit;
-    margin-top: 2rem;
-  }
+
   .legend_label {
     text-align: center;
     font-size: 2.5rem;
@@ -206,12 +200,12 @@ li > a {
       h2 {
         margin-bottom: 1.5rem;
         font-size: 1.2rem;
-        // font-weight: normal;
       }
       p {
         font-size: 1rem;
         margin-bottom: 3rem;
         color: $color_2;
+        line-height: 1.6;
       }
       .icon {
         padding: 2.5rem;
@@ -267,12 +261,14 @@ li > a {
       h2 {
         margin-bottom: 1.5rem;
         font-size: 1.2rem;
+        line-height: 1.5;
       }
 
       p {
         font-size: 1rem;
         margin-bottom: 3rem;
         color: $color_2;
+        line-height: 1.5;
       }
 
       .icon {
@@ -316,6 +312,7 @@ li > a {
         font-size: 1.9rem;
         margin-bottom: 3rem;
         color: $color_5;
+        line-height: 1.5;
       }
       .icon {
         padding: 2.5rem;
@@ -491,16 +488,26 @@ li > a {
       justify-content: flex-end;
       width: 100%;
      .form_btn {
-       border: none;
        outline:none;
-       font-family: $font-base, sans-serif;
-       color: $color_5;
-       height: 30px;
+       display: inline-block;
+       border: none;
+       padding: 1rem 2rem;
+       background: #f6ede6;
+       margin: 0 20px 0 20px;
+       width: 150px;
+       border: 0.75px solid $color_5;
        font-size: 1rem;
-       font-weight: 200;
-       border: $color_5 0.75px solid;
-       width: 5rem;
        cursor: pointer;
+       text-align: center;
+       transition: background 250ms ease-in-out,
+                   transform 150ms ease;
+      }
+      .form_btn:hover,
+      .form_btn:focus {
+          background: #ffa07ab8;
+      }
+      .form_btn:active {
+          transform: scale(0.99);
       }
     }
   }
@@ -560,6 +567,7 @@ footer {
     text-align: center;
     font-size: 1.5rem;
     font-weight: lighter;
+    line-height: 1.5;
   }
   .pagination {
     display: flex;
@@ -628,6 +636,7 @@ footer {
       text-align: center;
       font-size: 1.5rem;
       letter-spacing: 4px;
+      padding: 10px 0 10px 0;
     }
     :nth-child(2) {
       font-size: 1.1rem;
@@ -733,6 +742,7 @@ footer {
           padding-top: 0.5rem;
           h2 {
             font-size: 2rem;
+            padding-bottom: 10px;
           }
           p {
             font-size: 1.2rem;
@@ -770,6 +780,7 @@ footer {
               width: 150px;
               margin-left: 10px;
               border:0.75px solid $color_5;
+              resize: none;
             }
           }
           label {
@@ -797,18 +808,14 @@ footer {
             color: $color_7;
             background-color: $color_6;
             font-size: 1rem;
-            margin: 0 10px 0 20px;
+            margin: 0 20px 0 20px;
             overflow: hidden;
             padding: 2px 0 2px 20px;
             text-overflow: ellipsis;
             white-space: nowrap;
           }
           .select_2 {
-            margin: 20px 0 0 0;
-          }
-          .error {
-            color: red;
-            font-size: 0.8rem;
+            margin: 20px 0 10px 0;
           }
           input[type="radio"],
           input[type="checkbox"] {
@@ -818,11 +825,13 @@ footer {
             -o-appearance: none;
             appearance: none;
             outline: none;
+            vertical-align: bottom;
           }
           input[type="radio"]:checked,
           input[type="checkbox"]:checked,
           .active {
             background: $color_3;
+            vertical-align: bottom;
           }
 
           input[type="radio"]:before,
@@ -831,6 +840,7 @@ footer {
             display: block;
             width: 30px;
             height: 30px;
+            vertical-align: bottom;
           }
           input {
             outline: none;
@@ -867,6 +877,7 @@ footer {
         bottom: 10%;
         margin-left: 2rem;
         .button {
+          outline: none;
           display: inline-block;
           border: none;
           padding: 1rem 2rem;
@@ -882,16 +893,11 @@ footer {
           -webkit-appearance: none;
           -moz-appearance: none;
       }
-        .button:hover,
-        .button:focus {
-            background: $color_3;
-        }
-        .button:focus {
-            outline: 1px solid #fff;
-            outline-offset: -4px;
+        .button:hover {
+          background: $color_3;
         }
         .button:active {
-            transform: scale(0.99);
+          transform: scale(0.99);
         }
       }
     }

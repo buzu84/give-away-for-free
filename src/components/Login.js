@@ -3,7 +3,6 @@ import history from './Home/history';
 import { withFirebase } from './Firebase';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { Link } from 'react-router-dom';
 import mySvg from '../assets/Decoration.svg';
 
 const Login = () => (
@@ -61,7 +60,6 @@ class SignInFormBase extends Component {
           <button className="btn_log register_nav" disabled={isInvalid} type="submit">Zaloguj się</button>
           <button className="btn_log" onClick={() => history.push('/register')}>Załóż konto</button>
         </div>
-        <Link className="btn2_container btn_forget" to="/pw-forget">Zapomniałeś hasła?</Link>
       </form>
     );
   }

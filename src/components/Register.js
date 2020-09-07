@@ -58,18 +58,20 @@ class SignUpFormBase extends Component {
       passwordOne === '' ||
       email === '';
 
+
     return (
       <form className="form" onSubmit={this.onSubmit}>
         <h1 className="legend_label">Załóż konto: </h1>
         <img className="icon" src={mySvg} alt="decoration" />
         <fieldset className="form_field">
-          <label className="form_label form_label_1">email</label>
+          <label className="form_label form_label_1">Email</label>
           <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
           <label className="form_label">Podaj hasło</label>
           <input className="input_label" name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" />
           <label className="form_label">Powtórz hasło</label>
           <input className="input_label" name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" />
         </fieldset>
+        {passwordOne !== passwordTwo && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}}>Hasła nie są takie same!</p>}
         {error && <p style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", marginBottom: "1rem"}} className="btn2_container">{error.message}</p>}
         <div className="btn2_container">
           <button className="btn_log register_nav" disabled={isInvalid} type="submit">Załóż konto</button>

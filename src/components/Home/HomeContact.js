@@ -9,7 +9,7 @@ const Message = () => (
   </FlashMessage>
 )
 
-const HomeContact = () => {
+const HomeContact = props => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -58,12 +58,14 @@ const HomeContact = () => {
   }
 
   const validate = () => {
+    console.log(props.authEmail);
     const validationErrors = [];
     const lettersOnly = /^[A-Za-z]+$/;
     const letters = /(?!^\d+$)^.+$/;
+    const regEmail = /\S+@\S+\.\S+/;
     if (!name || name.length < 3 || !name.match(lettersOnly)) {
-      validationErrors.push('Imię powinno składać się z min. 3 liter!');
-      setNameError('Imię nieprawidłowe!');
+      validationErrors.push('Imię powinno składać się z min. 3 znaków!');
+      setNameError('Podaj imię!');
     } else {
       setNameError('');
     }
@@ -73,7 +75,7 @@ const HomeContact = () => {
     } else {
       setMessageError('');
     }
-    if (!email || !email.includes('@')) {
+    if (!email || !email.match(regEmail)) {
       validationErrors.push('Wpisz poprawny email!');
       setEmailError('Email nieprawidłowy!');
     } else {
@@ -112,17 +114,17 @@ const HomeContact = () => {
                         ) : (
                           <input className="contact_input_2" value={name} type="text" name="name" onChange={handleNameChange} placeholder="Krzysztof"/>
                         )}
-                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}}>{nameError}</strong>
+                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{nameError}</strong>
 
                       </div>
                       <div className="name_container">
                         <label className="form_label">E-mail:</label>
                         {emailError.length === 0 ? (
-                          <input className="contact_input" value={email} type="text" name="email" onChange={handleEmailChange} placeholder="krzysztof@wp.pl"/>
+                          <input className="contact_input" value={email} type="text" name="email" onChange={handleEmailChange} placeholder={props.authEmail ? props.authEmail : "krzysztof@wp.pl"}/>
                         ) : (
-                          <input className="contact_input_2" value={email} type="text" name="email" onChange={handleEmailChange} placeholder="krzysztof@wp.pl"/>
+                          <input className="contact_input_2" value={email} type="text" name="email" onChange={handleEmailChange} placeholder={props.authEmail ? props.authEmail : "krzysztof@wp.pl"}/>
                         )}
-                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}}>{emailError}</strong>
+                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{emailError}</strong>
                       </div>
                     </div>
                     <label className="form_label">Wpisz swoją wiadomość:</label>
@@ -132,9 +134,9 @@ const HomeContact = () => {
                       <textarea className="contact_input_2" value={message} type="text" name="message" onChange={handleMessageChange} rows="10" cols="40" placeholder="Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."/>
                     )}
 
-                    <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold"}}>{messageError}</strong>
+                    <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{messageError}</strong>
                     <div className="form_btn_container">
-                      <button className="form_btn" type="submit">Dodaj!</button>
+                      <button className="form_btn" type="submit">Wyślij</button>
                     </div>
                   </form>
                 </fieldset>
@@ -145,7 +147,7 @@ const HomeContact = () => {
       </div>
       <footer className="footerElements">
         <div className="ender_container">
-          <div className="ender">Copyright by <span>Coders Lab</span></div>
+          <div className="ender">Copyright by <span>Magdalena Buzikiewicz</span></div>
         </div>
         <div className="socialMedia">
           <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-square"></i></a>
