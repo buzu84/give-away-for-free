@@ -9,115 +9,60 @@ class HomeOrganizations extends Component {
     super();
     this.state = {
       name: "React",
-      showHideOrganizations: false,
-      showHideFoundations: true,
-      showHideCollections: false
+      showFoundations: true,
+      showOrganizations: false,
+      showCollections: false
     };
-    this.hideComponent = this.hideComponent.bind(this);
+    this.showComponent = this.showComponent.bind(this);
   }
-  hideComponent(name) {
+
+  showComponent(name) {
     switch (name) {
-      case "showHideOrganizations":
-        if (this.state.showHideFoundations === true) {
-          this.setState({ showHideFoundations: !this.state.showHideFoundations });
-        }
-        if (this.state.showHideCollections === true) {
-          this.setState({ showHideCollections: !this.state.showHideCollections });
-        }
-        if (this.state.showHideOrganizations === false) {
-          this.setState({ showHideOrganizations: !this.state.showHideOrganizations });
-        }
+      case "organizations":
+        this.setState({ showFoundations: false, showOrganizations: true, showCollections: false });
         break;
-      case "showHideFoundations":
-        if (this.state.showHideOrganizations === true) {
-          this.setState({ showHideOrganizations: !this.state.showHideOrganizations });
-        }
-        if (this.state.showHideCollections === true) {
-          this.setState({ showHideCollections: !this.state.showHideCollections });
-        }
-        if (this.state.showHideFoundations === false) {
-          this.setState({ showHideFoundations: !this.state.showHideFoundations });
-        }
+      case "foundations":
+        this.setState({ showFoundations: true, showOrganizations: false, showCollections: false });
         break;
-      case "showHideCollections":
-        if (this.state.showHideFoundations === true) {
-          this.setState({ showHideFoundations: !this.state.showHideFoundations });
-        }
-        if (this.state.showHideOrganizations === true) {
-          this.setState({ showHideOrganizations: !this.state.showHideOrganizations });
-        }
-        if (this.state.showHideCollections === false) {
-          this.setState({ showHideCollections: !this.state.showHideCollections });
-        }
+      case "collections":
+        this.setState({ showFoundations: false, showOrganizations: false, showCollections: true });
         break;
       default:;
     }
   }
+
   render () {
-    const { showHideOrganizations, showHideFoundations, showHideCollections } = this.state;
+    const { showOrganizations, showFoundations, showCollections } = this.state;
     return (
       <section id="section3" className="organizations_list info-section-6 container" style={{height: 'auto'}}>
         <h1>Komu pomagamy?</h1>
         <img className="image" src={mySvg} alt="decoration" />
         <div className="info-item info-item-2">
-          <button className="btn_give_away_third" onClick={() => this.hideComponent("showHideFoundations")}>FUNDACJOM</button>
-          <button className="btn_give_away_third" onClick={() => this.hideComponent("showHideOrganizations")}>ORGANIZACJOM<br></br>POZARZĄDOWYM</button>
-          <button className="btn_give_away_third" onClick={() => this.hideComponent("showHideCollections")}>LOKALNYM<br></br>ZBIÓRKOM</button>
+          <button className="btn_give_away_third" onClick={() => this.showComponent("foundations")}>FUNDACJOM</button>
+          <button className="btn_give_away_third" onClick={() => this.showComponent("organizations")}>ORGANIZACJOM<br></br>POZARZĄDOWYM</button>
+          <button className="btn_give_away_third" onClick={() => this.showComponent("collections")}>LOKALNYM<br></br>ZBIÓRKOM</button>
         </div>
-        {showHideOrganizations && <Organizations />}
-        {showHideFoundations && <Foundations />}
-        {showHideCollections && <Collections />}
+        {showOrganizations && <Organizations />}
+        {showFoundations && <Foundations />}
+        {showCollections && <Collections />}
       </section>
     );
   }
-
 }
 
-const OrganizationList = ({ organizations }) => (
+const InstitutionList = ({ institutions }) => (
   <ul className="help_organisation_container">
-    {organizations.map(organization => (
-      <OrganizationItem key={organization.uid} organization={organization} />
+    {institutions.map(institution => (
+      <Institution key={institution.uid} institution={institution} />
     ))}
   </ul>
 );
 
-const FoundationList = ({ foundations }) => (
-  <ul className="help_organisation_container">
-    {foundations.map(foundation => (
-      <FoundationItem key={foundation.uid} foundation={foundation} />
-    ))}
-  </ul>
-);
-
-const CollectionList = ({ collections }) => (
-  <ul className="help_organisation_container">
-    {collections.map(collection => (
-      <CollectionItem key={collection.uid} collection={collection} />
-    ))}
-  </ul>
-);
-
-const OrganizationItem = ({ organization }) => (
+const Institution = ({ institution }) => (
   <li className="help_organisation">
-    <h2>{organization.name} </h2>
-    <strong>{organization.cel}</strong>
-    <strong className="align_right"> rzeczy:  {organization.rzeczy}</strong>
-  </li>
-);
-
-const FoundationItem = ({ foundation }) => (
-  <li className="help_organisation">
-    <h2>{foundation.name}</h2>
-    <strong>{foundation.cel}</strong>
-    <strong className="align_right"> rzeczy:  {foundation.rzeczy}</strong>
-  </li>
-);
-
-const CollectionItem = ({ collection }) => (
-  <li className="help_organisation">
-    <h2>{collection.name}</h2>
-    <strong>{collection.cel}</strong>
-    <strong className="align_right"> rzeczy:  {collection.rzeczy}</strong>
+    <h2>{institution.name} </h2>
+    <strong>{institution.cel}</strong>
+    <strong className="align_right"> rzeczy:  {institution.rzeczy}</strong>
   </li>
 );
 
@@ -231,7 +176,7 @@ class OrganizationsBase extends Component {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci.
             </p>
-            <OrganizationList organizations={organizations} />
+            <InstitutionList institutions={organizations} />
             <div className="pagination">
               <button className="pagination_btn" onClick={this.handleFirstPage}>1</button>
               <button className="pagination_btn" onClick={this.handleSecondPage}>2</button>
@@ -384,7 +329,7 @@ class FoundationsBase extends Component {
             <p>
               W naszej bazie znajdziesz listę zweryfikowanych fundacji, z którymi współpracujemy. Mozesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.
             </p>
-            <FoundationList foundations={foundations} />
+            <InstitutionList institutions={foundations} />
             <div className="pagination">
               <button className="pagination_btn" onClick={this.handleFirstPage}>1</button>
               <button className="pagination_btn" onClick={this.handleSecondPage}>2</button>
@@ -454,7 +399,7 @@ class CollectionsBase extends Component {
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ullamcorper ante ut tellus sagittis, rhoncus elementum massa bibendum. Cras sed maximus orci.
           </p>
-            <CollectionList collections={collections} />
+            <InstitutionList institutions={collections} />
           </>
         ) : (
           <div>There are no Collections ...</div>

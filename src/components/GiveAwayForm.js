@@ -31,7 +31,6 @@ function formatDate(date) {
   return [year, month, day].join('-');
 };
 
-
 const GiveAwayFormBase = () => {
   const firebase = useContext(FirebaseContext);
   const onSubmit = async values => {
@@ -86,7 +85,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const errors = {}
+          let errors = {}
           if (!values.bags || values.bags === "--wybierz--") {
             errors.bags = 'Wybierz z listy!'
           }
@@ -104,7 +103,7 @@ const GiveAwayFormBase = () => {
             <label>Liczba 60l worków:</label>
             <Field className="select" name="bags" component="select">
               <option>--wybierz--</option>
-              <option value="1" >1</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -116,7 +115,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const errors = {}
+          let errors = {}
           if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
             errors.localization = 'Wybierz z listy lub wpisz lokalizację'
           }
@@ -201,7 +200,7 @@ const GiveAwayFormBase = () => {
           if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
             errors.zip_code = 'Prawidłowy format to XX-XXX'
           }
-          if (values.time  === '') {
+          if (values.time === '') {
             errors.time = 'Wybierz godzinę'
           }
           if (values.date === '') {
