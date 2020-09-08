@@ -46,7 +46,7 @@ class SignInFormBase extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    const isInvalid = password === '' || email === '';
+    const blankEmailPassword = password === '' || email === '';
     return (
       <form className="form" onSubmit={this.onSubmit}>
         <h1 className="legend_label">Zaloguj się: </h1>
@@ -59,7 +59,7 @@ class SignInFormBase extends Component {
         </fieldset>
         {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
-          <button className="btn_log register_nav" disabled={isInvalid} type="submit">Zaloguj się</button>
+          <button className="btn_log register_nav" disabled={blankEmailPassword} type="submit">Zaloguj się</button>
           <button className="btn_log" onClick={() => history.push('/register')}>Załóż konto</button>
         </div>
       </form>

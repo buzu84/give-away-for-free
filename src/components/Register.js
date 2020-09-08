@@ -53,7 +53,7 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    const isInvalid =
+    const invalidEntry =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '';
@@ -73,7 +73,7 @@ class SignUpFormBase extends Component {
         {passwordOne !== passwordTwo && <p className="error_message">Hasła nie są takie same!</p>}
         {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
-          <button className="btn_log register_nav" disabled={isInvalid} type="submit">Załóż konto</button>
+          <button className="btn_log register_nav" disabled={invalidEntry} type="submit">Załóż konto</button>
           <button className="btn_log" onClick={() => history.push('/login')}>Zaloguj się</button>
         </div>
       </form>

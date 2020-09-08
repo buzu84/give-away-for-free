@@ -7,7 +7,7 @@ import mySvg from '../../assets/Decoration.svg'
 import history from './history'
 
 
-const HomeFourSteps = (props) => {
+const HomeFourSteps = props => {
   return (
     <section className="steps info-section-2 container" style={{height: 'auto'}}>
       <h1>Wystarczą 4 proste kroki</h1>

@@ -1,17 +1,16 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useContext } from "react";
-import { Field } from 'react-final-form';
-import Wizard from './GiveAwayForm/Wizard';
-import mySvg from '../assets/Decoration.svg';
-import withAuthorization from './Session/withAuthorization.js';
-import { FirebaseContext } from './Firebase';
+import React, { useContext } from "react"
+import { Field } from 'react-final-form'
+import Wizard from './GiveAwayForm/Wizard'
+import mySvg from '../assets/Decoration.svg'
+import withAuthorization from './Session/withAuthorization.js'
+import { FirebaseContext } from './Firebase'
 
 const Error = ({ name }) => (
   <Field
     name={name}
     subscribe={{ touched: true, error: true }}
     render={({ meta: { touched, error } }) =>
-      touched && error ? <span style={{fontSize: "0.8rem", color: "red"}}>{error}</span> : null
+      touched && error ? <span className="form_error">{error}</span> : null
     }
   />
 )
@@ -54,31 +53,31 @@ const GiveAwayFormBase = () => {
           <h1 className="padd_left header_mark">Zaznacz co chcesz oddać:</h1>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>
               Ubrania, które nadają się do ponownego użycia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>
               Ubrania do wyrzucenia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>
               Zabawki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>
               Książki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="inne" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="inne" validate={required}/>
               Inne
             </label>
           </div>
@@ -283,8 +282,6 @@ const GiveAwayFormBase = () => {
     </Wizard>
   )
 }
-
-
 
 const GiveAwayForm = () => {
   return (

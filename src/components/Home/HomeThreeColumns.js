@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { withFirebase } from '../Firebase';
-import Spinner from "./Spinner";
+import React, { Component } from 'react'
+import { withFirebase } from '../Firebase'
+import Spinner from "./Spinner"
 
 class HomeThreeColumnsBase extends Component {
   constructor(props) {

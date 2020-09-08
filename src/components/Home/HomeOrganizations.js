@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { compose } from 'recompose';
-import { withFirebase } from '../Firebase';
-import mySvg from '../../assets/Decoration.svg';
-import Spinner from "./Spinner";
+import React, { Component } from 'react'
+import { compose } from 'recompose'
+import { withFirebase } from '../Firebase'
+import mySvg from '../../assets/Decoration.svg'
+import Spinner from "./Spinner"
 
 class HomeOrganizations extends Component {
   constructor() {
@@ -147,7 +147,7 @@ class OrganizationsBase extends Component {
             ...dataObject[key],
             uid: key,
           }));
-          
+
           this.setState({
             organizations: organizationList,
             loading: false
