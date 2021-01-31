@@ -1,6 +1,6 @@
-import React from "react";
-import mySvg_1 from '../assets/Decoration.svg';
-import history from './Home/history';
+import React from "react"
+import mySvg_1 from '../assets/Decoration.svg'
+import { Link } from 'react-router-dom'
 
 const FormSent = () => {
   return (
@@ -9,7 +9,7 @@ const FormSent = () => {
         <div className="info-box">
           <h1 className="icon">Formularz wysłany. Dziękujemy!</h1>
           <img src={mySvg_1} alt="decoration" />
-          <button className="btn_give_away_fourth" onClick={() => history.push('/')}>STRONA<br></br>GŁÓWNA</button>
+          <Link className="btn_give_away_fourth" to="/">STRONA<br></br>GŁÓWNA</Link>
         </div>
       </div>
     </section>

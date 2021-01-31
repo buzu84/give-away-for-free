@@ -4,7 +4,7 @@ import myPic_2 from '../../assets/Icon-2.svg'
 import myPic_3 from '../../assets/Icon-3.svg'
 import myPic_4 from '../../assets/Icon-4.svg'
 import mySvg from '../../assets/Decoration.svg'
-import history from './history'
+import { Link } from 'react-router-dom'
 
 
 const HomeFourSteps = props => {
@@ -46,7 +46,7 @@ const HomeFourSteps = props => {
           </p>
         </div>
       </div>
-      <button className="btn_give_away_third" onClick={() => history.push('/form')}>ODDAJ<br></br>RZECZY</button>
+      <Link className="btn_give_away_third" to="/form">ODDAJ<br></br>RZECZY</Link>
     </section>
   );
 }
