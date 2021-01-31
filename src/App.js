@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import ReactDOM from "react-dom"
 import {
-  Router,
+  BrowserRouter as Router,
   Route,
   Switch,
   Link,
@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom'
 import { FirebaseContext } from './components/Firebase'
 import { Link as Scroll } from 'react-scroll'
-import history from './components/Home/history'
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -62,7 +61,7 @@ const App = () => {
 
 
   return (
-    <Router history={history}>
+    <Router>
       <nav className="nav_container">
       {user?.email ? (
         <ul className="first_nav">

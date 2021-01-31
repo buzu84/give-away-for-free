@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import history from './Home/history';
-import { withFirebase } from './Firebase';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
-import mySvg from '../assets/Decoration.svg';
+import React, { Component } from 'react'
+import history from './Home/history'
+import { withFirebase } from './Firebase'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+import mySvg from '../assets/Decoration.svg'
+
 
 
 const Register = () => (

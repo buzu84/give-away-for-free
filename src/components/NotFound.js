@@ -1,6 +1,6 @@
 import React from "react"
 import mySvg from '../assets/Decoration.svg'
-import history from './Home/history'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
   return (
@@ -9,7 +9,7 @@ const NotFound = () => {
         <div className="info-box">
           <h1 className="icon">404 - Nie znaleziono strony</h1>
           <img src={mySvg} alt="decoration" />
-          <button className="btn_give_away_fourth" onClick={() => history.push('/')}>STRONA<br></br>GŁÓWNA</button>
+          <Link className="btn_give_away_fourth" to="/">STRONA<br></br>GŁÓWNA</Link>
         </div>
       </div>
     </section>

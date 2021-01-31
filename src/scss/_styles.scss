@@ -54,18 +54,27 @@ li > a {
   .btn_container {
     margin-top: 1rem;
     .btn_give_away {
+      text-decoration: none;
       cursor: pointer;
+      padding: 0.5rem 0;
       font-size: 2rem;
       font-family: $font-base, sans-serif;
       font-weight: 200;
       background: #FFFFFF;
       border: $color_5 0.75px solid;
-      width: 17rem;
+      width: 15rem;
       color: $color_5;
+      display: inline-block;
+      text-align: center;
+      transition: background 250ms ease-in-out,
+                  transform 150ms ease;
     }
-    .btn_give_away:focus {
+    .btn_give_away:focus,
+    .btn_give_away:hover {
       outline: none;
+      background: $color_3;
     }
+
     .btn_give_away_first {
       margin-right: 1rem;
     }
@@ -234,6 +243,9 @@ li > a {
     margin-bottom: 2rem;
   }
   .btn_give_away_third {
+    padding: 0.5rem 0;
+    text-align: center;
+    text-decoration: none;
     display: block;
     margin: 0 auto;
     font-size: 2rem;
@@ -246,9 +258,13 @@ li > a {
     margin-top: 2rem;
     margin-bottom: 2rem;
     cursor: pointer;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
   }
-  .btn_give_away_third:focus {
+  .btn_give_away_third:focus,
+  .btn_give_away_third:hover {
     outline: none;
+    background: $color_3;
   }
 
   .info-item {
@@ -357,22 +373,27 @@ li > a {
     margin-bottom: 1.5rem;
   }
   .btn_give_away_fourth {
+    text-decoration: none;
     display: block;
     margin: 0 auto;
-    font-size: 1rem;
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
     font-family: $font-base, sans-serif;
     font-weight: 200;
     background: #FFFFFF;
     border: $color_5 0.75px solid;
     width: 10rem;
     color: $color_7;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     cursor: pointer;
-
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
   }
-  .btn_give_away_fourth:focus {
+  .btn_give_away_fourth:focus,
+  .btn_give_away_fourth:hover {
     outline: none;
+    background: $color_3;;
   }
   .info-item {
     display: flex;
