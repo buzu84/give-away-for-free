@@ -64,16 +64,7 @@ const App = () => {
   return (
     <Router history={history}>
       <nav className="nav_container">
-      {user?.email === undefined ? (
-        <ul className="first_nav">
-          <li>
-            <Link className="first_nav" to="/login">Zaloguj</Link>
-          </li>
-          <li>
-            <Link className="first_nav register_nav" to="/register">Załóż konto</Link>
-          </li>
-        </ul>
-      ) : (
+      {user?.email ? (
         <ul className="first_nav">
           <li>
             <span className="first_nav logged_nav">Cześć {user?.email}</span>
@@ -85,12 +76,21 @@ const App = () => {
             <SignOutButton />
           </li>
         </ul>
+      ) : (
+        <ul className="first_nav">
+          <li>
+            <Link className="first_nav" to="/login">Zaloguj</Link>
+          </li>
+          <li>
+            <Link className="first_nav register_nav" to="/register">Załóż konto</Link>
+          </li>
+        </ul>
       )}
       </nav>
       <nav className="nav_container">
         <ul>
           <li>
-            <NavLink activeStyle={activeStyle} activeClassName="active" to="/">Start</NavLink>
+            <NavLink activeStyle={activeStyle} activeClassName="active" exact to="/">Start</NavLink>
           </li>
           <li>
             <Scroll to="section1" {...options} >O co chodzi?</Scroll>
