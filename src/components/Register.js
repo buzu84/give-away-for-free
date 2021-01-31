@@ -14,8 +14,8 @@ const Register = () => (
 
 const INITIAL_STATE = {
   email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  password: '',
+  passwordConfirmation: '',
   error: null,
 };
 
@@ -26,10 +26,10 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { email, passwordOne } = this.state;
+    const { email, password } = this.state;
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push('/');
@@ -48,14 +48,14 @@ class SignUpFormBase extends Component {
   render() {
     const {
       email,
-      passwordOne,
-      passwordTwo,
+      password,
+      passwordConfirmation,
       error,
     } = this.state;
 
     const invalidEntry =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
+      password !== passwordConfirmation ||
+      password === '' ||
       email === '';
 
     return (
@@ -66,11 +66,11 @@ class SignUpFormBase extends Component {
           <label className="form_label form_label_1">Email</label>
           <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
           <label className="form_label">Podaj hasło</label>
-          <input className="input_label" name="passwordOne" value={passwordOne} onChange={this.onChange} type="password" />
+          <input className="input_label" name="password" value={password} onChange={this.onChange} type="password" />
           <label className="form_label">Powtórz hasło</label>
-          <input className="input_label" name="passwordTwo" value={passwordTwo} onChange={this.onChange} type="password" />
+          <input className="input_label" name="passwordConfirmation" value={passwordConfirmation} onChange={this.onChange} type="password" />
         </fieldset>
-        {passwordOne !== passwordTwo && <p className="error_message">Hasła nie są takie same!</p>}
+        {password !== passwordConfirmation && <p className="error_message">Hasła nie są takie same!</p>}
         {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
           <button className="btn_log register_nav" disabled={invalidEntry} type="submit">Załóż konto</button>
