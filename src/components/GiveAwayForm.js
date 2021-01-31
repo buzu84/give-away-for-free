@@ -1,17 +1,16 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useContext } from "react";
-import { Field } from 'react-final-form';
-import Wizard from './GiveAwayForm/Wizard';
-import mySvg from '../assets/Decoration.svg';
-import withAuthorization from './Session/withAuthorization.js';
-import { FirebaseContext } from './Firebase';
+import React, { useContext } from "react"
+import { Field } from 'react-final-form'
+import Wizard from './GiveAwayForm/Wizard'
+import mySvg from '../assets/Decoration.svg'
+import withAuthorization from './Session/withAuthorization.js'
+import { FirebaseContext } from './Firebase'
 
 const Error = ({ name }) => (
   <Field
     name={name}
     subscribe={{ touched: true, error: true }}
     render={({ meta: { touched, error } }) =>
-      touched && error ? <span style={{fontSize: "0.8rem", color: "red"}}>{error}</span> : null
+      touched && error ? <span className="form_error">{error}</span> : null
     }
   />
 )
@@ -31,7 +30,6 @@ function formatDate(date) {
 
   return [year, month, day].join('-');
 };
-
 
 const GiveAwayFormBase = () => {
   const firebase = useContext(FirebaseContext);
@@ -54,31 +52,31 @@ const GiveAwayFormBase = () => {
           <h1 className="padd_left header_mark">Zaznacz co chcesz oddać:</h1>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>
               Ubrania, które nadają się do ponownego użycia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>
               Ubrania do wyrzucenia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>
               Zabawki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>
               Książki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="inne" validate={required}/>{' '}
+              <Field name="pick" component="input" type="radio" value="inne" validate={required}/>
               Inne
             </label>
           </div>
@@ -87,7 +85,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const errors = {}
+          let errors = {}
           if (!values.bags || values.bags === "--wybierz--") {
             errors.bags = 'Wybierz z listy!'
           }
@@ -105,7 +103,7 @@ const GiveAwayFormBase = () => {
             <label>Liczba 60l worków:</label>
             <Field className="select" name="bags" component="select">
               <option>--wybierz--</option>
-              <option value="1" >1</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -117,7 +115,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const errors = {}
+          let errors = {}
           if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
             errors.localization = 'Wybierz z listy lub wpisz lokalizację'
           }
@@ -189,7 +187,7 @@ const GiveAwayFormBase = () => {
       </Wizard.Page>
       <Wizard.Page
         validate={values => {
-          const zipRegEx = /[\d]{2}-[\d]{3}/g;
+          const zipRegEx = /[\d]{2}-[\d]{3}$/g;
           const phoneRegEx = /^(\d{9})$/;
           const errors = {}
 
@@ -202,14 +200,14 @@ const GiveAwayFormBase = () => {
           if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
             errors.zip_code = 'Prawidłowy format to XX-XXX'
           }
-          if (values.time  === '') {
+          if (values.time === '') {
             errors.time = 'Wybierz godzinę'
           }
           if (values.date === '') {
             errors.date = 'Wybierz datę'
           }
           if (!values.phone || !values.phone.match(phoneRegEx)) {
-            errors.phone = 'Wprowadź prawidłowy telefon'
+            errors.phone = 'Wprowadź prawidłowy telefon (9 cyfr)'
           }
           return errors
         }}
@@ -283,8 +281,6 @@ const GiveAwayFormBase = () => {
     </Wizard>
   )
 }
-
-
 
 const GiveAwayForm = () => {
   return (

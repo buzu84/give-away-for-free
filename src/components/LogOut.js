@@ -1,6 +1,6 @@
-import React from "react";
-import mySvg_1 from '../assets/Decoration.svg';
-import history from './Home/history';
+import React from "react"
+import mySvg from '../assets/Decoration.svg'
+import history from './Home/history'
 
 const LogOut = () => {
   return (
@@ -8,7 +8,7 @@ const LogOut = () => {
       <div className="info-item info-item-3">
         <div className="info-box">
           <h1 className="icon">Wylogowanie nastąpiło pomyślnie!</h1>
-          <img src={mySvg_1} alt="decoration" />
+          <img src={mySvg} alt="decoration" />
           <button className="btn_give_away_fourth" onClick={() => history.push('/')}>STRONA<br></br>GŁÓWNA</button>
         </div>
       </div>

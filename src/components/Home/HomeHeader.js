@@ -1,10 +1,6 @@
-import React from "react";
-
-import mySvg from '../../assets/Decoration.svg';
-import history from './history';
-
-
-
+import React from "react"
+import mySvg from '../../assets/Decoration.svg'
+import history from './history'
 
 const HomeHeader = () => {
   return (

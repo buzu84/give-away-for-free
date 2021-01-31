@@ -1,14 +1,13 @@
-import React from "react";
+import React from "react"
+import myPic_1 from '../../assets/Icon-1.svg'
+import myPic_2 from '../../assets/Icon-2.svg'
+import myPic_3 from '../../assets/Icon-3.svg'
+import myPic_4 from '../../assets/Icon-4.svg'
+import mySvg from '../../assets/Decoration.svg'
+import history from './history'
 
-import myPic_1 from '../../assets/Icon-1.svg';
-import myPic_2 from '../../assets/Icon-2.svg';
-import myPic_3 from '../../assets/Icon-3.svg';
-import myPic_4 from '../../assets/Icon-4.svg';
-import mySvg from '../../assets/Decoration.svg';
-import history from './history';
 
-
-const HomeFourSteps = (props) => {
+const HomeFourSteps = props => {
   return (
     <section className="steps info-section-2 container" style={{height: 'auto'}}>
       <h1>Wystarczą 4 proste kroki</h1>
@@ -37,7 +36,6 @@ const HomeFourSteps = (props) => {
           <p>
             wybierz zaufane miejsce
           </p>
-
         </div>
         <div className="info-box info-box-2">
           <div className="icon"><img src={myPic_4} alt="search" /></div>

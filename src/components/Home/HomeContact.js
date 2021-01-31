@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import mySvg_1 from '../../assets/Decoration.svg';
+import React, { useState, useEffect } from "react"
+import mySvg from '../../assets/Decoration.svg'
 import FlashMessage from 'react-flash-message'
 
 const Message = () => (
-  <FlashMessage duration={5000}>
-    <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wiadomość wysłana!</div>
-    <div style={{color: "green", fontSize: "1rem",fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
+  <FlashMessage duration={500000}>
+    <div style={{color: "green", fontSize: "1rem", fontWeight: "bold"}}>Wiadomość wysłana!</div>
+    <div style={{color: "green", fontSize: "1rem", fontWeight: "bold"}}>Wkrótce się skontaktujemy.</div>
   </FlashMessage>
 )
 
 const HomeContact = props => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [nameError, setNameError] = useState([]);
-  const [emailError, setEmailError] = useState([]);
-  const [messageError, setMessageError] = useState([]);
-  const [messageSend, setMessageSend] = useState(false);
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const [nameError, setNameError] = useState([])
+  const [emailError, setEmailError] = useState([])
+  const [messageError, setMessageError] = useState([])
+  const [messageSend, setMessageSend] = useState(false)
+
+  useEffect(() => {
+    if (props.authEmail) {
+      setEmail(props.authEmail)
+    }
+  }, [email, props.authEmail])
+
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -58,40 +65,47 @@ const HomeContact = props => {
   }
 
   const validate = () => {
-    const validationErrors = [];
+    let validationErrors = [];
     const lettersOnly = /^[A-Za-z]+$/;
     const letters = /(?!^\d+$)^.+$/;
     const regEmail = /\S+@\S+\.\S+/;
+
     if (!name || name.length < 3 || !name.match(lettersOnly)) {
       validationErrors.push('Imię powinno składać się z min. 3 znaków!');
       setNameError('Podaj imię!');
     } else {
       setNameError('');
     }
+
     if (!message || message.length <= 120 || message.length > 200 || !message.match(letters)) {
       validationErrors.push('Dodaj wiadomość składającą się z min. 120 znaków i maksymalnie 200!');
       setMessageError('Min 120, max 200 znaków');
     } else {
       setMessageError('');
     }
+
     if (!email || !email.match(regEmail)) {
       validationErrors.push('Wpisz poprawny email!');
       setEmailError('Email nieprawidłowy!');
     } else {
       setEmailError('');
     }
+
     return validationErrors;
   }
 
   const handleNameChange = e => {
     setName(e.target.value);
   }
+
   const handleEmailChange = e => {
     setEmail(e.target.value);
   }
+
   const handleMessageChange = e => {
     setMessage(e.target.value);
   }
+
   return (
     <section id="section4" className="contact_us info-section-5 container" style={{height: '800px'}}>
       <div className="row">
@@ -100,7 +114,7 @@ const HomeContact = props => {
           <div className="info-item info-item-4">
             <div className="info-box">
               <h1 >Skontaktuj się z nami</h1>
-              <img className="icon" src={mySvg_1} alt="decoration" />
+              <img className="icon" src={mySvg} alt="decoration" />
               {messageSend ? <Message /> : null}
               <div className="container visible_form">
                 <fieldset>
@@ -108,32 +122,18 @@ const HomeContact = props => {
                     <div className="name_email_container">
                       <div className="name_container">
                         <label className="form_label">Imię:</label>
-                        {nameError.length === 0 ? (
-                          <input className="contact_input" value={name} type="text" name="name" onChange={handleNameChange} placeholder="Krzysztof" />
-                        ) : (
-                          <input className="contact_input_2" value={name} type="text" name="name" onChange={handleNameChange} placeholder="Krzysztof"/>
-                        )}
-                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{nameError}</strong>
-
+                        <input className={messageError.length === 0 ? "contact_input" : "contact_input_2"} value={name} type="text" name="name" onChange={handleNameChange} placeholder="Krzysztof" />
+                        <strong className="error">{nameError}</strong>
                       </div>
                       <div className="name_container">
                         <label className="form_label">E-mail:</label>
-                        {emailError.length === 0 ? (
-                          <input className="contact_input" value={email} type="text" name="email" onChange={handleEmailChange} placeholder={props.authEmail ? props.authEmail : "krzysztof@wp.pl"}/>
-                        ) : (
-                          <input className="contact_input_2" value={email} type="text" name="email" onChange={handleEmailChange} placeholder={props.authEmail ? props.authEmail : "krzysztof@wp.pl"}/>
-                        )}
-                        <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{emailError}</strong>
+                        <input className={messageError.length === 0 ? "contact_input" : "contact_input_2"} value={email} type="text" name="email" onChange={handleEmailChange} placeholder="krzysztof@wp.pl"/>
+                        <strong className="error">{emailError}</strong>
                       </div>
                     </div>
                     <label className="form_label">Wpisz swoją wiadomość:</label>
-                    {messageError.length === 0 ? (
-                      <textarea className="contact_input text_area_input" value={message} type="text" name="message" onChange={handleMessageChange} rows="10" cols="40" placeholder="Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."/>
-                    ) : (
-                      <textarea className="contact_input_2" value={message} type="text" name="message" onChange={handleMessageChange} rows="10" cols="40" placeholder="Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."/>
-                    )}
-
-                    <strong style={{color: "red", fontSize: "0.8rem",fontWeight: "bold", paddingTop: "5px"}}>{messageError}</strong>
+                    <textarea className={messageError.length === 0 ? "contact_input" : "contact_input_2"} value={message} type="text" name="message" onChange={handleMessageChange} rows="10" cols="40" placeholder="Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."/>
+                    <strong className="error">{messageError}</strong>
                     <div className="form_btn_container">
                       <button className="form_btn" type="submit">Wyślij</button>
                     </div>
