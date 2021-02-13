@@ -8,7 +8,7 @@ import {
   NavLink
 } from 'react-router-dom'
 import { FirebaseContext } from './components/Firebase'
-import { Link as Scroll } from 'react-scroll'
+import { HashLink } from 'react-router-hash-link'
 import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -18,18 +18,11 @@ import SignOutButton from './components/SignOutButton'
 import FormSent from './components/FormSent'
 import NotFound from './components/NotFound'
 
-const options = {
-  duration: 1500,
-  delay: 100,
-  smooth: true,
-}
-
 const activeStyle = {
   border: '0.2px solid #3C3C3C',
   padding: '10px 30px',
   borderStyle: 'groove'
 }
-
 
 const App = () => {
   const firebase = useContext(FirebaseContext);
@@ -92,16 +85,16 @@ const App = () => {
             <NavLink activeStyle={activeStyle} activeClassName="active" exact to="/">Start</NavLink>
           </li>
           <li>
-            <Scroll to="section1" {...options} >O co chodzi?</Scroll>
+            <HashLink smooth to="/#section1" >O co chodzi?</HashLink>
           </li>
           <li>
-            <Scroll to="section2" {...options} >O nas</Scroll>
+            <HashLink smooth to="/#section2">O nas</HashLink>
           </li>
           <li>
-            <Scroll to="section3" {...options} >Fundacja i organizacje</Scroll>
+            <HashLink smooth to="/#section3">Fundacja i organizacje</HashLink>
           </li>
           <li>
-            <Scroll to="section4" {...options} >Kontakt</Scroll>
+            <HashLink smooth to="/#section4">Kontakt</HashLink>
           </li>
         </ul>
       </nav>

@@ -15,8 +15,8 @@
     "react-final-form": "^6.5.2",
     "react-flash-message": "^1.0.5",
     "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.4.0",
     "react-scripts": "3.4.1",
-    "react-scroll": "^1.8.1",
     "react-spinners": "^0.8.3",
     "recompose": "^0.30.0"
   },
