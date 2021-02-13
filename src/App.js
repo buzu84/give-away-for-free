@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
   Link,
-  NavLink,
+  NavLink
 } from 'react-router-dom'
 import { FirebaseContext } from './components/Firebase'
 import { Link as Scroll } from 'react-scroll'
