@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
-import history from '../Home/history'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 
-export default class Wizard extends React.Component {
+
+export default compose(withRouter)(
+  class Wizard extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
   }
@@ -63,7 +66,7 @@ export default class Wizard extends React.Component {
           <form onSubmit={(event) => {
             const promise = handleSubmit(event);
             promise && promise.then(() => {
-              history.push('/form-sent')
+              this.props.history.push('/form-sent')
             })
             return promise;
           }}>
@@ -86,4 +89,4 @@ export default class Wizard extends React.Component {
       </Form>
     )
   }
-}
+})
