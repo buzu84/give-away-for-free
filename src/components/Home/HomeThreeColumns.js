@@ -14,8 +14,9 @@ class HomeThreeColumnsBase extends Component {
   }
 
   componentDidMount() {
-    if (this.props.firebase != null) {
-      this.props.firebase.assemblies().once('value', snapshot => {
+    const { firebase } = this.props;
+    if (firebase) {
+      firebase.assemblies().once('value', snapshot => {
         const assemblyObject = snapshot.val()
 
         if (assemblyObject) {
@@ -26,8 +27,8 @@ class HomeThreeColumnsBase extends Component {
       });
     }
 
-    if (this.props.firebase != null) {
-      this.props.firebase.foundations().once('value', snapshot => {
+    if (firebase) {
+      firebase.foundations().once('value', snapshot => {
         const foundationObject = snapshot.val()
 
         if (foundationObject) {
@@ -38,9 +39,10 @@ class HomeThreeColumnsBase extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.firebase != null) {
-      this.props.firebase.assemblies().off();
-      this.props.firebase.foundations().off();
+    const { firebase } = this.props;
+    if (firebase) {
+      firebase.assemblies().off();
+      firebase.foundations().off();
     }
   }
 
