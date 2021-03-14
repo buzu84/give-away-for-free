@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { Field } from 'react-final-form'
+import { Select } from './Select'
 import Wizard from './GiveAwayForm/Wizard'
 import mySvg from '../assets/Decoration.svg'
 import withAuthorization from './Session/withAuthorization.js'
@@ -18,10 +19,10 @@ const Error = ({ name }) => (
 const required = value => (value ? undefined : 'Wybierz jedną opcję')
 
 function formatDate(date) {
-  var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+  let d = new Date(date),
+  month = '' + (d.getMonth() + 1),
+  day = '' + d.getDate(),
+  year = d.getFullYear();
 
   if (month.length < 2)
       month = '0' + month;
@@ -35,6 +36,51 @@ const GiveAwayFormBase = () => {
   const firebase = useContext(FirebaseContext);
   const onSubmit = async values => {
     firebase.assemblies().push(JSON.stringify(values));
+  }
+
+  function validateAddressDetails (values) {
+    const zipRegEx = /[\d]{2}-[\d]{3}$/g;
+    const phoneRegEx = /^(\d{9})$/;
+    const errors = {}
+
+    if (!values.street || values.street.length <= 2) {
+      errors.street = 'Przynajmniej 3 znaki'
+    }
+    if (!values.city || values.city.length <= 2) {
+      errors.city = 'Przynajmniej 3 znaki'
+    }
+    if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
+      errors.zip_code = 'Prawidłowy format to XX-XXX'
+    }
+    if (values.time === '') {
+      errors.time = 'Wybierz godzinę'
+    }
+    if (values.date === '') {
+      errors.date = 'Wybierz datę'
+    }
+    if (!values.phone || !values.phone.match(phoneRegEx)) {
+      errors.phone = 'Wprowadź prawidłowy telefon (9 cyfr)'
+    }
+    return errors
+  }
+
+  function validateIfOrganizationChosen (values) {
+    let errors = {}
+    if (!values.bags || values.bags === "--wybierz--") {
+      errors.bags = 'Wybierz z listy!'
+    }
+    return errors
+  }
+
+  function validateLocalization (values) {
+    let errors = {}
+    if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
+      errors.localization = 'Wybierz z listy lub wpisz lokalizację'
+    }
+    if (values.helpGroups.length === 0) {
+      errors.helpGroups = 'Wybierz przynajmniej jedną organizację'
+    }
+    return errors
   }
 
   return (
@@ -83,15 +129,7 @@ const GiveAwayFormBase = () => {
           <div className="padd_left"><Error name="pick" /></div>
         </div>
       </Wizard.Page>
-      <Wizard.Page
-        validate={values => {
-          let errors = {}
-          if (!values.bags || values.bags === "--wybierz--") {
-            errors.bags = 'Wybierz z listy!'
-          }
-          return errors
-        }}
-      >
+      <Wizard.Page validate={values => validateIfOrganizationChosen(values)}>
         <div className="form_page_cont">
           <div className="step">
             <h2 className="padd_left">Ważne!</h2>
@@ -101,117 +139,66 @@ const GiveAwayFormBase = () => {
           <h1 className="padd_left step_header">Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:</h1>
           <div className="padd_left">
             <label>Liczba 60l worków:</label>
-            <Field className="select" name="bags" component="select">
-              <option>--wybierz--</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </Field>
+            <Select className="select" name="bags" values={[1,2,3,4,5]}/>
             <Error name="bags" />
           </div>
         </div>
       </Wizard.Page>
-      <Wizard.Page
-        validate={values => {
-          let errors = {}
-          if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
-            errors.localization = 'Wybierz z listy lub wpisz lokalizację'
-          }
-          if (values.helpGroups.length === 0) {
-            errors.helpGroups = 'Wybierz przynajmniej jedną organizację'
-          }
-          return errors
-        }}
-      >
-      <div className="form_page_cont">
-        <div className="step">
-          <h2 className="padd_left">Ważne!</h2>
-          <p className="padd_left">Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz lokalizację.</p>
-        </div>
-        <h4 className="padd_left step_no">Krok 3/4</h4>
-        <h1 className="padd_left smaller_head">Lokalizacja:</h1>
-        <div className="flex_cont">
-          <div className="padd_left flex_cont_2">
-            <Field name="localization" component="select" className="select select_2">
-              <option >--wybierz--</option>
-              <option value="Poznań" >Poznań</option>
-              <option value="Kraków">Kraków</option>
-              <option value="Warszawa">Warszawa</option>
-              <option value="Wrocław">Wrocław</option>
-              <option value="Katowice">Katowice</option>
-            </Field>
-            <Error name="localization" />
+      <Wizard.Page validate={values => validateLocalization(values)}>
+        <div className="form_page_cont">
+          <div className="step">
+            <h2 className="padd_left">Ważne!</h2>
+            <p className="padd_left">Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz lokalizację.</p>
           </div>
+          <h4 className="padd_left step_no">Krok 3/4</h4>
+          <h1 className="padd_left smaller_head">Lokalizacja:</h1>
+          <div className="flex_cont">
+            <div className="padd_left flex_cont_2">
+              <Select name="localization" className="select select_2" values={["Poznań", "Kraków", "Warszawa", "Wrocław", "Katowice"]} />
+              <Error name="localization" />
+            </div>
+            <div className="padd_left">
+              <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji (opcjonalnie)</h4>
+              <label>
+                <Field name="localizationSpecific" component="input" type="text" />
+              </label>
+            </div>
+          </div>
+          <h4 className="padd_left smaller_head padd_top">Komu chcesz pomóc?</h4>
           <div className="padd_left">
-            <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji (opcjonalnie)</h4>
-            <label>
-              <Field name="localizationSpecific" component="input" type="text" />
+            <label className='check_label'>
+              <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
+              Dzieciom
             </label>
           </div>
+          <div className="padd_left">
+            <label className='check_label'>
+              <Field name="helpGroups" component="input" type="checkbox" value="matki" />
+              Samotnym matkom
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className='check_label'>
+              <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
+              Bezdomnym
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className='check_label'>
+              <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
+              Niepełnosprawnym
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className='check_label'>
+              <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
+              Osobom starszym
+            </label>
+          </div>
+          <div className="padd_left"><Error name="helpGroups" /></div>
         </div>
-        <h4 className="padd_left smaller_head padd_top">Komu chcesz pomóc?</h4>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
-            Dzieciom
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="matki" />
-            Samotnym matkom
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
-            Bezdomnym
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
-            Niepełnosprawnym
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
-            Osobom starszym
-          </label>
-        </div>
-        <div className="padd_left"><Error name="helpGroups" /></div>
-      </div>
       </Wizard.Page>
-      <Wizard.Page
-        validate={values => {
-          const zipRegEx = /[\d]{2}-[\d]{3}$/g;
-          const phoneRegEx = /^(\d{9})$/;
-          const errors = {}
-
-          if (!values.street || values.street.length <= 2) {
-            errors.street = 'Przynajmniej 3 znaki'
-          }
-          if (!values.city || values.city.length <= 2) {
-            errors.city = 'Przynajmniej 3 znaki'
-          }
-          if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
-            errors.zip_code = 'Prawidłowy format to XX-XXX'
-          }
-          if (values.time === '') {
-            errors.time = 'Wybierz godzinę'
-          }
-          if (values.date === '') {
-            errors.date = 'Wybierz datę'
-          }
-          if (!values.phone || !values.phone.match(phoneRegEx)) {
-            errors.phone = 'Wprowadź prawidłowy telefon (9 cyfr)'
-          }
-          return errors
-        }}
-      >
+      <Wizard.Page validate={values => validateAddressDetails(values)}>
         <div className="form_page_cont">
           <div className="step">
             <h2 className="padd_left">Ważne!</h2>

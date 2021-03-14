@@ -77,11 +77,12 @@ export default compose(withRouter)(
                   Wstecz
                 </button>
               )}
-              {!isLastPage && <button className="button" type="submit">Dalej</button>}
-              {isLastPage && (
+              {isLastPage ? (
                 <button className="button" type="submit" disabled={submitting}>
                   Wyślij
                 </button>
+              ) : (
+                <button className="button" type="submit">Dalej</button>
               )}
             </div>
           </form>
