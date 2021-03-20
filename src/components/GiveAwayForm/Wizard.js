@@ -19,7 +19,7 @@ export default compose(withRouter)(
       };
     }
 
-    next = (values) =>
+    next = values =>
       this.setState((state) => ({
         page: Math.min(state.page + 1, this.props.children.length - 1),
         values,
@@ -30,14 +30,14 @@ export default compose(withRouter)(
         page: Math.max(state.page - 1, 0),
       }));
 
-    validate = (values) => {
+    validate = values => {
       const activePage = React.Children.toArray(this.props.children)[
         this.state.page
       ];
       return activePage.props.validate ? activePage.props.validate(values) : {};
     };
 
-    handleSubmit = (values) => {
+    handleSubmit = values => {
       const { children, onSubmit } = this.props;
       const { page } = this.state;
       const isLastPage = page === React.Children.count(children) - 1;
@@ -87,4 +87,5 @@ export default compose(withRouter)(
       </Form>
     )
   }
-);
+}
+)

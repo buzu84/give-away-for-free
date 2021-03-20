@@ -170,19 +170,21 @@ li > a {
     width: 50%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     .btn_log {
-      border: none;
+      text-decoration: none;
       outline:none;
       background: white;
-      padding: 1rem 0;
+      padding: 1.2rem 1rem;
       cursor: pointer;
       font-family: inherit;
       font-size: 1.1rem;
+      border: $color_5 0.5px solid;
+      color: $color_5;
     }
     .register_nav {
       border: 0.5px solid $color_5;
-      padding: 7px 20px;
-      borderStyle: groove;
+      padding: 1rem 0.8rem;
     }
   }
   .legend_label {

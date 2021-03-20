@@ -7,7 +7,7 @@ import HomeHeader from "./HomeHeader";
 import HomeOrganizations from "./HomeOrganizations";
 import HomeThreeColumns from "./HomeThreeColumns";
 
-const Home = (props) => {
+const Home = props => {
   return (
     <div className="container">
       <HomeHeader />
