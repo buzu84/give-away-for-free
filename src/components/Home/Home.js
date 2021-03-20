@@ -1,13 +1,13 @@
 import React from "react";
 
-import HomeAboutUs from './HomeAboutUs';
-import HomeContact from './HomeContact';
-import HomeFourSteps from './HomeFourSteps';
-import HomeHeader from './HomeHeader';
-import HomeOrganizations from './HomeOrganizations';
-import HomeThreeColumns from './HomeThreeColumns';
+import HomeAboutUs from "./HomeAboutUs";
+import HomeContact from "./HomeContact";
+import HomeFourSteps from "./HomeFourSteps";
+import HomeHeader from "./HomeHeader";
+import HomeOrganizations from "./HomeOrganizations";
+import HomeThreeColumns from "./HomeThreeColumns";
 
-const Home = props => {
+const Home = (props) => {
   return (
     <div className="container">
       <HomeHeader />
@@ -15,9 +15,9 @@ const Home = props => {
       <HomeFourSteps />
       <HomeAboutUs />
       <HomeOrganizations />
-      <HomeContact authEmail={props.eMail}/>
+      <HomeContact authEmail={props.eMail} />
     </div>
   );
-}
+};
 
 export default Home;

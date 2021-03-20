@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
-import { Field } from 'react-final-form'
-import Wizard from './GiveAwayForm/Wizard'
-import mySvg from '../assets/Decoration.svg'
-import withAuthorization from './Session/withAuthorization.js'
-import { FirebaseContext } from './Firebase'
+import React, { useContext } from "react";
+import { Field } from "react-final-form";
+import Wizard from "./GiveAwayForm/Wizard";
+import mySvg from "../assets/Decoration.svg";
+import withAuthorization from "./Session/withAuthorization.js";
+import { FirebaseContext } from "./Firebase";
 
 const Error = ({ name }) => (
   <Field
@@ -13,92 +13,138 @@ const Error = ({ name }) => (
       touched && error ? <span className="form_error">{error}</span> : null
     }
   />
-)
+);
 
-const required = value => (value ? undefined : 'Wybierz jedną opcję')
+const required = (value) => (value ? undefined : "Wybierz jedną opcję");
 
 function formatDate(date) {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
 
-  if (month.length < 2)
-      month = '0' + month;
-  if (day.length < 2)
-      day = '0' + day;
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
 
-  return [year, month, day].join('-');
-};
+  return [year, month, day].join("-");
+}
 
 const GiveAwayFormBase = () => {
   const firebase = useContext(FirebaseContext);
-  const onSubmit = async values => {
+  const onSubmit = async (values) => {
     firebase.assemblies().push(JSON.stringify(values));
-  }
+  };
 
   return (
     <Wizard
-      initialValues={{ helpGroups: [], city: '', street: '', zip_code: '', phone: '', date: '', time: '', active: false }}
+      initialValues={{
+        helpGroups: [],
+        city: "",
+        street: "",
+        zip_code: "",
+        phone: "",
+        date: "",
+        time: "",
+        active: false,
+      }}
       onSubmit={onSubmit}
     >
       <Wizard.Page>
         <div className="form_page_cont">
           <div className="step">
             <h2 className="padd_left">Ważne!</h2>
-            <p className="padd_left">Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu bedziemy wiedzieć komu najlepiej je przekazać.</p>
+            <p className="padd_left">
+              Uzupełnij szczegóły dotyczące Twoich rzeczy. Dzięki temu bedziemy
+              wiedzieć komu najlepiej je przekazać.
+            </p>
           </div>
           <h4 className="padd_left step_no">Krok 1/4</h4>
           <h1 className="padd_left header_mark">Zaznacz co chcesz oddać:</h1>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ubrania" validate={required}/>
+              <Field
+                name="pick"
+                component="input"
+                type="radio"
+                value="ubrania"
+                validate={required}
+              />
               Ubrania, które nadają się do ponownego użycia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="stare_ubrania" validate={required}/>
+              <Field
+                name="pick"
+                component="input"
+                type="radio"
+                value="stare_ubrania"
+                validate={required}
+              />
               Ubrania do wyrzucenia
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="zabawki" validate={required}/>
+              <Field
+                name="pick"
+                component="input"
+                type="radio"
+                value="zabawki"
+                validate={required}
+              />
               Zabawki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="ksiazki" validate={required}/>
+              <Field
+                name="pick"
+                component="input"
+                type="radio"
+                value="ksiazki"
+                validate={required}
+              />
               Książki
             </label>
           </div>
           <div className="padd_left">
             <label>
-              <Field name="pick" component="input" type="radio" value="inne" validate={required}/>
+              <Field
+                name="pick"
+                component="input"
+                type="radio"
+                value="inne"
+                validate={required}
+              />
               Inne
             </label>
           </div>
-          <div className="padd_left"><Error name="pick" /></div>
+          <div className="padd_left">
+            <Error name="pick" />
+          </div>
         </div>
       </Wizard.Page>
       <Wizard.Page
-        validate={values => {
-          let errors = {}
+        validate={(values) => {
+          let errors = {};
           if (!values.bags || values.bags === "--wybierz--") {
-            errors.bags = 'Wybierz z listy!'
+            errors.bags = "Wybierz z listy!";
           }
-          return errors
+          return errors;
         }}
       >
         <div className="form_page_cont">
           <div className="step">
             <h2 className="padd_left">Ważne!</h2>
-            <p className="padd_left">Wszystkie rzeczy do oddania zapakuj w 60l worki.</p>
+            <p className="padd_left">
+              Wszystkie rzeczy do oddania zapakuj w 60l worki.
+            </p>
           </div>
           <h4 className="padd_left step_no">Krok 2/4</h4>
-          <h1 className="padd_left step_header">Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:</h1>
+          <h1 className="padd_left step_header">
+            Podaj liczbę 60l worków, w które spakowałeś/łaś rzeczy:
+          </h1>
           <div className="padd_left">
             <label>Liczba 60l worków:</label>
             <Field className="select" name="bags" component="select">
@@ -114,102 +160,147 @@ const GiveAwayFormBase = () => {
         </div>
       </Wizard.Page>
       <Wizard.Page
-        validate={values => {
-          let errors = {}
-          if ((!values.localization || values.localization === '--wybierz--') && !values.localizationSpecific) {
-            errors.localization = 'Wybierz z listy lub wpisz lokalizację'
+        validate={(values) => {
+          let errors = {};
+          if (
+            (!values.localization || values.localization === "--wybierz--") &&
+            !values.localizationSpecific
+          ) {
+            errors.localization = "Wybierz z listy lub wpisz lokalizację";
           }
           if (values.helpGroups.length === 0) {
-            errors.helpGroups = 'Wybierz przynajmniej jedną organizację'
+            errors.helpGroups = "Wybierz przynajmniej jedną organizację";
           }
-          return errors
+          return errors;
         }}
       >
-      <div className="form_page_cont">
-        <div className="step">
-          <h2 className="padd_left">Ważne!</h2>
-          <p className="padd_left">Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz lokalizację.</p>
-        </div>
-        <h4 className="padd_left step_no">Krok 3/4</h4>
-        <h1 className="padd_left smaller_head">Lokalizacja:</h1>
-        <div className="flex_cont">
-          <div className="padd_left flex_cont_2">
-            <Field name="localization" component="select" className="select select_2">
-              <option >--wybierz--</option>
-              <option value="Poznań" >Poznań</option>
-              <option value="Kraków">Kraków</option>
-              <option value="Warszawa">Warszawa</option>
-              <option value="Wrocław">Wrocław</option>
-              <option value="Katowice">Katowice</option>
-            </Field>
-            <Error name="localization" />
+        <div className="form_page_cont">
+          <div className="step">
+            <h2 className="padd_left">Ważne!</h2>
+            <p className="padd_left">
+              Jeśli chcesz pomóc, wybierz komu najchętniej. Wybierz lub wpisz
+              lokalizację.
+            </p>
           </div>
+          <h4 className="padd_left step_no">Krok 3/4</h4>
+          <h1 className="padd_left smaller_head">Lokalizacja:</h1>
+          <div className="flex_cont">
+            <div className="padd_left flex_cont_2">
+              <Field
+                name="localization"
+                component="select"
+                className="select select_2"
+              >
+                <option>--wybierz--</option>
+                <option value="Poznań">Poznań</option>
+                <option value="Kraków">Kraków</option>
+                <option value="Warszawa">Warszawa</option>
+                <option value="Wrocław">Wrocław</option>
+                <option value="Katowice">Katowice</option>
+              </Field>
+              <Error name="localization" />
+            </div>
+            <div className="padd_left">
+              <h4 className="smaller_head">
+                Wpisz nazwę konkretnej lokalizacji (opcjonalnie)
+              </h4>
+              <label>
+                <Field
+                  name="localizationSpecific"
+                  component="input"
+                  type="text"
+                />
+              </label>
+            </div>
+          </div>
+          <h4 className="padd_left smaller_head padd_top">
+            Komu chcesz pomóc?
+          </h4>
           <div className="padd_left">
-            <h4 className="smaller_head">Wpisz nazwę konkretnej lokalizacji (opcjonalnie)</h4>
-            <label>
-              <Field name="localizationSpecific" component="input" type="text" />
+            <label className="check_label">
+              <Field
+                name="helpGroups"
+                component="input"
+                type="checkbox"
+                value="dzieci"
+              />
+              Dzieciom
             </label>
           </div>
+          <div className="padd_left">
+            <label className="check_label">
+              <Field
+                name="helpGroups"
+                component="input"
+                type="checkbox"
+                value="matki"
+              />
+              Samotnym matkom
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className="check_label">
+              <Field
+                name="helpGroups"
+                component="input"
+                type="checkbox"
+                value="bezdomni"
+              />
+              Bezdomnym
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className="check_label">
+              <Field
+                name="helpGroups"
+                component="input"
+                type="checkbox"
+                value="niepelnosprawni"
+              />
+              Niepełnosprawnym
+            </label>
+          </div>
+          <div className="padd_left">
+            <label className="check_label">
+              <Field
+                name="helpGroups"
+                component="input"
+                type="checkbox"
+                value="starsi"
+              />
+              Osobom starszym
+            </label>
+          </div>
+          <div className="padd_left">
+            <Error name="helpGroups" />
+          </div>
         </div>
-        <h4 className="padd_left smaller_head padd_top">Komu chcesz pomóc?</h4>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="dzieci" />
-            Dzieciom
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="matki" />
-            Samotnym matkom
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="bezdomni" />
-            Bezdomnym
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="niepelnosprawni" />
-            Niepełnosprawnym
-          </label>
-        </div>
-        <div className="padd_left">
-          <label className='check_label'>
-            <Field name="helpGroups" component="input" type="checkbox" value="starsi" />
-            Osobom starszym
-          </label>
-        </div>
-        <div className="padd_left"><Error name="helpGroups" /></div>
-      </div>
       </Wizard.Page>
       <Wizard.Page
-        validate={values => {
+        validate={(values) => {
           const zipRegEx = /[\d]{2}-[\d]{3}$/g;
           const phoneRegEx = /^(\d{9})$/;
-          const errors = {}
+          const errors = {};
 
           if (!values.street || values.street.length <= 2) {
-            errors.street = 'Przynajmniej 3 znaki'
+            errors.street = "Przynajmniej 3 znaki";
           }
           if (!values.city || values.city.length <= 2) {
-            errors.city = 'Przynajmniej 3 znaki'
+            errors.city = "Przynajmniej 3 znaki";
           }
           if (!values.zip_code || !values.zip_code.match(zipRegEx)) {
-            errors.zip_code = 'Prawidłowy format to XX-XXX'
+            errors.zip_code = "Prawidłowy format to XX-XXX";
           }
-          if (values.time === '') {
-            errors.time = 'Wybierz godzinę'
+          if (values.time === "") {
+            errors.time = "Wybierz godzinę";
           }
-          if (values.date === '') {
-            errors.date = 'Wybierz datę'
+          if (values.date === "") {
+            errors.date = "Wybierz datę";
           }
           if (!values.phone || !values.phone.match(phoneRegEx)) {
-            errors.phone = 'Wprowadź prawidłowy telefon (9 cyfr)'
+            errors.phone = "Wprowadź prawidłowy telefon (9 cyfr)";
           }
-          return errors
+          return errors;
         }}
       >
         <div className="form_page_cont">
@@ -218,7 +309,9 @@ const GiveAwayFormBase = () => {
             <p className="padd_left">Podaj adres oraz termin odbioru rzeczy.</p>
           </div>
           <h4 className="padd_left step_no">Krok 4/4</h4>
-          <h1 className="padd_left">Podaj adres oraz termin odbioru rzeczy przez kuriera:</h1>
+          <h1 className="padd_left">
+            Podaj adres oraz termin odbioru rzeczy przez kuriera:
+          </h1>
           <div className="flex_cont_3">
             <div className="padd_left">
               <h2>Adres odbioru:</h2>
@@ -256,7 +349,12 @@ const GiveAwayFormBase = () => {
               <div>
                 <label className="flex_cont_4">
                   Data
-                  <Field name="date" component="input" type="date" min={formatDate(new Date())}/>
+                  <Field
+                    name="date"
+                    component="input"
+                    type="date"
+                    min={formatDate(new Date())}
+                  />
                 </label>
                 <Error name="date" />
               </div>
@@ -269,8 +367,14 @@ const GiveAwayFormBase = () => {
               </div>
               <div>
                 <label className="flex_cont_4">
-                Uwagi dla kuriera
-                  <Field name="notes" component="textarea" placeholder="uwagi" rows="4" cols="20"/>
+                  Uwagi dla kuriera
+                  <Field
+                    name="notes"
+                    component="textarea"
+                    placeholder="uwagi"
+                    rows="4"
+                    cols="20"
+                  />
                 </label>
                 <Error name="notes" />
               </div>
@@ -279,8 +383,8 @@ const GiveAwayFormBase = () => {
         </div>
       </Wizard.Page>
     </Wizard>
-  )
-}
+  );
+};
 
 const GiveAwayForm = () => {
   return (
@@ -299,7 +403,7 @@ const GiveAwayForm = () => {
               <p>Wybierz rzeczy</p>
             </div>
             <div className="step">
-            <span className="square"></span>
+              <span className="square"></span>
               <p className="padding">2</p>
               <p>Spakuj je w worki</p>
             </div>
@@ -322,8 +426,8 @@ const GiveAwayForm = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 export default withAuthorization(condition)(GiveAwayForm);

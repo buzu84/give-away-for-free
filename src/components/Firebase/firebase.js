@@ -1,7 +1,7 @@
-import app from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/database'
-import history from '../Home/history'
+import app from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import history from "../Home/history";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -10,7 +10,7 @@ const config = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 class Firebase {
@@ -28,25 +28,28 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => {
-    this.auth.signOut().then(function() {
-      history.push('/logout')
-    }).catch(function(error) {
-      console.log('blad wylogowania')
-    });
-  }
+    this.auth
+      .signOut()
+      .then(function () {
+        history.push("/logout");
+      })
+      .catch(function (error) {
+        console.log("blad wylogowania");
+      });
+  };
 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
-  doPasswordUpdate = password =>
+  doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);
 
-  doEmailVerification = email =>
+  doEmailVerification = (email) =>
     this.auth.currentUser.sendEmailVerification(email);
 
-  organizations = () => this.db.ref('data/organizacje');
-  foundations = () => this.db.ref('data/fundacje');
-  collections = () => this.db.ref('data/zbiorki');
-  assemblies = () => this.db.ref('data/kwesty');
+  organizations = () => this.db.ref("data/organizacje");
+  foundations = () => this.db.ref("data/fundacje");
+  collections = () => this.db.ref("data/zbiorki");
+  assemblies = () => this.db.ref("data/kwesty");
 }
 
 export default Firebase;
