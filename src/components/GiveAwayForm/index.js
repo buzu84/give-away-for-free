@@ -1,3 +1,3 @@
-import GiveAwayForm from './GiveAwayForm';
+import GiveAwayForm from "./GiveAwayForm";
 
 export default GiveAwayForm;

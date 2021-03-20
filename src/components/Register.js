@@ -12,9 +12,9 @@ const Register = () => (
 );
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
-  passwordConfirmation: '',
+  email: "",
+  password: "",
+  passwordConfirmation: "",
   error: null,
 };
 
@@ -24,33 +24,28 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     const { email, password } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
+      .then((authUser) => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push('/');
+        this.props.history.push("/");
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
 
     event.preventDefault();
-  }
+  };
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const {
-      email,
-      password,
-      passwordConfirmation,
-      error,
-    } = this.state;
+    const { email, password, passwordConfirmation, error } = this.state;
 
     const invalidEntry =
       password !== passwordConfirmation ||
@@ -63,13 +58,33 @@ class SignUpFormBase extends Component {
         <img className="icon" src={mySvg} alt="decoration" />
         <fieldset className="form_field">
           <label className="form_label form_label_1">Email</label>
-          <input className="input_label" name="email" value={email} onChange={this.onChange} type="text" />
+          <input
+            className="input_label"
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+          />
           <label className="form_label">Podaj hasło</label>
-          <input className="input_label" name="password" value={password} onChange={this.onChange} type="password" />
+          <input
+            className="input_label"
+            name="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+          />
           <label className="form_label">Powtórz hasło</label>
-          <input className="input_label" name="passwordConfirmation" value={passwordConfirmation} onChange={this.onChange} type="password" />
+          <input
+            className="input_label"
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            onChange={this.onChange}
+            type="password"
+          />
         </fieldset>
-        {password !== passwordConfirmation && <p className="error_message">Hasła nie są takie same!</p>}
+        {password !== passwordConfirmation && (
+          <p className="error_message">Hasła nie są takie same!</p>
+        )}
         {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
           <button className="btn_log register_nav" disabled={invalidEntry} type="submit">Załóż konto</button>
@@ -80,10 +95,7 @@ class SignUpFormBase extends Component {
   }
 }
 
-const SignUpForm = compose(
-  withRouter,
-  withFirebase,
-)(SignUpFormBase);
+const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
 
 export default Register;
 

@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.22.0",
     "gulp-sass": "^4.1.0",
     "prettier": "^2.2.1"
   }
