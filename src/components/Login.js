@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import history from "./Home/history";
-import { withFirebase } from "./Firebase";
-import { withRouter } from "react-router-dom";
-import { compose } from "recompose";
-import mySvg from "../assets/Decoration.svg";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { withFirebase } from './Firebase'
+import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
+import mySvg from '../assets/Decoration.svg'
 
 const Login = () => (
   <div>
@@ -71,16 +71,8 @@ class SignInFormBase extends Component {
         </fieldset>
         {error && <p className="error_message">{error.message}</p>}
         <div className="btn2_container">
-          <button
-            className="btn_log register_nav"
-            disabled={blankEmailPassword}
-            type="submit"
-          >
-            Zaloguj się
-          </button>
-          <button className="btn_log" onClick={() => history.push("/register")}>
-            Załóż konto
-          </button>
+          <button className="btn_log register_nav" disabled={blankEmailPassword} type="submit">Zaloguj się</button>
+          <Link className="btn_log" to="/register">Załóż konto</Link>
         </div>
       </form>
     );

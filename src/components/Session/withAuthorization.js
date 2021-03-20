@@ -18,7 +18,7 @@ const withAuthorization = (condition) => (Component) => {
     }
 
     componentWillUnmount() {
-      this.listener();
+      this.listener && this.listener();
     }
 
     render() {
